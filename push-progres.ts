@@ -20,12 +20,20 @@ function escapeRegExp(string: string): string {
 }
 
 function anonymizeData(data: Record<string, Record<string, {hash: string, message: string}[]>>) {
+  // Collect all unique repos across all dates for consistent mapping
+  const allRepos = new Set<string>();
   for (const date in data) {
-    const repos = Object.keys(data[date]).sort();
-    const map = new Map<string, string>();
-    repos.forEach((repo, i) => map.set(repo, `Project ${i + 1}`));
+    for (const repo in data[date]) {
+      allRepos.add(repo);
+    }
+  }
+  const sortedRepos = Array.from(allRepos).sort();
+  const map = new Map<string, string>();
+  sortedRepos.forEach((repo, i) => map.set(repo, `Project ${i + 1}`));
+
+  for (const date in data) {
     const newRepos: Record<string, {hash: string, message: string}[]> = {};
-    for (const repo of repos) {
+    for (const repo of Object.keys(data[date])) {
       const generic = map.get(repo)!;
       const msgs = data[date][repo].map(item => {
         let newMsg = item.message;
