@@ -3109,7 +3109,7 @@
 
 **Total commits:** 39
 
-## 2025-09-18 14:36
+## 2025-09-18 14:50
 
 **Project 22**
 
@@ -3130,6 +3130,10 @@
 
 **Project 8**
 
+- Update README.md
+- name change to fix typo
+- Add README.md for public work log quest
+- final version of commits list.
 - (console.logs to see process.
 - first version of our work done commit sheet.
 - Improved script to remove duplicate names
@@ -3147,4 +3151,4 @@
 - Updated script to better handle requirements.
 - hello world
 
-**Total commits:** 17
+**Total commits:** 21
