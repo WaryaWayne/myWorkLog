@@ -151,6 +151,8 @@ function buildLogContent(initialHeader: string, data: Record<string, Record<stri
 
 // --- main ---
 async function main() {
+  const fullSync = process.argv[2] === 'new';
+
   if (!existsSync(PROJECTS_DIR)) {
     console.error("Projects dir not found:", PROJECTS_DIR);
     process.exit(1);
@@ -172,13 +174,29 @@ async function main() {
     logContent = readFileSync(LOG_FILE, "utf8");
   }
 
-  // determine sinceDate
-  let sinceDate = DEFAULT_START;
-  if (logContent) {
-    const matches = [...logContent.matchAll(/^## (\d{4}-\d{2}-\d{2})/gm)];
-    if (matches.length > 0) {
-      sinceDate = matches[matches.length - 1][1];
+  // parse existing log to get repos
+  const parsed = parseExistingLog(logContent || "");
+  const existingRepos = new Set<string>();
+  for (const date in parsed.data) {
+    for (const repo in parsed.data[date]) {
+      existingRepos.add(repo);
     }
+  }
+
+  // determine sinceDate
+  let sinceDate: string;
+  if (fullSync) {
+    sinceDate = DEFAULT_START;
+    if (logContent) {
+      const matches = [...logContent.matchAll(/^## (\d{4}-\d{2}-\d{2})/gm)];
+      if (matches.length > 0) {
+        sinceDate = matches[matches.length - 1][1];
+      }
+    }
+  } else {
+    // last 24 hours
+    const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000);
+    sinceDate = yesterday.toISOString().split('T')[0];
   }
 
   const repos = findGitRepos(PROJECTS_DIR);
@@ -191,6 +209,7 @@ async function main() {
 
   for (const repoPath of repos) {
     const repoRelative = relative(PROJECTS_DIR, repoPath) || repoPath;
+    if (!fullSync && existingRepos.has(repoRelative)) continue;
     try {
       // gather commits with file lists
       // format: a commit marker, then header line with hash|date|author|email|subject, then changed paths
@@ -249,8 +268,7 @@ async function main() {
     return;
   }
 
-  // parse existing log and merge
-  const parsed = parseExistingLog(logContent || "");
+  // merge with existing
   const merged = parsed.data;
 
   for (const date of newDates) {
