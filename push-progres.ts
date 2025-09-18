@@ -266,16 +266,24 @@ async function main() {
           const meaningful = files.some(f => !isExcludedPath(f));
           if (!meaningful) continue; // skip this commit
         }
-        // format message with body indented
-        let message = subject || "(no subject)";
-        if (body) {
-          message += "\n  -- " + body.replace(/\n/g, "\n  -- ");
-        }
+         // skip unwanted commits (e.g., .gitProject 85545 creations)
+         if (subject.toLowerCase().includes('.gitproject') ||
+             subject.toLowerCase().includes('gitignore') ||
+             subject.toLowerCase().includes('.git') ||
+             subject === 'Initial commit') {
+           continue;
+         }
 
-        // otherwise accept commit
-        if (!newGrouped[date]) newGrouped[date] = {};
-        if (!newGrouped[date][repoRelative]) newGrouped[date][repoRelative] = [];
-        newGrouped[date][repoRelative].push({hash, message});
+         // format message with body indented
+         let message = subject || "(no subject)";
+         if (body) {
+           message += "\n  -- " + body.replace(/\n/g, "\n  -- ");
+         }
+
+         // otherwise accept commit
+         if (!newGrouped[date]) newGrouped[date] = {};
+         if (!newGrouped[date][repoRelative]) newGrouped[date][repoRelative] = [];
+         newGrouped[date][repoRelative].push({hash, message});
       }
     } catch (err: any) {
       const stderr = String(err?.stderr || "");
