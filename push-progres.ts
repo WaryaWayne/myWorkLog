@@ -19,16 +19,16 @@ function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function anonymizeData(data: Record<string, Record<string, string[]>>) {
+function anonymizeData(data: Record<string, Record<string, {hash: string, message: string}[]>>) {
   for (const date in data) {
     const repos = Object.keys(data[date]).sort();
     const map = new Map<string, string>();
     repos.forEach((repo, i) => map.set(repo, `Project ${i + 1}`));
-    const newRepos: Record<string, string[]> = {};
+    const newRepos: Record<string, {hash: string, message: string}[]> = {};
     for (const repo of repos) {
       const generic = map.get(repo)!;
-      const msgs = data[date][repo].map(msg => {
-        let newMsg = msg;
+      const msgs = data[date][repo].map(item => {
+        let newMsg = item.message;
         for (const [actual, gen] of map) {
           newMsg = newMsg.replace(new RegExp(escapeRegExp(actual), 'g'), gen);
           const parts = actual.split('/');
@@ -36,7 +36,7 @@ function anonymizeData(data: Record<string, Record<string, string[]>>) {
             if (part) newMsg = newMsg.replace(new RegExp(escapeRegExp(part), 'g'), gen);
           }
         }
-        return newMsg;
+        return {hash: item.hash, message: newMsg};
       });
       newRepos[generic] = msgs;
     }
@@ -87,14 +87,16 @@ function isExcludedPath(p: string) {
   return false;
 }
 
-// Parse existing log into structure { header, data: {date: { repo: [msgs] }}}
+// Parse existing log into structure { header, data: {date: { repo: [{hash, message}] }}, lastDate, lastTime}
 function parseExistingLog(content: string) {
-  const data: Record<string, Record<string, string[]>> = {};
+  const data: Record<string, Record<string, {hash: string, message: string}[]>> = {};
   let initialHeader = "";
-  const dateMatches = [...content.matchAll(/^## (\d{4}-\d{2}-\d{2})/gm)];
+  let lastDate: string | null = null;
+  let lastTime: string | null = null;
+  const dateMatches = [...content.matchAll(/^## (\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))?/gm)];
   if (dateMatches.length === 0) {
     initialHeader = content;
-    return { initialHeader, data };
+    return { initialHeader, data, lastDate, lastTime };
   }
   const firstIndex = dateMatches[0].index ?? 0;
   initialHeader = content.slice(0, firstIndex);
@@ -102,6 +104,9 @@ function parseExistingLog(content: string) {
   for (let i = 0; i < dateMatches.length; i++) {
     const m = dateMatches[i];
     const date = m[1];
+    const time = m[2] || null;
+    lastDate = date;
+    lastTime = time;
     const start = (m.index ?? 0) + m[0].length;
     const end = i + 1 < dateMatches.length ? (dateMatches[i + 1].index ?? content.length) : content.length;
     const block = content.slice(start, end).trim();
@@ -120,28 +125,31 @@ function parseExistingLog(content: string) {
       }
       if (l.startsWith("- ")) {
         if (currentRepo) {
-          data[date][currentRepo].push(l.slice(2).trim());
+          data[date][currentRepo].push({hash: '', message: l.slice(2).trim()});
         }
         continue;
       }
       // ignore Total commits lines while parsing; total will be recomputed
     }
   }
-  return { initialHeader, data };
+  return { initialHeader, data, lastDate, lastTime };
 }
 
-function buildLogContent(initialHeader: string, data: Record<string, Record<string, string[]>>) {
+function buildLogContent(initialHeader: string, data: Record<string, Record<string, {hash: string, message: string}[]>>, currentTime: string) {
   const dates = Object.keys(data).sort(); // chronological ascending
   let out = initialHeader ? initialHeader.trimEnd() + "\n\n" : "";
-  for (const date of dates) {
-    out += `## ${date}\n\n`;
+  for (let i = 0; i < dates.length; i++) {
+    const date = dates[i];
+    const isLatest = i === dates.length - 1;
+    const headerTime = isLatest ? ` ${currentTime}` : '';
+    out += `## ${date}${headerTime}\n\n`;
     const repos = Object.keys(data[date]).sort();
     let dayTotal = 0;
     for (const repo of repos) {
       const msgs = data[date][repo];
       dayTotal += msgs.length;
       out += `**${repo}**\n\n`;
-      for (const m of msgs) out += `- ${m}\n`;
+      for (const item of msgs) out += `- ${item.message}\n`;
       out += `\n`;
     }
     out += `**Total commits:** ${dayTotal}\n\n`;
@@ -151,8 +159,6 @@ function buildLogContent(initialHeader: string, data: Record<string, Record<stri
 
 // --- main ---
 async function main() {
-  const fullSync = process.argv[2] === 'new';
-
   if (!existsSync(PROJECTS_DIR)) {
     console.error("Projects dir not found:", PROJECTS_DIR);
     process.exit(1);
@@ -174,29 +180,21 @@ async function main() {
     logContent = readFileSync(LOG_FILE, "utf8");
   }
 
-  // parse existing log to get repos
-  const parsed = parseExistingLog(logContent || "");
+  // parse existing log to get repos and last date/time
+  const { initialHeader, data, lastDate, lastTime } = parseExistingLog(logContent || "");
   const existingRepos = new Set<string>();
-  for (const date in parsed.data) {
-    for (const repo in parsed.data[date]) {
+  for (const date in data) {
+    for (const repo in data[date]) {
       existingRepos.add(repo);
     }
   }
 
   // determine sinceDate
   let sinceDate: string;
-  if (fullSync) {
-    sinceDate = DEFAULT_START;
-    if (logContent) {
-      const matches = [...logContent.matchAll(/^## (\d{4}-\d{2}-\d{2})/gm)];
-      if (matches.length > 0) {
-        sinceDate = matches[matches.length - 1][1];
-      }
-    }
+  if (lastDate) {
+    sinceDate = lastTime ? `${lastDate} ${lastTime}` : lastDate;
   } else {
-    // last 24 hours
-    const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000);
-    sinceDate = yesterday.toISOString().split('T')[0];
+    sinceDate = DEFAULT_START;
   }
 
   const repos = findGitRepos(PROJECTS_DIR);
@@ -205,11 +203,10 @@ async function main() {
     return;
   }
 
-  const newGrouped: Record<string, Record<string, string[]>> = {};
+  const newGrouped: Record<string, Record<string, {hash: string, message: string}[]>> = {};
 
   for (const repoPath of repos) {
     const repoRelative = relative(PROJECTS_DIR, repoPath) || repoPath;
-    if (!fullSync && existingRepos.has(repoRelative)) continue;
     try {
       // gather commits with file lists
       // format: a commit marker, then header line with hash|date|author|email|subject, then body, then --FILES--, then changed paths
@@ -227,7 +224,7 @@ async function main() {
         const header = lines[0];
         const headerParts = header.split("|");
         if (headerParts.length < 5) continue;
-        const [, date, authorName, authorEmail, subjectParts] = headerParts;
+        const [hash, date, authorName, authorEmail, subjectParts] = headerParts;
         // subject may contain '|' in unusual repos; join remaining
         const subject = headerParts.slice(4).join("|").trim();
         const bodyLines = lines.slice(1);
@@ -260,7 +257,7 @@ async function main() {
         // otherwise accept commit
         if (!newGrouped[date]) newGrouped[date] = {};
         if (!newGrouped[date][repoRelative]) newGrouped[date][repoRelative] = [];
-        newGrouped[date][repoRelative].push(message);
+        newGrouped[date][repoRelative].push({hash, message});
       }
     } catch (err: any) {
       const stderr = String(err?.stderr || "");
@@ -280,26 +277,27 @@ async function main() {
   }
 
   // merge with existing
-  const merged = parsed.data;
+  const merged: Record<string, Record<string, {hash: string, message: string}[]>> = data;
 
   for (const date of newDates) {
     if (!merged[date]) merged[date] = {};
     for (const repo of Object.keys(newGrouped[date])) {
       if (!merged[date][repo]) merged[date][repo] = [];
-      // append, preserve order and dedupe
-      const combined = merged[date][repo].concat(newGrouped[date][repo]);
-      const seen = new Set<string>();
-      merged[date][repo] = combined.filter(m => {
-        if (seen.has(m)) return false;
-        seen.add(m);
-        return true;
-      });
+      // dedupe by full message
+      const existingMessages = new Set(merged[date][repo].map(item => item.message));
+      for (const item of newGrouped[date][repo]) {
+        if (!existingMessages.has(item.message)) {
+          merged[date][repo].push(item);
+          existingMessages.add(item.message);
+        }
+      }
     }
   }
 
   anonymizeData(merged);
 
-  const newContent = buildLogContent(parsed.initialHeader, merged);
+  const currentTime = new Date().toTimeString().slice(0, 5);
+  const newContent = buildLogContent(initialHeader, merged, currentTime);
   writeFileSync(LOG_FILE, newContent);
   console.log(`✅ work_ive_done.md updated. Dates added/merged: ${newDates.join(", ")}`);
 }
