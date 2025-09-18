@@ -19,6 +19,16 @@ function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
+function hashString(str: string): number {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32bit integer
+  }
+  return Math.abs(hash);
+}
+
 function anonymizeData(data: Record<string, Record<string, {hash: string, message: string}[]>>) {
   // Collect all unique repos across all dates for consistent mapping
   const allRepos = new Set<string>();
@@ -27,7 +37,7 @@ function anonymizeData(data: Record<string, Record<string, {hash: string, messag
       allRepos.add(repo);
     }
   }
-  const sortedRepos = Array.from(allRepos).sort();
+  const sortedRepos = Array.from(allRepos).sort((a, b) => hashString(a) - hashString(b));
   const map = new Map<string, string>();
   sortedRepos.forEach((repo, i) => map.set(repo, `Project ${i + 1}`));
 
