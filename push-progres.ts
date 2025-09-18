@@ -212,14 +212,17 @@ async function main() {
     if (!fullSync && existingRepos.has(repoRelative)) continue;
     try {
       // gather commits with file lists
-      // format: a commit marker, then header line with hash|date|author|email|subject, then changed paths
-      const raw = await $`git -C ${repoPath} log --since=${sinceDate} --pretty=format="--COMMIT--%n%H|%ad|%an|%ae|%s" --date=short --name-only`.text();
+      // format: a commit marker, then header line with hash|date|author|email|subject, then body, then --FILES--, then changed paths
+      const raw = await $`git -C ${repoPath} log --since=${sinceDate} --pretty=format="--COMMIT--%n%H|%ad|%an|%ae|%s%n%b%n--FILES--%n" --date=short --name-only`.text();
       
 
       if (!raw) continue;
       const parts = raw.split("--COMMIT--\n").map(p => p.trim()).filter(Boolean);
       for (const part of parts) {
-        const lines = part.split("\n").filter(Boolean);
+        const sections = part.split("\n--FILES--\n");
+        if (sections.length !== 2) continue;
+        const [commitInfo, filesStr] = sections;
+        const lines = commitInfo.split("\n").filter(Boolean);
         if (lines.length === 0) continue;
         const header = lines[0];
         const headerParts = header.split("|");
@@ -227,7 +230,9 @@ async function main() {
         const [, date, authorName, authorEmail, subjectParts] = headerParts;
         // subject may contain '|' in unusual repos; join remaining
         const subject = headerParts.slice(4).join("|").trim();
-        const files = lines.slice(1).map(s => s.trim()).filter(Boolean);
+        const bodyLines = lines.slice(1);
+        const body = bodyLines.join("\n").trim();
+        const files = filesStr.split("\n").map(s => s.trim()).filter(Boolean);
 
         // filter by author if we know your identity
         if (globalEmail || globalName) {
@@ -246,10 +251,16 @@ async function main() {
           const meaningful = files.some(f => !isExcludedPath(f));
           if (!meaningful) continue; // skip this commit
         }
+        // format message with body indented
+        let message = subject || "(no subject)";
+        if (body) {
+          message += "\n  -- " + body.replace(/\n/g, "\n  -- ");
+        }
+
         // otherwise accept commit
         if (!newGrouped[date]) newGrouped[date] = {};
         if (!newGrouped[date][repoRelative]) newGrouped[date][repoRelative] = [];
-        newGrouped[date][repoRelative].push(subject || "(no subject)");
+        newGrouped[date][repoRelative].push(message);
       }
     } catch (err: any) {
       const stderr = String(err?.stderr || "");
