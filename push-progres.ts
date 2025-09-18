@@ -82,7 +82,7 @@ function isExcludedPath(p: string) {
   if (/(^|\/)(venv|\.venv|env|virtualenv)(\/|$)/.test(p)) return true;
   // lockfiles / package-only churn
   const name = p.split("/").pop() || "";
-  if (["package-lock.json", "yarn.lock", "pnpm-lock.yaml", "package.json"].includes(name))
+  if (["package-lock.json", "yarn.lock", "pnpm-lock.yaml", "package.json", "bun.lock"].includes(name))
     return true;
   return false;
 }
@@ -194,10 +194,7 @@ async function main() {
     try {
       // gather commits with file lists
       // format: a commit marker, then header line with hash|date|author|email|subject, then changed paths
-      //const cmd = `git -C ${repoPath} log --since="${sinceDate}" --pretty=format:'--COMMIT--%n%H|%ad|%an|%ae|%s' --date=short --name-only`;
-      //const raw = await $`${cmd}`.text();
-      //const raw = await $`git -C ${repoPath} log --since=${sinceDate} --pretty=format:--COMMIT--%n%H|%ad|%an|%ae|%s --date=short --name-only`.text();
-            const raw = await $`git -C ${repoPath} log --since=${sinceDate} --pretty=format="--COMMIT--%n%H|%ad|%an|%ae|%s" --date=short --name-only`.text();
+      const raw = await $`git -C ${repoPath} log --since=${sinceDate} --pretty=format="--COMMIT--%n%H|%ad|%an|%ae|%s" --date=short --name-only`.text();
       
 
       if (!raw) continue;
