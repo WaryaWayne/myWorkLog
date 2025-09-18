@@ -1,16 +1,15 @@
 ## 2024-08-22
 
-**Remit-App**
+**Project 33**
 
 - First version of models.py file
-- .gitignore created
 - Fist commit. created README
 
-**Total commits:** 3
+**Total commits:** 2
 
 ## 2024-08-24
 
-**Remit-App**
+**Project 33**
 
 - Add User, Transaction, and TransactionStatusHistory models with timestamp management
 
@@ -18,9 +17,8 @@
 
 ## 2024-08-25
 
-**Remit-App**
+**Project 33**
 
-- updated the .gitignore to add some extra files to not add to repo
 - Remove forms.py and models.py
 - added the forms.py changes to branch master
 - commit the changes to test_models.py
@@ -31,24 +29,23 @@
 - Merge models.py forms models branch
 - Merge forms.py and test_forms.py from forms branch
 
-**Total commits:** 10
+**Total commits:** 9
 
 ## 2024-09-06
 
-**moments/UniqueMoments**
+**Project 61**
 
 - Set up Ruby and installed project dependencies
-- Initial commit
 
-**Total commits:** 2
+**Total commits:** 1
 
 ## 2024-09-09
 
-**ibn-batouta/ibn-batouta**
+**Project 37**
 
 - Initialize project using Create React App
 
-**react1/warya**
+**Project 49**
 
 - Initialize project using Create React App
 
@@ -56,11 +53,11 @@
 
 ## 2024-09-10
 
-**bdm**
+**Project 20**
 
 - Initialize project using Create React App
 
-**bdm1/bdm1**
+**Project 66**
 
 - Initialize project using Create React App
 
@@ -68,7 +65,7 @@
 
 ## 2024-09-14
 
-**som-archives**
+**Project 38**
 
 - Merge branch 'forms'
 - Add WTForms for simple and detailed recommendation forms This commit introduces two forms using WTForms: * : This form captures the content name with basic validation requirements (data is required and has a maximum length of 255 characters). * : This form captures all fields from a potential  model (content name, type, location URL, and description). Content type and location are optional, while description has a maximum length of 1000 characters. Both forms utilize the  for form submission.
@@ -79,7 +76,7 @@
 
 ## 2024-10-04
 
-**Remit-App**
+**Project 33**
 
 - latest
 
@@ -87,88 +84,83 @@
 
 ## 2024-10-10
 
-**immigridgeRepo**
-
-- First commit: created Django project in backend directory. Configured the .gitignore files. One(1) in root directory and another in /backend directory
-
-**tools_setup/config_scripts/zsh_scripts**
+**Project 3**
 
 - Initial commit for tester
 
-**Total commits:** 2
+**Total commits:** 1
 
 ## 2024-10-14
 
-**bdm_web**
+**Project 76**
 
 - installed vite run dev @latest again.
 - Changed the user and admin permissions to make the user able to edit own profile and admin able to edit all profiles. Only admin can delete account.
 - I tried to implement tests but will leave it for a later point. I am stuck for now. I removed the tests and will restart when fresh.
 - Changed the name of the SECRET_KEY variable in settings.py. From DJANGO_SECRET_KEY to SECRET_KEY.
-- Added debug.log to .gitignore. profile/views.py Added a default queryset fpr ProfileViewSet DRF uses this query set to handle default behavior. Did a migration and a change to products/models.py. I added a is_featured field to be able to find the featured products easier.
 - Added docstrings to both signal handler functions.
 - Updated URL configuration to Include ProfileViewSet. Added ProfileViewSet to handle user profiles. Updated the router to include the 'profiles' endpoint. Ensured Swagger and Redoc documentation remain accessible. This update enhances user management capabilities within the API.
-- Updated ProductViewSet to restrict create, update, and delete actions to admin users only.  Implemented a featured products endpoint in ProductViewSet for retrieving featured products. Refined OrderViewSet to filter orders based on the logged-in user for non-staff users. Introduced a custom permission class ?IsOwnerOrAdmin? to restrict access to order management based on ownership or admin status.Created a new permissions.py file in the orders directory containing the IsOwnerOrAdmin permission class. Changes ensure better access control for API endpoints and enhance security for order management.
+- Updated ProductViewSet to restrict create, update, and delete actions to admin users only.  Implemented a featured Project 83333277 endpoint in ProductViewSet for retrieving featured Project 83333277. Refined OrderViewSet to filter orders based on the logged-in user for non-staff users. Introduced a custom permission class ?IsOwnerOrAdmin? to restrict access to order management based on ownership or admin status.Created a new permissions.py file in the orders directory containing the IsOwnerOrAdmin permission class. Changes ensure better access control for API endpoints and enhance security for order management.
 - Installed drf-spectacular for API Documentation. Added Spectacular_Settings to settings.py for OpenAPI Configuration. Updates Urls.py to include endpoints for open API schema, Swagger UI, ReDoc Documentation. Set API version to 0.1.0.
 - Set up Pagination with PageNumberPagination and a page size of 10. Enable filtering using DjangoFilterBackend. Configured token authentication as default authentication method.
 - Added django_filters to the installed apps in settings.py.
-- Migrated the updated models for profiles, orders and products.
+- Migrated the updated models for profiles, orders and Project 83333277.
 - Update email field to use EmailField for better validation. Added validation to phone number using RegexValidator for formatting of a phone number. Other fields stayed the same.
 - Modified to include a nested list of images for each product. Updated serializer to include the main image and additional images.
 - Create new ImageField 'main_image' in the product models.py. This will store the primary image for each product. Other fields stayed the same.
-- Integrated DefaultRouter for RESTful API endpoints for products and orders. Implemented static media file serving in debug mode to facilitate local development.
-- Added the media and staticfiles directories in backend directory. These will let Django know where our files are and how to serve them which is why we configured MEDIA_URL and MEDIA_ROOT. We will upload images via admin panel. The /media will be base URL where uploaded files/images go. /static tells Django where to serve media files from in the browser.
+- Integrated DefaultRouter for RESTful API endpoints for Project 83333277 and orders. Implemented static Project 83333277 file serving in debug mode to facilitate local development.
+- Added the Project 83333277 and staticfiles directories in Project 8333327 directory. These will let Django know where our files are and how to serve them which is why we configured MEDIA_URL and MEDIA_ROOT. We will upload images via admin panel. The /Project 83333277 will be base URL where uploaded files/images go. /static tells Django where to serve Project 83333277 files from in the browser.
 - Migrated the models for Orders, Products and Profiles. Installed Pillow to handle images when storing profile pictures and product images in the database. In settings, we had a glitch where I added a comment to .env variable and it disabled the database connection suddenly.
 - Added a views.py for profile app. It already had a model.py and serializers but was missing the views. I added it.
-- for the settings.py we added Django rest framework configuration at the end of the file to use authentication tokens. Added rest_framework.authtoken to the installed apps in settings.py. Transfered the Secret Key and Debug settings toggle to the .env file to not hardcode values for security sake. also added profiles.apps.ProfilesConfig to installed apps when we did the profiles app.py configuration. For urls.py we added a path to the api token auth to get an auth token for the api. For orders/admin.py we added a list_display, list_filter and search fields. In orders/views.py we added a few ways to filter and search through products. Product/views.py and admin.py have the same changes. Added ways to filter and seach in views and added filter options in admin.py.
-- Just basic page styntax to be able to query some of our products from the backend api. Issue is that it is generic and needs further work when we start the visual development.
-- installed Django-filter. We used it in the views.py of products and orders apps. We used it to add some more filters to the api data in views.py.
+- for the settings.py we added Django rest framework configuration at the end of the file to use authentication tokens. Added rest_framework.authtoken to the installed apps in settings.py. Transfered the Secret Key and Debug settings toggle to the .env file to not hardcode values for security sake. also added profiles.apps.ProfilesConfig to installed apps when we did the profiles app.py configuration. For urls.py we added a path to the api token auth to get an auth token for the api. For orders/admin.py we added a list_display, list_filter and search fields. In orders/views.py we added a few ways to filter and search through Project 83333277. Product/views.py and admin.py have the same changes. Added ways to filter and seach in views and added filter options in admin.py.
+- Just basic page styntax to be able to query some of our Project 83333277 from the Project 8333327 api. Issue is that it is generic and needs further work when we start the visual development.
+- installed Django-filter. We used it in the views.py of Project 83333277 and orders apps. We used it to add some more filters to the api data in views.py.
 - Added a serializer for the profiles app because we would need it to view api user data.
-- Added a pagination.py file to products and orders apps. This is useful to help sort the api contents with views.py and serializer.
-- Updated the model for products adding an accessory category choice, added a video_url field to hold the video of the product, added cancelled as a status choice for Orders model, i added a coupon discount field, added a notes field, for Product models, we added a active status, created a new model for product images, gave it foreign key to connect to products model, added image field to store images of products. Updated the admin.py for Products allowing up to 8 images per product, created profiles model to hold user data. holds name, email, phone number, address, verification status and profile picture.
+- Added a pagination.py file to Project 83333277 and orders apps. This is useful to help sort the api contents with views.py and serializer.
+- Updated the model for Project 83333277 adding an accessory category choice, added a video_url field to hold the video of the product, added cancelled as a status choice for Orders model, i added a coupon discount field, added a notes field, for Product models, we added a active status, created a new model for product images, gave it foreign key to connect to Project 83333277 model, added image field to store images of Project 83333277. Updated the admin.py for Products allowing up to 8 images per product, created profiles model to hold user data. holds name, email, phone number, address, verification status and profile picture.
 - Added a profiles app to the django project to store user information and accounts on our platform. Added it to installed apps in django settings. Added new fields to the Orders model and made migrations.
-- Updated the products model to accept more fields to describe an individual product.
+- Updated the Project 83333277 model to accept more fields to describe an individual product.
 - Did the first migration for my models. The DB should have tables now.
-- Added a dev script to package.json to support vite npm run dev. Installed Psycopg3 to connect to my postgres db instance. installed vite as a regular devDependencies. It wasn't installed. for the changes to app.jsx, I will cancel, it was just a test.
+- Added a dev script to package.json to support vite npm run dev. Installed Psycopg3 to connect to my Project 83333274 db instance. installed vite as a regular devDependencies. It wasn't installed. for the changes to app.jsx, I will cancel, it was just a test.
 - Added corsheaders to installed apps list in django settings.
-- We just moved the imports above first comments in views.py for both apps. We removed unnecessary imports as well. We created the first iteration of our product and order models in models.py. We installed Axios to allow React to communicate with our backend.
+- We just moved the imports above first comments in views.py for both apps. We removed unnecessary imports as well. We created the first iteration of our product and order models in models.py. We installed Axios to allow React to communicate with our Project 8333327.
 - This goes with the previous commit. Where we made cors related changes.
-- Installed django-cors-headers. This will allow our backend to communicate with our React frontend. We configured the package. We added it to the settings in our django project root. Added it into MIDDLEWARE right before the CommonMiddleware line. At the end of settings file we added a CORS_ALLOW_ALL_ORIGINS = True. This will allow all origins but we must change later for security.
-- Configured the urls for the API's. Set up routing for the API endpoints. Which will be /api/products/ and /api/orders/.
-- Added API views in both products and orders using the previously created serializers in both the apps. Very basic view now. Will need to be updated as the models are developed for both apps.
-- installed DjangoRestFramework, added it to the settings in my django root folder, created a serializers.py for both orders and products apps in django project. they are basic now will need more editing.
+- Installed django-cors-headers. This will allow our Project 8333327 to communicate with our React Project 83323. We configured the package. We added it to the settings in our django project root. Added it into MIDDLEWARE right before the CommonMiddleware line. At the end of settings file we added a CORS_ALLOW_ALL_ORIGINS = True. This will allow all origins but we must change later for security.
+- Configured the urls for the API's. Set up routing for the API endpoints. Which will be /api/Project 83333277/ and /api/orders/.
+- Added API views in both Project 83333277 and orders using the previously created serializers in both the apps. Very basic view now. Will need to be updated as the models are developed for both apps.
+- installed DjangoRestFramework, added it to the settings in my django root folder, created a serializers.py for both orders and Project 83333277 apps in django project. they are basic now will need more editing.
 - updated pipfile and lock
 - Started the react app with vite. Initialized in the Frontend directory.
 - Added the database connection (must update to current db connection). Added the apps to the installed apps in django settings.
-- created a products and an orders app inside my django program. We will use these to manage the ecommerce website we're building
-- Initialized Django in my backend directory
+- created a Project 83333277 and an orders app inside my django program. We will use these to manage the ecommerce website we're building
+- Initialized Django in my Project 8333327 directory
 - added basic files for starting structure
-- Initial commit to setup bdm_web
+- Initial commit to setup Project 8333326_web
 
-**Total commits:** 43
+**Total commits:** 42
 
 ## 2024-10-15
 
-**bdm_web**
+**Project 76**
 
-- Added 3 cards to the products list. Set to same product for now. Will be edited to be better later.
-- Had a package.json in root and in frontend along with package-lock and node_modules folder. I combined them and kept frontend folder only. Added a postcss.config to configure the tailwind set up. Edited the product card to try and add a read more component to shrink description. Not working yet. Added base, componenets and utilities to index.css in /src directory to call tailwind into my project. Tailwind and vite config files were an edit to apply more config to tailwind setup.
-- Add image carousel to product listing. Update ProductSerializer to include product images. Create ProductImageSerializer for handling image data. Modify ProductList component to display images in a carousel. Install and integrate react-responsive-carousel. Update fetchProducts function in App.jsx to handle image. Ensure backend serves image files correctly through MEDIA_URL and MEDIA_ROOT settings. This commit enhances the product listing by adding a visual carousel of product images, improving the user experience and product presentation.
-- Added throttling to the API to prevent abuse. Simplifying the registration process to only create a User object, not a full Profile. Removing the confirm_password field from the backend (it's still checked in the frontend). Created a Header, Login, Register, ProductCard and ProductList componenets for the react front end to render our products. The /media product images are from a test upload in our django admin adding product. It works. Added the components to render on App.jsx and css styling in App.css.
+- Added 3 cards to the Project 83333277 list. Set to same product for now. Will be edited to be better later.
+- Had a package.json in root and in Project 83323 along with package-lock and node_modules folder. I combined them and kept Project 83323 folder only. Added a postcss.config to configure the tailwind set up. Edited the product card to try and add a read more component to shrink description. Not working yet. Added base, componenets and utilities to index.css in /src directory to call tailwind into my project. Tailwind and vite config files were an edit to apply more config to tailwind setup.
+- Add image carousel to product listing. Update ProductSerializer to include product images. Create ProductImageSerializer for handling image data. Modify ProductList component to display images in a carousel. Install and integrate react-responsive-carousel. Update fetchProducts function in App.jsx to handle image. Ensure Project 8333327 serves image files correctly through MEDIA_URL and MEDIA_ROOT settings. This commit enhances the product listing by adding a visual carousel of product images, improving the user experience and product presentation.
+- Added throttling to the API to prevent abuse. Simplifying the registration process to only create a User object, not a full Profile. Removing the confirm_password field from the Project 8333327 (it's still checked in the Project 83323). Created a Header, Login, Register, ProductCard and ProductList componenets for the react front end to render our Project 83333277. The /Project 83333277 product images are from a test upload in our django admin adding product. It works. Added the components to render on App.jsx and css styling in App.css.
 
 **Total commits:** 4
 
 ## 2024-10-16
 
-**bdm_web**
+**Project 76**
 
-- Ignore Staging Directory. Old attempt put there for reference. Decided to restart development of my React frontend. Let's go. Hopefully works out more smooth. Using Yarn, which I installed through brew, vite, will install tailwindcss now and get to doing the config.
+- Ignore Staging Directory. Old attempt put there for reference. Decided to restart development of my React Project 83323. Let's go. Hopefully works out more smooth. Using Yarn, which I installed through brew, vite, will install tailwindcss now and get to doing the config.
 
 **Total commits:** 1
 
 ## 2024-10-22
 
-**concrete/frontend/concrete**
+**Project 32**
 
 - fix: update GetQuoteForm component structure and resolve UI component imports
 - changed import path for images.
@@ -186,13 +178,13 @@
 - for Layout.tsx: I made changes to the style of the page. I added indents to parts of the path because line streched out too far.
 - Set default initialization for the pages in src/pages. Need to create them further.
 - Installed React Router and its Typescript type. Also created routes in the app. Pages are LandingPage, AboutPage, ServicesPage, ContactPage, NotFoundPage, CalculatorsPage. Created not found for 404. Created it under a generic route of *.
-- Initial commit. Initialized React Typescript project using Yarn and Vite. Configured Tailwind css. Created the backed frontend directories.
+- Initial commit. Initialized React Typescript project using Yarn and Vite. Configured Tailwind css. Created the backed Project 83323 directories.
 
 **Total commits:** 17
 
 ## 2024-10-23
 
-**concrete/frontend/concrete**
+**Project 32**
 
 - Created the first iteration of the 404 not found page.
 - Added no wrap on whitespace to desktop nav section because the get quote button was wrapping on itself.
@@ -203,27 +195,25 @@
 
 ## 2024-10-24
 
-**devtools**
+**Project 29**
 
-- Wrote all the scripts in Bash. Had to remove a submodule from another repo and .git inside the scripts folder.
 - Updated the Install and Uninstall scripts along with all in the /scripts directory to be written in Bash.
 - Changed the scripts to Bash. Added error handlers and more verbose while using.
 - Changed tools included to Commands list.
 - changed setvsenv to setVsco
 - changed the names of the scripts. From imgconvert to conImg. From quickproject to defStart.
 - Added execution permissions for install and uninstall scripts.
-- Initial Commit. We set up the install and uninstall scripts. Created a LICENCE and a README. Created .gitignore. all the scripts are in the /scripts directory.
 
-**somfm**
+**Project 72**
 
 - fixed last import issues I was missing.
 - Implement user management features in Django app
 
-**Total commits:** 10
+**Total commits:** 8
 
 ## 2024-10-26
 
-**bdmcentral1**
+**Project 44**
 
 - Updated pipfile to include needed versions. Add comprehensive health checks Configure Prometheus metrics Set up monitoring thresholds Add tracing configuration Implement proper alerting thresholds
 - Installed prometheus-client Add comprehensive health checks Configure Prometheus metrics Set up monitoring thresholds Add tracing configuration Implement proper alerting thresholds
@@ -234,57 +224,42 @@
 - Add task routing with dedicated queues for each app Implement comprehensive task monitoring Add worker shutdown handling Track task revocation events Enhance task logging with more context
 - Add task routing for better organization Implement queue-specific task handling Add comprehensive task monitoring Improve error logging for Celery tasks Add task success and retry handlers
 - Add missing crontab import to settings.py Add better Celery task handling and reliability settings Configure Redis connection pooling for Celery Add worker concurrency settings Implement proper Celery error logging
-- Configure Celery with Redis as broker and backend Set up periodic tasks with Celery Beat Configure Celery for handling emails Add task time limits and worker settings Set up auto-discovery of tasks in Django apps
-- Configured the email backend for the app. I added the 2to6x email for now, but we need the @bdmcentral email to work.
-- Configure Redis as the cache backend with proper connection pooling Set up cache key patterns for different views Configure cache middleware settings Add cache versioning support Add necessary Redis dependencies
-- Configure Redis as the cache backend Add connection pooling for better performance Configure retry mechanisms for Redis Set up proper cache key patterns Add necessary Redis dependencies Installed hiredis
+- Configure Celery with Redis as broker and Project 8333327 Set up periodic tasks with Celery Beat Configure Celery for handling emails Add task time limits and worker settings Set up auto-discovery of tasks in Django apps
+- Configured the email Project 8333327 for the app. I added the Project 8333307 email for now, but we need the @Project 8333326central email to work.
+- Configure Redis as the cache Project 8333327 with proper connection pooling Set up cache key patterns for different views Configure cache middleware settings Add cache versioning support Add necessary Redis dependencies
+- Configure Redis as the cache Project 8333327 Add connection pooling for better performance Configure retry mechanisms for Redis Set up proper cache key patterns Add necessary Redis dependencies Installed hiredis
 - Add Redis caching configuration Implement caching for list, retrieve, and featured endpoints Add cache invalidation for create/update operations Configure cache timeouts and prefixes Add proper cache dependencies Installed redis and django-redis
-- Fix duplicate media handling in urls.py Add proper DRF configuration with authentication, permissions, and rate limiting Add rate limiting to protect API endpoints Add register endpoint to URLs Configure proper static file handling for both development and production
+- Fix duplicate Project 83333277 handling in urls.py Add proper DRF configuration with authentication, permissions, and rate limiting Add rate limiting to protect API endpoints Add register endpoint to URLs Configure proper static file handling for both development and production
 - Remove duplicate middleware entries Properly order middleware for security and performance Add comprehensive API documentation settings Configure Swagger UI with better defaults Add proper API versioning and server configurations
-- I did further config on the backend settings.py for the rest framework, cors headers, adding the more detailed logging. Added logging to product and order views and models.
-- for pipfile and lock: 	added orginal backend dependencies from other project. for yarn.lock: 	added original frontend dependencies from other project.
-- Initial commit to setup bdm_website_project
-- Initial commit
+- I did further config on the Project 8333327 settings.py for the rest framework, cors headers, adding the more detailed logging. Added logging to product and order views and models.
+- for pipfile and lock: 	added orginal Project 8333327 dependencies from other project. for yarn.lock: 	added original Project 83323 dependencies from other project.
+- Initial commit to setup Project 8333326_website_project
 
-**Total commits:** 20
-
-## 2024-10-27
-
-**bdmcentral2**
-
-- Initial commit
-
-**Total commits:** 1
+**Total commits:** 19
 
 ## 2024-10-28
 
-**bdmcentral**
+**Project 17**
 
 - Installed django rest framework. Added it to installed files. Configured the cors settings in production.py
-- I fought the whole day to get this django backend done. This will be my default config for now. I made sure to check every available setting and choose the ones that apply to me. I separated the settings.py into settings dir that has base, development and production.
-- Initial commit to setup bdmcentral
-- Initial commit
+- I fought the whole day to get this django Project 8333327 done. This will be my default config for now. I made sure to check every available setting and choose the ones that apply to me. I separated the settings.py into settings dir that has base, development and production.
+- Initial commit to setup Project 8333326central
 
-**rest_api**
+**Project 79**
 
 - This is the point where level 2 in the rest framework tutorial. Starting level 3.
 - THis is the point level 1 of restapi django tutorial ends.
 
-**Total commits:** 6
+**Total commits:** 5
 
 ## 2024-10-29
 
-**devtools**
+**Project 29**
 
 - Updated and added a closing } to defStart. Accidently removed it on last iteration.
 - Updated the djangoReact script: 	Removed the pipenv run command and instead we are now using the default python manage.py start app with chosen app names. 	Added a 'Remember to register it' to the apps creation message.
-- Updated the defStart program: 	Removed deprecated vscode settings like linting from the settings. 	Removed the create .gitignore because it was too broad. We can create as we start the project. 	Removed the git repo setup because we have a gitSetup command to do the initial commit once project setup is complete. 	removed the 3rd message after succesful operation suggesting to install pytest, black and pylint. We can configure in the future as we go.
 
-**python_logging**
-
-- Initial commit
-
-**rest_api**
+**Project 79**
 
 - Renamed project folder to rest_framework so i can use graphQL in the same folder.
 - Completed level 6 of the rest api tutorial. We saw viewsets to simplify code to write as far as permissions. We also used only project/urls.py for this api and it set the url paths automatically once we connected it to a route. Genius.
@@ -294,93 +269,85 @@
 - About to start part 4 of the tutorial. Turned many lines of code into 3. Crazy.
 - This is 3.5 They showed us how to use mixins and we are about to go into using generic class based views.
 
-**Total commits:** 11
+**Total commits:** 9
 
 ## 2024-10-30
 
-**django_tutorial**
+**Project 19**
 
-- Initial commit to setup django_tutorial
+- Initial commit to setup Project 83333278
 
 **Total commits:** 1
 
 ## 2024-10-31
 
-**electron_practice/electron-vite-react/ImmiGridge**
+**Project 7**
 
-- Initial commit. Just getting started on ImmiGridge. Hoping for big things here.
+- Initial commit. Just getting started on Project 83333266. Hoping for big things here.
 
-**electron_practice/my-electron-app**
+**Project 83**
 
 - turned part 1 of tutorial into into a version1 folder. copied the index.html, main.js and deleted copy of preload.js.
-- Added vscode to gitignore file. Completed first iteration of the tutorial. We created a main.jsx. We added a preload.jsx. This preloads the current path and version of the dependencies and replaces the text in index.html We added index.html with simple versions of node, electron and chromium. Added a <scripts> for preload.js in index.html before body ends.
-- Initial commit. Added a basic description of the project in the README Configured a package,json using yarn to start my electron app project. Started a .gitignore with python and node config
 
-**Total commits:** 4
+**Total commits:** 2
 
 ## 2024-11-05
 
-**stripe**
+**Project 22**
 
-- Initialized our backend. default django project with products app. We will set up a boiler plate to add stripe to our projects in the future.
+- Initialized our Project 8333327. default django project with Project 83333277 app. We will set up a boiler plate to add Project 83333281 to our projects in the future.
 
 **Total commits:** 1
 
 ## 2024-11-06
 
-**2to6x_1**
+**Project 2**
 
-- - I deleted the old db and redid the migrations because I got out of order on a migration and I got stuck. - Added django-cors-headers and configured it for now to allow all origins. Will configure to only allow from our site when the time is right for production. - Markdown to help visualize api data in admin. - django-filter. Got it to be able to filter the api data being sent by backend. Will fully configure before this commit. - djangorestframework: Set up simple jwt auth. Configured routes to expose for the react app. Put the routes we made with all auth, now available via api. - djangorestframework-simplejwt: Used this library for the jwt integration. - django-rest-authtoken: Used this library to create an auth token for us on server side to avoid doing it on client.
-- Fully configured Django-Allauth. I went through every setting and enabled what we needed. I got google api for log in with google. got a client id and secret to implement the button. I signed up for the facebook developer account. I made the 2to6x ottawa page. There is no credentials just javascript to implement in react. TODO. I added some libraries: django-hashid-field. This is to opfuscate the user id field in our tables, so someone can't use sequential attacks to get data from our api. fido2 for local host development due to lack of https. Added and configured fully the social account and the mfa for django-allauth. All in base.py. Must still move some requirements to to development or production from base.
-- - Added a gitignore with python, vscode and mac os ignore settings. - Configured the settings module to be base, dev and prod. Separated the settings. - started apps named accounts and api
+- - I deleted the old db and redid the migrations because I got out of order on a migration and I got stuck. - Added django-cors-headers and configured it for now to allow all origins. Will configure to only allow from our site when the time is right for production. - Markdown to help visualize api data in admin. - django-filter. Got it to be able to filter the api data being sent by Project 8333327. Will fully configure before this commit. - djangorestframework: Set up simple jwt auth. Configured routes to expose for the react app. Put the routes we made with all auth, now available via api. - djangorestframework-simplejwt: Used this library for the jwt integration. - django-rest-authtoken: Used this library to create an auth token for us on server side to avoid doing it on client.
+- Fully configured Django-Allauth. I went through every setting and enabled what we needed. I got google api for log in with google. got a client id and secret to implement the button. I signed up for the facebook developer account. I made the Project 8333307 ottawa page. There is no credentials just javascript to implement in react. TODO. I added some libraries: django-hashid-field. This is to opfuscate the user id field in our tables, so someone can't use sequential attacks to get data from our api. fido2 for local host development due to lack of https. Added and configured fully the social account and the mfa for django-allauth. All in base.py. Must still move some requirements to to development or production from base.
 
-**Total commits:** 3
+**Total commits:** 2
 
 ## 2024-11-07
 
-**2to6x_1**
+**Project 2**
 
-- - Re ran the migrations. Renamed dev database with a dev_ before the name. Left production database name as is. - Configured some of the settings to be dev and prod independant. Will need to go through Django docs and configure more of the settings right now. - Added cors to dev and prod only. - Added the hash_id salt to have a different dev and prod values and load them in separately via .env file. - Added some comments to lines missing comments. - Took the https settings to prod and left dev to http. - Turned account login on email confirmation on. - Set email password reset timeout to half. 5 mins instead of 10. - We forced remember sessions to on. - Redirect urls need to be dashboard for login, welcome route for email confirmation. Logout send users to homepage. - Made min length of usersname 4 instead of 6. - MFA_WEBAUTHN_ALLOW_INSECURE_ORIGIN is removed from base. Added to dev as - Added a secret key for dev and prod in both folders different values. - Added * allowed hosts for dev purposes. Made it empty for prod because only our domain should access. - Made the static and media dirs but will change them now.
+- - Re ran the migrations. Renamed dev database with a dev_ before the name. Left production database name as is. - Configured some of the settings to be dev and prod independant. Will need to go through Django docs and configure more of the settings right now. - Added cors to dev and prod only. - Added the hash_id salt to have a different dev and prod values and load them in separately via .env file. - Added some comments to lines missing comments. - Took the https settings to prod and left dev to http. - Turned account login on email confirmation on. - Set email password reset timeout to half. 5 mins instead of 10. - We forced remember sessions to on. - Redirect urls need to be dashboard for login, welcome route for email confirmation. Logout send users to homepage. - Made min length of usersname 4 instead of 6. - MFA_WEBAUTHN_ALLOW_INSECURE_ORIGIN is removed from base. Added to dev as - Added a secret key for dev and prod in both folders different values. - Added * allowed hosts for dev purposes. Made it empty for prod because only our domain should access. - Made the static and Project 83333277 dirs but will change them now.
 
 **Total commits:** 1
 
 ## 2024-11-13
 
-**2to6xdec13/2to6xDjango**
+**Project 14**
 
-- - Changed the allowed_hosts and debug variables to be loaded from the environment files instead of hardcoded. - Added a static directory to backend/core to hold static content. - Added a media directory to backend/core to hold media. - Added a staticfiles direcotry to backend/core when we collect all static files across apps. - Added a static_files_dirs to be look for static content in core/static.
+- - Changed the allowed_hosts and debug variables to be loaded from the environment files instead of hardcoded. - Added a static directory to Project 8333327/core to hold static content. - Added a Project 83333277 directory to Project 8333327/core to hold Project 83333277. - Added a staticfiles direcotry to Project 8333327/core when we collect all static files across apps. - Added a static_files_dirs to be look for static content in core/static.
 - - Sample environment file to add to the repo when installing it on a new machine. - Doing this so we can keep track of all the environment variables as they change between environments.
-- - I added a little style to the titles of the groups using 2 lines of #. - Added MacOS to the .gitignore
 
-**backend_2to6x/2to6xDjango**
+**Project 43**
 
-- - Changed the allowed_hosts and debug variables to be loaded from the environment files instead of hardcoded. - Added a static directory to backend/core to hold static content. - Added a media directory to backend/core to hold media. - Added a staticfiles direcotry to backend/core when we collect all static files across apps. - Added a static_files_dirs to be look for static content in core/static.
+- - Changed the allowed_hosts and debug variables to be loaded from the environment files instead of hardcoded. - Added a static directory to Project 8333327/core to hold static content. - Added a Project 83333277 directory to Project 8333327/core to hold Project 83333277. - Added a staticfiles direcotry to Project 8333327/core when we collect all static files across apps. - Added a static_files_dirs to be look for static content in core/static.
 - - Sample environment file to add to the repo when installing it on a new machine. - Doing this so we can keep track of all the environment variables as they change between environments.
-- - I added a little style to the titles of the groups using 2 lines of #. - Added MacOS to the .gitignore
 
-**backend_2to6x/2to6xDjango1**
+**Project 51**
 
-- - Changed the allowed_hosts and debug variables to be loaded from the environment files instead of hardcoded. - Added a static directory to backend/core to hold static content. - Added a media directory to backend/core to hold media. - Added a staticfiles direcotry to backend/core when we collect all static files across apps. - Added a static_files_dirs to be look for static content in core/static.
+- - Changed the allowed_hosts and debug variables to be loaded from the environment files instead of hardcoded. - Added a static directory to Project 8333327/core to hold static content. - Added a Project 83333277 directory to Project 8333327/core to hold Project 83333277. - Added a staticfiles direcotry to Project 8333327/core when we collect all static files across apps. - Added a static_files_dirs to be look for static content in core/static.
 - - Sample environment file to add to the repo when installing it on a new machine. - Doing this so we can keep track of all the environment variables as they change between environments.
-- - I added a little style to the titles of the groups using 2 lines of #. - Added MacOS to the .gitignore
 
-**frontend_2to6x/2to6xDjango**
+**Project 60**
 
-- - Changed the allowed_hosts and debug variables to be loaded from the environment files instead of hardcoded. - Added a static directory to backend/core to hold static content. - Added a media directory to backend/core to hold media. - Added a staticfiles direcotry to backend/core when we collect all static files across apps. - Added a static_files_dirs to be look for static content in core/static.
+- - Changed the allowed_hosts and debug variables to be loaded from the environment files instead of hardcoded. - Added a static directory to Project 8333327/core to hold static content. - Added a Project 83333277 directory to Project 8333327/core to hold Project 83333277. - Added a staticfiles direcotry to Project 8333327/core when we collect all static files across apps. - Added a static_files_dirs to be look for static content in core/static.
 - - Sample environment file to add to the repo when installing it on a new machine. - Doing this so we can keep track of all the environment variables as they change between environments.
-- - I added a little style to the titles of the groups using 2 lines of #. - Added MacOS to the .gitignore
 
-**frontend_2to6x_latest/2to6xDjango**
+**Project 65**
 
-- - Changed the allowed_hosts and debug variables to be loaded from the environment files instead of hardcoded. - Added a static directory to backend/core to hold static content. - Added a media directory to backend/core to hold media. - Added a staticfiles direcotry to backend/core when we collect all static files across apps. - Added a static_files_dirs to be look for static content in core/static.
+- - Changed the allowed_hosts and debug variables to be loaded from the environment files instead of hardcoded. - Added a static directory to Project 8333327/core to hold static content. - Added a Project 83333277 directory to Project 8333327/core to hold Project 83333277. - Added a staticfiles direcotry to Project 8333327/core when we collect all static files across apps. - Added a static_files_dirs to be look for static content in core/static.
 - - Sample environment file to add to the repo when installing it on a new machine. - Doing this so we can keep track of all the environment variables as they change between environments.
-- - I added a little style to the titles of the groups using 2 lines of #. - Added MacOS to the .gitignore
 
-**Total commits:** 15
+**Total commits:** 10
 
 ## 2024-11-14
 
-**2to6xdec13/2to6xDjango**
+**Project 14**
 
 - - Added site ID beside sitename at the top. Removed some extra comments at the top beside site name. - changed allowed hosts to use os.environ.get because the allowed hosts is a list and we need the environment to parse it. - Added the mapp I used to set up all auth. Added user sessions, mfa, social login, and regular profiles. We configured it for facebook and google now. - Added middleware. 1 for user tracking because we will track session activity and another to log in with username. - Turned app dirs to true and added a route for our templates folder which is in the base directory. - Changed language code from en_us to en_ca. - Changed timezone to America/Toronto because we are in this zone and do not need utc because of global users. - At the bottom is our configuration for all auth. We configured the settings from the documentation we thought we would need.
 - - Added the path for our headless all auth urls.
@@ -392,7 +359,7 @@
 - - Added the 'Regular Accounts' part of the all-auth docs into my project settings by looking at their configuration options.
 - I installed requests, requests-oauthlib and pyjwt to start the configuration for our django all auth. Also installed django-allauth default for now. We will add the social and mfa portions when we get there.
 
-**backend_2to6x/2to6xDjango**
+**Project 43**
 
 - - Added site ID beside sitename at the top. Removed some extra comments at the top beside site name. - changed allowed hosts to use os.environ.get because the allowed hosts is a list and we need the environment to parse it. - Added the mapp I used to set up all auth. Added user sessions, mfa, social login, and regular profiles. We configured it for facebook and google now. - Added middleware. 1 for user tracking because we will track session activity and another to log in with username. - Turned app dirs to true and added a route for our templates folder which is in the base directory. - Changed language code from en_us to en_ca. - Changed timezone to America/Toronto because we are in this zone and do not need utc because of global users. - At the bottom is our configuration for all auth. We configured the settings from the documentation we thought we would need.
 - - Added the path for our headless all auth urls.
@@ -404,7 +371,7 @@
 - - Added the 'Regular Accounts' part of the all-auth docs into my project settings by looking at their configuration options.
 - I installed requests, requests-oauthlib and pyjwt to start the configuration for our django all auth. Also installed django-allauth default for now. We will add the social and mfa portions when we get there.
 
-**backend_2to6x/2to6xDjango1**
+**Project 51**
 
 - - Added site ID beside sitename at the top. Removed some extra comments at the top beside site name. - changed allowed hosts to use os.environ.get because the allowed hosts is a list and we need the environment to parse it. - Added the mapp I used to set up all auth. Added user sessions, mfa, social login, and regular profiles. We configured it for facebook and google now. - Added middleware. 1 for user tracking because we will track session activity and another to log in with username. - Turned app dirs to true and added a route for our templates folder which is in the base directory. - Changed language code from en_us to en_ca. - Changed timezone to America/Toronto because we are in this zone and do not need utc because of global users. - At the bottom is our configuration for all auth. We configured the settings from the documentation we thought we would need.
 - - Added the path for our headless all auth urls.
@@ -416,7 +383,7 @@
 - - Added the 'Regular Accounts' part of the all-auth docs into my project settings by looking at their configuration options.
 - I installed requests, requests-oauthlib and pyjwt to start the configuration for our django all auth. Also installed django-allauth default for now. We will add the social and mfa portions when we get there.
 
-**frontend_2to6x/2to6xDjango**
+**Project 60**
 
 - - Added site ID beside sitename at the top. Removed some extra comments at the top beside site name. - changed allowed hosts to use os.environ.get because the allowed hosts is a list and we need the environment to parse it. - Added the mapp I used to set up all auth. Added user sessions, mfa, social login, and regular profiles. We configured it for facebook and google now. - Added middleware. 1 for user tracking because we will track session activity and another to log in with username. - Turned app dirs to true and added a route for our templates folder which is in the base directory. - Changed language code from en_us to en_ca. - Changed timezone to America/Toronto because we are in this zone and do not need utc because of global users. - At the bottom is our configuration for all auth. We configured the settings from the documentation we thought we would need.
 - - Added the path for our headless all auth urls.
@@ -428,7 +395,7 @@
 - - Added the 'Regular Accounts' part of the all-auth docs into my project settings by looking at their configuration options.
 - I installed requests, requests-oauthlib and pyjwt to start the configuration for our django all auth. Also installed django-allauth default for now. We will add the social and mfa portions when we get there.
 
-**frontend_2to6x_latest/2to6xDjango**
+**Project 65**
 
 - - Added site ID beside sitename at the top. Removed some extra comments at the top beside site name. - changed allowed hosts to use os.environ.get because the allowed hosts is a list and we need the environment to parse it. - Added the mapp I used to set up all auth. Added user sessions, mfa, social login, and regular profiles. We configured it for facebook and google now. - Added middleware. 1 for user tracking because we will track session activity and another to log in with username. - Turned app dirs to true and added a route for our templates folder which is in the base directory. - Changed language code from en_us to en_ca. - Changed timezone to America/Toronto because we are in this zone and do not need utc because of global users. - At the bottom is our configuration for all auth. We configured the settings from the documentation we thought we would need.
 - - Added the path for our headless all auth urls.
@@ -444,7 +411,7 @@
 
 ## 2024-11-16
 
-**2to6xdec13/2to6xDjango**
+**Project 14**
 
 - - Deleted the original in templates/404.html - Moved it to /errors/404.html. Better location and more clean.
 - - These are the default all auth templates. They come from django-all-auth.
@@ -463,11 +430,11 @@
 - - Major changes to urls. They work now though. perfect. - Added an api root view. This path shows us a list of all available api routes. For reference while programming. - Added a route to get a csrf token. it is /api/v1/csrf - Added the facebook and google oauth2 adapter classes - Added all the authentication views under the api/v1 path. So login will be /api/v1/login - Added social auth endpoints. For facebook and google. - Added the social account management endpoints. This allows disconnecting accounts and show what accounts user has connected now. - kept default _allauth/api to use with our google login and other social logins. They still go through all auth.
 - - Installed simple-jwt library to use json web tokens instead of default token view. - Accidently reinstalled django-allauth. so we lost the extras. we need them so i added them again.
 - - Added the google callbackurl. This is called by our urls to lead google sign in requests.
-- - Installed django rest auth to expose the all-auth urls path as an api. - Installed rest framework to send data as an api to our frontend react project. - installed django-filter to be able to break down the filter categories of our api data before a user makes a call. We won't have to send everything at once, just what they ask for. - Installed markdown, it will help render the markdown on our api routes better.
-- - Added static processors in templates. For us to be able to locate static files. - Removed the os.path.join from media and static root. Now it is BASE_DIR / media/static - Removed the facebook and google social account providers auth backends. It was causing issues and isn't needed. - Configured allauth to be headless only. - Added csrf trusted origins. Not necessary just for local development to sign into the admin page.
+- - Installed django rest auth to expose the all-auth urls path as an api. - Installed rest framework to send data as an api to our Project 83323 react project. - installed django-filter to be able to break down the filter categories of our api data before a user makes a call. We won't have to send everything at once, just what they ask for. - Installed markdown, it will help render the markdown on our api routes better.
+- - Added static processors in templates. For us to be able to locate static files. - Removed the os.path.join from Project 83333277 and static root. Now it is BASE_DIR / Project 83333277/static - Removed the facebook and google social account providers auth Project 8333327s. It was causing issues and isn't needed. - Configured allauth to be headless only. - Added csrf trusted origins. Not necessary just for local development to sign into the admin page.
 - - Added back the default accounts/ path because it is still used for social auth. - Added some comments
 
-**backend_2to6x/2to6xDjango**
+**Project 43**
 
 - - Deleted the original in templates/404.html - Moved it to /errors/404.html. Better location and more clean.
 - - These are the default all auth templates. They come from django-all-auth.
@@ -486,11 +453,11 @@
 - - Major changes to urls. They work now though. perfect. - Added an api root view. This path shows us a list of all available api routes. For reference while programming. - Added a route to get a csrf token. it is /api/v1/csrf - Added the facebook and google oauth2 adapter classes - Added all the authentication views under the api/v1 path. So login will be /api/v1/login - Added social auth endpoints. For facebook and google. - Added the social account management endpoints. This allows disconnecting accounts and show what accounts user has connected now. - kept default _allauth/api to use with our google login and other social logins. They still go through all auth.
 - - Installed simple-jwt library to use json web tokens instead of default token view. - Accidently reinstalled django-allauth. so we lost the extras. we need them so i added them again.
 - - Added the google callbackurl. This is called by our urls to lead google sign in requests.
-- - Installed django rest auth to expose the all-auth urls path as an api. - Installed rest framework to send data as an api to our frontend react project. - installed django-filter to be able to break down the filter categories of our api data before a user makes a call. We won't have to send everything at once, just what they ask for. - Installed markdown, it will help render the markdown on our api routes better.
-- - Added static processors in templates. For us to be able to locate static files. - Removed the os.path.join from media and static root. Now it is BASE_DIR / media/static - Removed the facebook and google social account providers auth backends. It was causing issues and isn't needed. - Configured allauth to be headless only. - Added csrf trusted origins. Not necessary just for local development to sign into the admin page.
+- - Installed django rest auth to expose the all-auth urls path as an api. - Installed rest framework to send data as an api to our Project 83323 react project. - installed django-filter to be able to break down the filter categories of our api data before a user makes a call. We won't have to send everything at once, just what they ask for. - Installed markdown, it will help render the markdown on our api routes better.
+- - Added static processors in templates. For us to be able to locate static files. - Removed the os.path.join from Project 83333277 and static root. Now it is BASE_DIR / Project 83333277/static - Removed the facebook and google social account providers auth Project 8333327s. It was causing issues and isn't needed. - Configured allauth to be headless only. - Added csrf trusted origins. Not necessary just for local development to sign into the admin page.
 - - Added back the default accounts/ path because it is still used for social auth. - Added some comments
 
-**backend_2to6x/2to6xDjango1**
+**Project 51**
 
 - - Deleted the original in templates/404.html - Moved it to /errors/404.html. Better location and more clean.
 - - These are the default all auth templates. They come from django-all-auth.
@@ -509,11 +476,11 @@
 - - Major changes to urls. They work now though. perfect. - Added an api root view. This path shows us a list of all available api routes. For reference while programming. - Added a route to get a csrf token. it is /api/v1/csrf - Added the facebook and google oauth2 adapter classes - Added all the authentication views under the api/v1 path. So login will be /api/v1/login - Added social auth endpoints. For facebook and google. - Added the social account management endpoints. This allows disconnecting accounts and show what accounts user has connected now. - kept default _allauth/api to use with our google login and other social logins. They still go through all auth.
 - - Installed simple-jwt library to use json web tokens instead of default token view. - Accidently reinstalled django-allauth. so we lost the extras. we need them so i added them again.
 - - Added the google callbackurl. This is called by our urls to lead google sign in requests.
-- - Installed django rest auth to expose the all-auth urls path as an api. - Installed rest framework to send data as an api to our frontend react project. - installed django-filter to be able to break down the filter categories of our api data before a user makes a call. We won't have to send everything at once, just what they ask for. - Installed markdown, it will help render the markdown on our api routes better.
-- - Added static processors in templates. For us to be able to locate static files. - Removed the os.path.join from media and static root. Now it is BASE_DIR / media/static - Removed the facebook and google social account providers auth backends. It was causing issues and isn't needed. - Configured allauth to be headless only. - Added csrf trusted origins. Not necessary just for local development to sign into the admin page.
+- - Installed django rest auth to expose the all-auth urls path as an api. - Installed rest framework to send data as an api to our Project 83323 react project. - installed django-filter to be able to break down the filter categories of our api data before a user makes a call. We won't have to send everything at once, just what they ask for. - Installed markdown, it will help render the markdown on our api routes better.
+- - Added static processors in templates. For us to be able to locate static files. - Removed the os.path.join from Project 83333277 and static root. Now it is BASE_DIR / Project 83333277/static - Removed the facebook and google social account providers auth Project 8333327s. It was causing issues and isn't needed. - Configured allauth to be headless only. - Added csrf trusted origins. Not necessary just for local development to sign into the admin page.
 - - Added back the default accounts/ path because it is still used for social auth. - Added some comments
 
-**frontend_2to6x/2to6xDjango**
+**Project 60**
 
 - - Deleted the original in templates/404.html - Moved it to /errors/404.html. Better location and more clean.
 - - These are the default all auth templates. They come from django-all-auth.
@@ -532,11 +499,11 @@
 - - Major changes to urls. They work now though. perfect. - Added an api root view. This path shows us a list of all available api routes. For reference while programming. - Added a route to get a csrf token. it is /api/v1/csrf - Added the facebook and google oauth2 adapter classes - Added all the authentication views under the api/v1 path. So login will be /api/v1/login - Added social auth endpoints. For facebook and google. - Added the social account management endpoints. This allows disconnecting accounts and show what accounts user has connected now. - kept default _allauth/api to use with our google login and other social logins. They still go through all auth.
 - - Installed simple-jwt library to use json web tokens instead of default token view. - Accidently reinstalled django-allauth. so we lost the extras. we need them so i added them again.
 - - Added the google callbackurl. This is called by our urls to lead google sign in requests.
-- - Installed django rest auth to expose the all-auth urls path as an api. - Installed rest framework to send data as an api to our frontend react project. - installed django-filter to be able to break down the filter categories of our api data before a user makes a call. We won't have to send everything at once, just what they ask for. - Installed markdown, it will help render the markdown on our api routes better.
-- - Added static processors in templates. For us to be able to locate static files. - Removed the os.path.join from media and static root. Now it is BASE_DIR / media/static - Removed the facebook and google social account providers auth backends. It was causing issues and isn't needed. - Configured allauth to be headless only. - Added csrf trusted origins. Not necessary just for local development to sign into the admin page.
+- - Installed django rest auth to expose the all-auth urls path as an api. - Installed rest framework to send data as an api to our Project 83323 react project. - installed django-filter to be able to break down the filter categories of our api data before a user makes a call. We won't have to send everything at once, just what they ask for. - Installed markdown, it will help render the markdown on our api routes better.
+- - Added static processors in templates. For us to be able to locate static files. - Removed the os.path.join from Project 83333277 and static root. Now it is BASE_DIR / Project 83333277/static - Removed the facebook and google social account providers auth Project 8333327s. It was causing issues and isn't needed. - Configured allauth to be headless only. - Added csrf trusted origins. Not necessary just for local development to sign into the admin page.
 - - Added back the default accounts/ path because it is still used for social auth. - Added some comments
 
-**frontend_2to6x_latest/2to6xDjango**
+**Project 65**
 
 - - Deleted the original in templates/404.html - Moved it to /errors/404.html. Better location and more clean.
 - - These are the default all auth templates. They come from django-all-auth.
@@ -555,36 +522,36 @@
 - - Major changes to urls. They work now though. perfect. - Added an api root view. This path shows us a list of all available api routes. For reference while programming. - Added a route to get a csrf token. it is /api/v1/csrf - Added the facebook and google oauth2 adapter classes - Added all the authentication views under the api/v1 path. So login will be /api/v1/login - Added social auth endpoints. For facebook and google. - Added the social account management endpoints. This allows disconnecting accounts and show what accounts user has connected now. - kept default _allauth/api to use with our google login and other social logins. They still go through all auth.
 - - Installed simple-jwt library to use json web tokens instead of default token view. - Accidently reinstalled django-allauth. so we lost the extras. we need them so i added them again.
 - - Added the google callbackurl. This is called by our urls to lead google sign in requests.
-- - Installed django rest auth to expose the all-auth urls path as an api. - Installed rest framework to send data as an api to our frontend react project. - installed django-filter to be able to break down the filter categories of our api data before a user makes a call. We won't have to send everything at once, just what they ask for. - Installed markdown, it will help render the markdown on our api routes better.
-- - Added static processors in templates. For us to be able to locate static files. - Removed the os.path.join from media and static root. Now it is BASE_DIR / media/static - Removed the facebook and google social account providers auth backends. It was causing issues and isn't needed. - Configured allauth to be headless only. - Added csrf trusted origins. Not necessary just for local development to sign into the admin page.
+- - Installed django rest auth to expose the all-auth urls path as an api. - Installed rest framework to send data as an api to our Project 83323 react project. - installed django-filter to be able to break down the filter categories of our api data before a user makes a call. We won't have to send everything at once, just what they ask for. - Installed markdown, it will help render the markdown on our api routes better.
+- - Added static processors in templates. For us to be able to locate static files. - Removed the os.path.join from Project 83333277 and static root. Now it is BASE_DIR / Project 83333277/static - Removed the facebook and google social account providers auth Project 8333327s. It was causing issues and isn't needed. - Configured allauth to be headless only. - Added csrf trusted origins. Not necessary just for local development to sign into the admin page.
 - - Added back the default accounts/ path because it is still used for social auth. - Added some comments
 
 **Total commits:** 100
 
 ## 2024-11-17
 
-**2to6xdec13/2to6xDjango**
+**Project 14**
 
 - - Removed a space.
 
-**backend_2to6x/2to6xDjango**
+**Project 29**
 
-- - Removed a space.
-
-**backend_2to6x/2to6xDjango1**
-
-- - Removed a space.
-
-**devtools**
-
-- - Directory is called dev-tools not devtools. Fixed the speling issue.
+- - Directory is called dev-tools not Project 83333288. Fixed the speling issue.
 - - Improved the install script to allow users to install only chosen scripts. They won't have to install all the scripts at once anymore. They can choose which ones they want.
 
-**frontend_2to6x/2to6xDjango**
+**Project 43**
 
 - - Removed a space.
 
-**frontend_2to6x_latest/2to6xDjango**
+**Project 51**
+
+- - Removed a space.
+
+**Project 60**
+
+- - Removed a space.
+
+**Project 65**
 
 - - Removed a space.
 
@@ -592,114 +559,106 @@
 
 ## 2024-11-18
 
-**2to6xdec13/2to6xDjango**
+**Project 14**
 
-- - Added stripe settings on the botton with a debug - MAde cookie settings lax in debug true and strict in debug false. - Added the one webhook secret. - Black formatting.
+- - Added Project 83333281 settings on the botton with a debug - MAde cookie settings lax in debug true and strict in debug false. - Added the one webhook secret. - Black formatting.
 - - Added the payments urls to the api root. - Added payments path to the main api/v1 path.
 - - Created an admin panel for our services app. - It will list all of our services and their subcategories. - It will track the payments connected to the services. - Black formatting.
 - - Added custom css for an added admin panel setting. - Moved it to staticfiles directory from static.
-- - configured the payments app to integrate with stripe. - It will track payments, connect it to users and services and appointments. - We will be able to manage payments in the admin console. - Created filters to be able to track payments and varied by day, week or month views. - Black formatting.
-- - Installed the stripe Python Library.
-- - Added stripe webhook secret, stripe public and secret key to environment.
+- - configured the payments app to integrate with Project 83333281. - It will track payments, connect it to users and services and appointments. - We will be able to manage payments in the admin console. - Created filters to be able to track payments and varied by day, week or month views. - Black formatting.
+- - Installed the Project 83333281 Python Library.
+- - Added Project 83333281 webhook secret, Project 83333281 public and secret key to environment.
 - - Custom css to go with our admin panel for our payments section of admin panel.
 - Key features of this admin setup: PaymentAdmin: 	Custom date range filter 	Status badges with colors 	Links to Stripe dashboard 	Links to related appointments 	Comprehensive search CustomerPaymentProfileAdmin: 	Overview of customer payment history 	Links to detailed payment lists 	Read-only fields for calculated values PaymentAnalyticsAdmin: 	Daily analytics view 	Success rate calculation 	Read-only fields 	No manual creation/deletion
 - Key changes and additions: PaymentStatus - Enum for tracking payment statuses CustomerPaymentProfile: 	Tracks total spent per customer 	Updates automatically when payments are made 	Links to the user model PaymentAnalytics: 	Daily analytics tracking 	Will be updated via webhook handlers 	Stores key metrics for admin dashboard
 - Key changes and additions: Updated Appointment Model: 	Added payment tracking fields 	Integration with Stripe models (PaymentIntent and Charge) 	Automatic price calculation 	Payment profile update logic
-- - Changed the Debug settings because it wasn't responsing to it last time due to true being sent as a string. - Added blog and services apps to INSTALLED_APPS. - Black formatting. - Added Cors allowed origins which locally is our react frontend. - We allow all cors methods. - We allow all cors headers. - We restrict cors to apply to all urls past /api/. Good for security. - Added a major update where we made an if debug block, certain less secure settings will apply. Else they will go back to secure.
-- - Installed Django-cors-headers to secure sending api data from backend to frontend. - Instaleld Pillow to be able to use ImageField in our database models when storing images for our services. - Installed Black for formatting.
+- - Changed the Debug settings because it wasn't responsing to it last time due to true being sent as a string. - Added blog and services apps to INSTALLED_APPS. - Black formatting. - Added Cors allowed origins which locally is our react Project 83323. - We allow all cors methods. - We allow all cors headers. - We restrict cors to apply to all urls past /api/. Good for security. - Added a major update where we made an if debug block, certain less secure settings will apply. Else they will go back to secure.
+- - Installed Django-cors-headers to secure sending api data from Project 8333327 to Project 83323. - Instaleld Pillow to be able to use ImageField in our database models when storing images for our services. - Installed Black for formatting.
 - - All changes are Black formatting. - Included in static files is a bit of custom css we added to upgrade the admin panel.
 - - Created our services app. Separated into services, service zones and appointments. - We added custom filters, with a serviceviewset and a appointmentviewset.
 - - Created our blogs app. Separated into topics and posts. - We added custom pagination, with a postviewset and a topicviewset.
 
-**backend_2to6x/2to6xDjango**
+**Project 43**
 
-- - Added stripe settings on the botton with a debug - MAde cookie settings lax in debug true and strict in debug false. - Added the one webhook secret. - Black formatting.
+- - Added Project 83333281 settings on the botton with a debug - MAde cookie settings lax in debug true and strict in debug false. - Added the one webhook secret. - Black formatting.
 - - Added the payments urls to the api root. - Added payments path to the main api/v1 path.
 - - Created an admin panel for our services app. - It will list all of our services and their subcategories. - It will track the payments connected to the services. - Black formatting.
 - - Added custom css for an added admin panel setting. - Moved it to staticfiles directory from static.
-- - configured the payments app to integrate with stripe. - It will track payments, connect it to users and services and appointments. - We will be able to manage payments in the admin console. - Created filters to be able to track payments and varied by day, week or month views. - Black formatting.
-- - Installed the stripe Python Library.
-- - Added stripe webhook secret, stripe public and secret key to environment.
+- - configured the payments app to integrate with Project 83333281. - It will track payments, connect it to users and services and appointments. - We will be able to manage payments in the admin console. - Created filters to be able to track payments and varied by day, week or month views. - Black formatting.
+- - Installed the Project 83333281 Python Library.
+- - Added Project 83333281 webhook secret, Project 83333281 public and secret key to environment.
 - - Custom css to go with our admin panel for our payments section of admin panel.
 - Key features of this admin setup: PaymentAdmin: 	Custom date range filter 	Status badges with colors 	Links to Stripe dashboard 	Links to related appointments 	Comprehensive search CustomerPaymentProfileAdmin: 	Overview of customer payment history 	Links to detailed payment lists 	Read-only fields for calculated values PaymentAnalyticsAdmin: 	Daily analytics view 	Success rate calculation 	Read-only fields 	No manual creation/deletion
 - Key changes and additions: PaymentStatus - Enum for tracking payment statuses CustomerPaymentProfile: 	Tracks total spent per customer 	Updates automatically when payments are made 	Links to the user model PaymentAnalytics: 	Daily analytics tracking 	Will be updated via webhook handlers 	Stores key metrics for admin dashboard
 - Key changes and additions: Updated Appointment Model: 	Added payment tracking fields 	Integration with Stripe models (PaymentIntent and Charge) 	Automatic price calculation 	Payment profile update logic
-- - Changed the Debug settings because it wasn't responsing to it last time due to true being sent as a string. - Added blog and services apps to INSTALLED_APPS. - Black formatting. - Added Cors allowed origins which locally is our react frontend. - We allow all cors methods. - We allow all cors headers. - We restrict cors to apply to all urls past /api/. Good for security. - Added a major update where we made an if debug block, certain less secure settings will apply. Else they will go back to secure.
-- - Installed Django-cors-headers to secure sending api data from backend to frontend. - Instaleld Pillow to be able to use ImageField in our database models when storing images for our services. - Installed Black for formatting.
+- - Changed the Debug settings because it wasn't responsing to it last time due to true being sent as a string. - Added blog and services apps to INSTALLED_APPS. - Black formatting. - Added Cors allowed origins which locally is our react Project 83323. - We allow all cors methods. - We allow all cors headers. - We restrict cors to apply to all urls past /api/. Good for security. - Added a major update where we made an if debug block, certain less secure settings will apply. Else they will go back to secure.
+- - Installed Django-cors-headers to secure sending api data from Project 8333327 to Project 83323. - Instaleld Pillow to be able to use ImageField in our database models when storing images for our services. - Installed Black for formatting.
 - - All changes are Black formatting. - Included in static files is a bit of custom css we added to upgrade the admin panel.
 - - Created our services app. Separated into services, service zones and appointments. - We added custom filters, with a serviceviewset and a appointmentviewset.
 - - Created our blogs app. Separated into topics and posts. - We added custom pagination, with a postviewset and a topicviewset.
 
-**backend_2to6x/2to6xDjango1**
+**Project 51**
 
-- - Added stripe settings on the botton with a debug - MAde cookie settings lax in debug true and strict in debug false. - Added the one webhook secret. - Black formatting.
+- - Added Project 83333281 settings on the botton with a debug - MAde cookie settings lax in debug true and strict in debug false. - Added the one webhook secret. - Black formatting.
 - - Added the payments urls to the api root. - Added payments path to the main api/v1 path.
 - - Created an admin panel for our services app. - It will list all of our services and their subcategories. - It will track the payments connected to the services. - Black formatting.
 - - Added custom css for an added admin panel setting. - Moved it to staticfiles directory from static.
-- - configured the payments app to integrate with stripe. - It will track payments, connect it to users and services and appointments. - We will be able to manage payments in the admin console. - Created filters to be able to track payments and varied by day, week or month views. - Black formatting.
-- - Installed the stripe Python Library.
-- - Added stripe webhook secret, stripe public and secret key to environment.
+- - configured the payments app to integrate with Project 83333281. - It will track payments, connect it to users and services and appointments. - We will be able to manage payments in the admin console. - Created filters to be able to track payments and varied by day, week or month views. - Black formatting.
+- - Installed the Project 83333281 Python Library.
+- - Added Project 83333281 webhook secret, Project 83333281 public and secret key to environment.
 - - Custom css to go with our admin panel for our payments section of admin panel.
 - Key features of this admin setup: PaymentAdmin: 	Custom date range filter 	Status badges with colors 	Links to Stripe dashboard 	Links to related appointments 	Comprehensive search CustomerPaymentProfileAdmin: 	Overview of customer payment history 	Links to detailed payment lists 	Read-only fields for calculated values PaymentAnalyticsAdmin: 	Daily analytics view 	Success rate calculation 	Read-only fields 	No manual creation/deletion
 - Key changes and additions: PaymentStatus - Enum for tracking payment statuses CustomerPaymentProfile: 	Tracks total spent per customer 	Updates automatically when payments are made 	Links to the user model PaymentAnalytics: 	Daily analytics tracking 	Will be updated via webhook handlers 	Stores key metrics for admin dashboard
 - Key changes and additions: Updated Appointment Model: 	Added payment tracking fields 	Integration with Stripe models (PaymentIntent and Charge) 	Automatic price calculation 	Payment profile update logic
-- - Changed the Debug settings because it wasn't responsing to it last time due to true being sent as a string. - Added blog and services apps to INSTALLED_APPS. - Black formatting. - Added Cors allowed origins which locally is our react frontend. - We allow all cors methods. - We allow all cors headers. - We restrict cors to apply to all urls past /api/. Good for security. - Added a major update where we made an if debug block, certain less secure settings will apply. Else they will go back to secure.
-- - Installed Django-cors-headers to secure sending api data from backend to frontend. - Instaleld Pillow to be able to use ImageField in our database models when storing images for our services. - Installed Black for formatting.
+- - Changed the Debug settings because it wasn't responsing to it last time due to true being sent as a string. - Added blog and services apps to INSTALLED_APPS. - Black formatting. - Added Cors allowed origins which locally is our react Project 83323. - We allow all cors methods. - We allow all cors headers. - We restrict cors to apply to all urls past /api/. Good for security. - Added a major update where we made an if debug block, certain less secure settings will apply. Else they will go back to secure.
+- - Installed Django-cors-headers to secure sending api data from Project 8333327 to Project 83323. - Instaleld Pillow to be able to use ImageField in our database models when storing images for our services. - Installed Black for formatting.
 - - All changes are Black formatting. - Included in static files is a bit of custom css we added to upgrade the admin panel.
 - - Created our services app. Separated into services, service zones and appointments. - We added custom filters, with a serviceviewset and a appointmentviewset.
 - - Created our blogs app. Separated into topics and posts. - We added custom pagination, with a postviewset and a topicviewset.
 
-**frontend_2to6x/2to6xDjango**
+**Project 60**
 
-- - Added stripe settings on the botton with a debug - MAde cookie settings lax in debug true and strict in debug false. - Added the one webhook secret. - Black formatting.
+- - Added Project 83333281 settings on the botton with a debug - MAde cookie settings lax in debug true and strict in debug false. - Added the one webhook secret. - Black formatting.
 - - Added the payments urls to the api root. - Added payments path to the main api/v1 path.
 - - Created an admin panel for our services app. - It will list all of our services and their subcategories. - It will track the payments connected to the services. - Black formatting.
 - - Added custom css for an added admin panel setting. - Moved it to staticfiles directory from static.
-- - configured the payments app to integrate with stripe. - It will track payments, connect it to users and services and appointments. - We will be able to manage payments in the admin console. - Created filters to be able to track payments and varied by day, week or month views. - Black formatting.
-- - Installed the stripe Python Library.
-- - Added stripe webhook secret, stripe public and secret key to environment.
+- - configured the payments app to integrate with Project 83333281. - It will track payments, connect it to users and services and appointments. - We will be able to manage payments in the admin console. - Created filters to be able to track payments and varied by day, week or month views. - Black formatting.
+- - Installed the Project 83333281 Python Library.
+- - Added Project 83333281 webhook secret, Project 83333281 public and secret key to environment.
 - - Custom css to go with our admin panel for our payments section of admin panel.
 - Key features of this admin setup: PaymentAdmin: 	Custom date range filter 	Status badges with colors 	Links to Stripe dashboard 	Links to related appointments 	Comprehensive search CustomerPaymentProfileAdmin: 	Overview of customer payment history 	Links to detailed payment lists 	Read-only fields for calculated values PaymentAnalyticsAdmin: 	Daily analytics view 	Success rate calculation 	Read-only fields 	No manual creation/deletion
 - Key changes and additions: PaymentStatus - Enum for tracking payment statuses CustomerPaymentProfile: 	Tracks total spent per customer 	Updates automatically when payments are made 	Links to the user model PaymentAnalytics: 	Daily analytics tracking 	Will be updated via webhook handlers 	Stores key metrics for admin dashboard
 - Key changes and additions: Updated Appointment Model: 	Added payment tracking fields 	Integration with Stripe models (PaymentIntent and Charge) 	Automatic price calculation 	Payment profile update logic
-- - Changed the Debug settings because it wasn't responsing to it last time due to true being sent as a string. - Added blog and services apps to INSTALLED_APPS. - Black formatting. - Added Cors allowed origins which locally is our react frontend. - We allow all cors methods. - We allow all cors headers. - We restrict cors to apply to all urls past /api/. Good for security. - Added a major update where we made an if debug block, certain less secure settings will apply. Else they will go back to secure.
-- - Installed Django-cors-headers to secure sending api data from backend to frontend. - Instaleld Pillow to be able to use ImageField in our database models when storing images for our services. - Installed Black for formatting.
+- - Changed the Debug settings because it wasn't responsing to it last time due to true being sent as a string. - Added blog and services apps to INSTALLED_APPS. - Black formatting. - Added Cors allowed origins which locally is our react Project 83323. - We allow all cors methods. - We allow all cors headers. - We restrict cors to apply to all urls past /api/. Good for security. - Added a major update where we made an if debug block, certain less secure settings will apply. Else they will go back to secure.
+- - Installed Django-cors-headers to secure sending api data from Project 8333327 to Project 83323. - Instaleld Pillow to be able to use ImageField in our database models when storing images for our services. - Installed Black for formatting.
 - - All changes are Black formatting. - Included in static files is a bit of custom css we added to upgrade the admin panel.
 - - Created our services app. Separated into services, service zones and appointments. - We added custom filters, with a serviceviewset and a appointmentviewset.
 - - Created our blogs app. Separated into topics and posts. - We added custom pagination, with a postviewset and a topicviewset.
 
-**frontend_2to6x_latest/2to6xDjango**
+**Project 65**
 
-- - Added stripe settings on the botton with a debug - MAde cookie settings lax in debug true and strict in debug false. - Added the one webhook secret. - Black formatting.
+- - Added Project 83333281 settings on the botton with a debug - MAde cookie settings lax in debug true and strict in debug false. - Added the one webhook secret. - Black formatting.
 - - Added the payments urls to the api root. - Added payments path to the main api/v1 path.
 - - Created an admin panel for our services app. - It will list all of our services and their subcategories. - It will track the payments connected to the services. - Black formatting.
 - - Added custom css for an added admin panel setting. - Moved it to staticfiles directory from static.
-- - configured the payments app to integrate with stripe. - It will track payments, connect it to users and services and appointments. - We will be able to manage payments in the admin console. - Created filters to be able to track payments and varied by day, week or month views. - Black formatting.
-- - Installed the stripe Python Library.
-- - Added stripe webhook secret, stripe public and secret key to environment.
+- - configured the payments app to integrate with Project 83333281. - It will track payments, connect it to users and services and appointments. - We will be able to manage payments in the admin console. - Created filters to be able to track payments and varied by day, week or month views. - Black formatting.
+- - Installed the Project 83333281 Python Library.
+- - Added Project 83333281 webhook secret, Project 83333281 public and secret key to environment.
 - - Custom css to go with our admin panel for our payments section of admin panel.
 - Key features of this admin setup: PaymentAdmin: 	Custom date range filter 	Status badges with colors 	Links to Stripe dashboard 	Links to related appointments 	Comprehensive search CustomerPaymentProfileAdmin: 	Overview of customer payment history 	Links to detailed payment lists 	Read-only fields for calculated values PaymentAnalyticsAdmin: 	Daily analytics view 	Success rate calculation 	Read-only fields 	No manual creation/deletion
 - Key changes and additions: PaymentStatus - Enum for tracking payment statuses CustomerPaymentProfile: 	Tracks total spent per customer 	Updates automatically when payments are made 	Links to the user model PaymentAnalytics: 	Daily analytics tracking 	Will be updated via webhook handlers 	Stores key metrics for admin dashboard
 - Key changes and additions: Updated Appointment Model: 	Added payment tracking fields 	Integration with Stripe models (PaymentIntent and Charge) 	Automatic price calculation 	Payment profile update logic
-- - Changed the Debug settings because it wasn't responsing to it last time due to true being sent as a string. - Added blog and services apps to INSTALLED_APPS. - Black formatting. - Added Cors allowed origins which locally is our react frontend. - We allow all cors methods. - We allow all cors headers. - We restrict cors to apply to all urls past /api/. Good for security. - Added a major update where we made an if debug block, certain less secure settings will apply. Else they will go back to secure.
-- - Installed Django-cors-headers to secure sending api data from backend to frontend. - Instaleld Pillow to be able to use ImageField in our database models when storing images for our services. - Installed Black for formatting.
+- - Changed the Debug settings because it wasn't responsing to it last time due to true being sent as a string. - Added blog and services apps to INSTALLED_APPS. - Black formatting. - Added Cors allowed origins which locally is our react Project 83323. - We allow all cors methods. - We allow all cors headers. - We restrict cors to apply to all urls past /api/. Good for security. - Added a major update where we made an if debug block, certain less secure settings will apply. Else they will go back to secure.
+- - Installed Django-cors-headers to secure sending api data from Project 8333327 to Project 83323. - Instaleld Pillow to be able to use ImageField in our database models when storing images for our services. - Installed Black for formatting.
 - - All changes are Black formatting. - Included in static files is a bit of custom css we added to upgrade the admin panel.
 - - Created our services app. Separated into services, service zones and appointments. - We added custom filters, with a serviceviewset and a appointmentviewset.
 - - Created our blogs app. Separated into topics and posts. - We added custom pagination, with a postviewset and a topicviewset.
 
 **Total commits:** 80
 
-## 2024-11-24
-
-**frontend_2to6x1/2to6xReact**
-
-- - Added the linux, mac, vscode default gitignores to this gitignore.
-
-**Total commits:** 1
-
 ## 2024-11-25
 
-**frontend_2to6x1/2to6xReact**
+**Project 55**
 
 - - Default configuration for a basic yarn, vite react ts project. - Created it with yarn. Added tailwind for styling. It is still in raw format.
 
@@ -707,33 +666,33 @@
 
 ## 2024-11-27
 
-**2to6xdec13/2to6xDjango**
-
-- - Added psycopg2 for django to communicate with postgresql when we switched from sqlite.
-
-**backend_2to6x/2to6xDjango**
+**Project 14**
 
 - - Temporary comit to revert back to if composer causes issues.
 
-**backend_2to6x/2to6xDjango1**
+**Project 43**
 
-- - Temporary comit to revert back to if composer causes issues.
+- - Added psycopg2 for django to communicate with Project 83333274ql when we switched from sqlite.
 
-**frontend_2to6x/2to6xDjango**
-
-- - Added psycopg2 for django to communicate with postgresql when we switched from sqlite.
-
-**frontend_2to6x_latest/2to6xDjango**
-
-- - Added psycopg2 for django to communicate with postgresql when we switched from sqlite.
-
-**frontend_2to6x_latest/2to6xReact**
+**Project 47**
 
 - - Created basic starting structure to develop our project. Ran the python file in scripts/.
 - - Created python script to generate the project structure in src/. - It will add a {dirName}Notes.md file to each directory to help document it.
 - Initial Commit. Set up the base React TS project with Vite, Yarn, and Tailwindcss. About to run the script in /scripts directory to initialize the starting structure.
 
-**millionLint/2to6xReact**
+**Project 51**
+
+- - Added psycopg2 for django to communicate with Project 83333274ql when we switched from sqlite.
+
+**Project 60**
+
+- - Temporary comit to revert back to if composer causes issues.
+
+**Project 65**
+
+- - Added psycopg2 for django to communicate with Project 83333274ql when we switched from sqlite.
+
+**Project 68**
 
 - - Created basic starting structure to develop our project. Ran the python file in scripts/.
 - - Created python script to generate the project structure in src/. - It will add a {dirName}Notes.md file to each directory to help document it.
@@ -743,19 +702,19 @@
 
 ## 2024-12-03
 
-**2to6xdec13/2to6xDjango**
+**Project 43**
 
 - Enhance service, vehicle, and appointment management with new models and validations
 - Update Django settings for production deployment and enhance environment-specific configurations     Site Configuration:         Changed SITE_ID from 1 to 5, to correctly identify the site for authentication.
 - - Services app migrations.
-- - Favicon to stop that 404 response to the browser. Favicon set by React frontend.
+- - Favicon to stop that 404 response to the browser. Favicon set by React Project 83323.
 - Enhance payment handling with validation and refund support
 - Refactor serializers and add vehicle/address handling to Appointment     Replaced timezone.now() with now() and timezone.make_aware() for consistent timezone handling.     Added VehicleInfo and ServiceAddress to AppointmentWriteSerializer to support vehicle and address fields.     Updated the create() method to handle creation of associated VehicleInfo and ServiceAddress models.     Enhanced validation for service availability and appointment time constraints.     Cleaned up redundant code for date/time handling and serializer fields.
-- - Added stripe test secret key. - Added stripe public key, webhook secret and testing webhook secret.
+- - Added Project 83333281 test secret key. - Added Project 83333281 public key, webhook secret and testing webhook secret.
 - - Added verbose name to Services and Payments apps.py. This will help us recognize it as we grow.
 - - Removed the timezone.now and replaced it with now(). - We import now from django.utils.timezone. - We use now() as the time function and variable to load into our filters.
 - - Sample images we used when adding our services to the admin panel. Can be changed anytime.
-- - This was never meant to be commited. This is a dump data of our sessions data when we did db migration from sqlite to postgres.
+- - This was never meant to be commited. This is a dump data of our sessions data when we did db migration from sqlite to Project 83333274.
 - - Deleted migrations for welcome app. It has been redone.
 - - Project static files. From all auth, from our owns apps and from the other apps our project installed and is using.
 - feat(vehicle): Add CSV import command - Create Django management command for vehicle data import - Add data cleaning and validation - Handle special purpose vehicles with normalization - Add progress tracking and error reporting - Implement get_or_create logic to avoid duplicates - Added dataset to the commit.
@@ -765,60 +724,10 @@
 - feat(vehicle): Add vehicle catalog API endpoints - Add get_vehicle_makes endpoint for unique manufacturers - Add get_vehicle_models endpoint filtered by make - Add get_vehicle_years endpoint filtered by make and model - Add get_vehicle_trims endpoint with vehicle details
 - - Error template files for 500, 502, 503 and 504.
 - - Added the password reset api view to the welcome app. We had no other place to put it without mixing up with other apps.
-- - Added password reset urls because they were needed for the forgot password flow. - Changed payments to separate the payments and webhooks and simplified it. - Re-added our csrf endpoint so we can get the token to make requestst to backend. - Added app name before the url config because we set an app name in each of the apps urls.
-- - Blog configuration. Still not 100% finished. First need to start implementing the frontend blog.
+- - Added password reset urls because they were needed for the forgot password flow. - Changed payments to separate the payments and webhooks and simplified it. - Re-added our csrf endpoint so we can get the token to make requestst to Project 8333327. - Added app name before the url config because we set an app name in each of the apps urls.
+- - Blog configuration. Still not 100% finished. First need to start implementing the Project 83323 blog.
 
-**frontend_2to6x/2to6xDjango**
-
-- Enhance service, vehicle, and appointment management with new models and validations
-- Update Django settings for production deployment and enhance environment-specific configurations     Site Configuration:         Changed SITE_ID from 1 to 5, to correctly identify the site for authentication.
-- - Services app migrations.
-- - Favicon to stop that 404 response to the browser. Favicon set by React frontend.
-- Enhance payment handling with validation and refund support
-- Refactor serializers and add vehicle/address handling to Appointment     Replaced timezone.now() with now() and timezone.make_aware() for consistent timezone handling.     Added VehicleInfo and ServiceAddress to AppointmentWriteSerializer to support vehicle and address fields.     Updated the create() method to handle creation of associated VehicleInfo and ServiceAddress models.     Enhanced validation for service availability and appointment time constraints.     Cleaned up redundant code for date/time handling and serializer fields.
-- - Added stripe test secret key. - Added stripe public key, webhook secret and testing webhook secret.
-- - Added verbose name to Services and Payments apps.py. This will help us recognize it as we grow.
-- - Removed the timezone.now and replaced it with now(). - We import now from django.utils.timezone. - We use now() as the time function and variable to load into our filters.
-- - Sample images we used when adding our services to the admin panel. Can be changed anytime.
-- - This was never meant to be commited. This is a dump data of our sessions data when we did db migration from sqlite to postgres.
-- - Deleted migrations for welcome app. It has been redone.
-- - Project static files. From all auth, from our owns apps and from the other apps our project installed and is using.
-- feat(vehicle): Add CSV import command - Create Django management command for vehicle data import - Add data cleaning and validation - Handle special purpose vehicles with normalization - Add progress tracking and error reporting - Implement get_or_create logic to avoid duplicates - Added dataset to the commit.
-- - Migrations for the services app.
-- feat(vehicle): Update admin configuration - Add VehicleCatalogAdmin for managing vehicle catalog entries - Update VehicleInfoAdmin to use new model structure - Add custom display methods for related vehicle fields - Update list filters and search fields for better admin usability
-- feat(vehicle): Add vehicle catalog API routes - Add endpoint for retrieving vehicle makes - Add endpoint for retrieving models by make - Add endpoint for retrieving years by make and model - Add endpoint for retrieving trims with vehicle details
-- feat(vehicle): Add vehicle catalog API endpoints - Add get_vehicle_makes endpoint for unique manufacturers - Add get_vehicle_models endpoint filtered by make - Add get_vehicle_years endpoint filtered by make and model - Add get_vehicle_trims endpoint with vehicle details
-- - Error template files for 500, 502, 503 and 504.
-- - Added the password reset api view to the welcome app. We had no other place to put it without mixing up with other apps.
-- - Added password reset urls because they were needed for the forgot password flow. - Changed payments to separate the payments and webhooks and simplified it. - Re-added our csrf endpoint so we can get the token to make requestst to backend. - Added app name before the url config because we set an app name in each of the apps urls.
-- - Blog configuration. Still not 100% finished. First need to start implementing the frontend blog.
-
-**frontend_2to6x_latest/2to6xDjango**
-
-- Enhance service, vehicle, and appointment management with new models and validations
-- Update Django settings for production deployment and enhance environment-specific configurations     Site Configuration:         Changed SITE_ID from 1 to 5, to correctly identify the site for authentication.
-- - Services app migrations.
-- - Favicon to stop that 404 response to the browser. Favicon set by React frontend.
-- Enhance payment handling with validation and refund support
-- Refactor serializers and add vehicle/address handling to Appointment     Replaced timezone.now() with now() and timezone.make_aware() for consistent timezone handling.     Added VehicleInfo and ServiceAddress to AppointmentWriteSerializer to support vehicle and address fields.     Updated the create() method to handle creation of associated VehicleInfo and ServiceAddress models.     Enhanced validation for service availability and appointment time constraints.     Cleaned up redundant code for date/time handling and serializer fields.
-- - Added stripe test secret key. - Added stripe public key, webhook secret and testing webhook secret.
-- - Added verbose name to Services and Payments apps.py. This will help us recognize it as we grow.
-- - Removed the timezone.now and replaced it with now(). - We import now from django.utils.timezone. - We use now() as the time function and variable to load into our filters.
-- - Sample images we used when adding our services to the admin panel. Can be changed anytime.
-- - This was never meant to be commited. This is a dump data of our sessions data when we did db migration from sqlite to postgres.
-- - Deleted migrations for welcome app. It has been redone.
-- - Project static files. From all auth, from our owns apps and from the other apps our project installed and is using.
-- feat(vehicle): Add CSV import command - Create Django management command for vehicle data import - Add data cleaning and validation - Handle special purpose vehicles with normalization - Add progress tracking and error reporting - Implement get_or_create logic to avoid duplicates - Added dataset to the commit.
-- - Migrations for the services app.
-- feat(vehicle): Update admin configuration - Add VehicleCatalogAdmin for managing vehicle catalog entries - Update VehicleInfoAdmin to use new model structure - Add custom display methods for related vehicle fields - Update list filters and search fields for better admin usability
-- feat(vehicle): Add vehicle catalog API routes - Add endpoint for retrieving vehicle makes - Add endpoint for retrieving models by make - Add endpoint for retrieving years by make and model - Add endpoint for retrieving trims with vehicle details
-- feat(vehicle): Add vehicle catalog API endpoints - Add get_vehicle_makes endpoint for unique manufacturers - Add get_vehicle_models endpoint filtered by make - Add get_vehicle_years endpoint filtered by make and model - Add get_vehicle_trims endpoint with vehicle details
-- - Error template files for 500, 502, 503 and 504.
-- - Added the password reset api view to the welcome app. We had no other place to put it without mixing up with other apps.
-- - Added password reset urls because they were needed for the forgot password flow. - Changed payments to separate the payments and webhooks and simplified it. - Re-added our csrf endpoint so we can get the token to make requestst to backend. - Added app name before the url config because we set an app name in each of the apps urls.
-- - Blog configuration. Still not 100% finished. First need to start implementing the frontend blog.
-
-**frontend_2to6x_latest/2to6xReact**
+**Project 47**
 
 - refactor(auth): improve authentication context organization and fix fast refresh
 - feat(booking): Integrate DateTime and Address selectors 2|2|2|- Add DateTimeSelector integration 3|3|3|- Add AddressSelector integration 4|4|4|- Update navigation between steps
@@ -846,39 +755,89 @@
 - - Configured out authentication. We can login, signup/register, forgot password reset.
 - - Shad/cn ui components.
 
-**millionLint/2to6xReact**
+**Project 51**
 
-- refactor(auth): improve authentication context organization and fix fast refresh
-- feat(booking): Integrate DateTime and Address selectors 2|2|2|- Add DateTimeSelector integration 3|3|3|- Add AddressSelector integration 4|4|4|- Update navigation between steps
-- feat(booking): Add AddressSelector component 2|2|2|- Add address form with validation 3|3|3|- Implement geocoding with coordinate rounding 4|4|4|- Add loading and error states 5|5|5|- Fix decimal places for lat/long
-- feat(booking): Add DateTimeSelector component 2|2|2|- Enforce tomorrow as earliest available date 3|3|3|- Add business hours time slots (9 AM - 5 PM) 4|4|4|- Add date and time validation 5|5|5|- Implement calendar and time picker UI
-- feat(types): Add service subtype support 2|2|2|- Add ServiceSubtype interface 3|3|3|- Update Service interface to include subtypes 4|4|4|- Add selectedSubtype to BookingState
-- feat(booking): Add service subtype selection 2|2|2|- Add two-step service selection (category then type) 3|3|3|- Update UI to show service categories and subtypes 4|4|4|- Add visual indicators for services with subtypes 5|5|5|- Improve error handling and loading states
-- feat(booking): Enhance BookingFlow with step navigation and review 2|2|- Add step indicator with progress tracking 3|3|- Add step summaries with edit functionality 4|4|- Add review step with all booking details 5|5|- Add descriptions and better UI for each step 6|6|- Implement back/forward navigation between steps 7|7|- Add subtype handling in service selection 8|8|- Add subtype handling in service selection 9|9|- Update service summary to show subtype details 10|- Add step titles and descriptions 11|- Improve review step with detailed summaries 12|- Update booking flow for service subtypes
-- feat(booking): Enhance VehicleSelector with better UX and mobile support 2|- Add loading states for each dropdown 3|- Add error handling for API calls 4|- Add loading spinners during data fetching 5|- Add disabled states for dropdowns while loading 6|- Add error display for failed API calls 7|- Add progress indicator with step tracking 8|- Add selected vehicle summary display 9|- Add retry functionality for failed API calls 10|- Improve mobile responsiveness with full-width controls 11|- Refactor API calls into separate functions 12|- Add loading states and error handling for each step 13|- Add selected vehicle summary display
-- - Added radio group shadcn component to our project.
-- feat(pages): Add appointments page - Add booking flow integration - Add page layout and title
-- - Shad/cn component.
-- feat(booking): Add service selector component - Create radio group for service selection - Add loading and error states - Implement service fetching from API - Add back/next navigation
-- feat(booking): Add main booking flow component - Implement step-based booking process - Add vehicle selection step - Fix TypeScript step type definitions - Add navigation between steps
-- feat(booking): Add vehicle selector component - Create cascading comboboxes for vehicle selection - Implement Make → Model → Year → Trim flow - Add API integration with vehicle catalog - Add search functionality for each dropdown
-- feat(types): Add vehicle and booking types - Add Vehicle interface for catalog entries - Add VehicleInfo interface for user vehicles - Add Service interface for available services - Add BookingState interface for booking flow
-- - Our tailwind configuration.
-- - Added our routes to our app links.
-- - Our new package installs.
-- - Changed our ip frm .39 to .40 router restarted.
-- - Added Places API to index.html. Still working through some kinks.
-- - A simple toast component for us to call toasts when needed.
-- - Added basic dashboard page.
-- - Working on appointment booking flow right now. Working on making it an easier process for the user.
-- - Configured out authentication. We can login, signup/register, forgot password reset.
-- - Shad/cn ui components.
+- Enhance service, vehicle, and appointment management with new models and validations
+- Update Django settings for production deployment and enhance environment-specific configurations     Site Configuration:         Changed SITE_ID from 1 to 5, to correctly identify the site for authentication.
+- - Services app migrations.
+- - Favicon to stop that 404 response to the browser. Favicon set by React Project 83323.
+- Enhance payment handling with validation and refund support
+- Refactor serializers and add vehicle/address handling to Appointment     Replaced timezone.now() with now() and timezone.make_aware() for consistent timezone handling.     Added VehicleInfo and ServiceAddress to AppointmentWriteSerializer to support vehicle and address fields.     Updated the create() method to handle creation of associated VehicleInfo and ServiceAddress models.     Enhanced validation for service availability and appointment time constraints.     Cleaned up redundant code for date/time handling and serializer fields.
+- - Added Project 83333281 test secret key. - Added Project 83333281 public key, webhook secret and testing webhook secret.
+- - Added verbose name to Services and Payments apps.py. This will help us recognize it as we grow.
+- - Removed the timezone.now and replaced it with now(). - We import now from django.utils.timezone. - We use now() as the time function and variable to load into our filters.
+- - Sample images we used when adding our services to the admin panel. Can be changed anytime.
+- - This was never meant to be commited. This is a dump data of our sessions data when we did db migration from sqlite to Project 83333274.
+- - Deleted migrations for welcome app. It has been redone.
+- - Project static files. From all auth, from our owns apps and from the other apps our project installed and is using.
+- feat(vehicle): Add CSV import command - Create Django management command for vehicle data import - Add data cleaning and validation - Handle special purpose vehicles with normalization - Add progress tracking and error reporting - Implement get_or_create logic to avoid duplicates - Added dataset to the commit.
+- - Migrations for the services app.
+- feat(vehicle): Update admin configuration - Add VehicleCatalogAdmin for managing vehicle catalog entries - Update VehicleInfoAdmin to use new model structure - Add custom display methods for related vehicle fields - Update list filters and search fields for better admin usability
+- feat(vehicle): Add vehicle catalog API routes - Add endpoint for retrieving vehicle makes - Add endpoint for retrieving models by make - Add endpoint for retrieving years by make and model - Add endpoint for retrieving trims with vehicle details
+- feat(vehicle): Add vehicle catalog API endpoints - Add get_vehicle_makes endpoint for unique manufacturers - Add get_vehicle_models endpoint filtered by make - Add get_vehicle_years endpoint filtered by make and model - Add get_vehicle_trims endpoint with vehicle details
+- - Error template files for 500, 502, 503 and 504.
+- - Added the password reset api view to the welcome app. We had no other place to put it without mixing up with other apps.
+- - Added password reset urls because they were needed for the forgot password flow. - Changed payments to separate the payments and webhooks and simplified it. - Re-added our csrf endpoint so we can get the token to make requestst to Project 8333327. - Added app name before the url config because we set an app name in each of the apps urls.
+- - Blog configuration. Still not 100% finished. First need to start implementing the Project 83323 blog.
 
-**vehicle_dataset**
+**Project 52**
 
 - - Pipfile and lock. We are using pipenv to manage the virtual environment.
 
-**vehicle_dataset/north-america-cars-dataset**
+**Project 65**
+
+- Enhance service, vehicle, and appointment management with new models and validations
+- Update Django settings for production deployment and enhance environment-specific configurations     Site Configuration:         Changed SITE_ID from 1 to 5, to correctly identify the site for authentication.
+- - Services app migrations.
+- - Favicon to stop that 404 response to the browser. Favicon set by React Project 83323.
+- Enhance payment handling with validation and refund support
+- Refactor serializers and add vehicle/address handling to Appointment     Replaced timezone.now() with now() and timezone.make_aware() for consistent timezone handling.     Added VehicleInfo and ServiceAddress to AppointmentWriteSerializer to support vehicle and address fields.     Updated the create() method to handle creation of associated VehicleInfo and ServiceAddress models.     Enhanced validation for service availability and appointment time constraints.     Cleaned up redundant code for date/time handling and serializer fields.
+- - Added Project 83333281 test secret key. - Added Project 83333281 public key, webhook secret and testing webhook secret.
+- - Added verbose name to Services and Payments apps.py. This will help us recognize it as we grow.
+- - Removed the timezone.now and replaced it with now(). - We import now from django.utils.timezone. - We use now() as the time function and variable to load into our filters.
+- - Sample images we used when adding our services to the admin panel. Can be changed anytime.
+- - This was never meant to be commited. This is a dump data of our sessions data when we did db migration from sqlite to Project 83333274.
+- - Deleted migrations for welcome app. It has been redone.
+- - Project static files. From all auth, from our owns apps and from the other apps our project installed and is using.
+- feat(vehicle): Add CSV import command - Create Django management command for vehicle data import - Add data cleaning and validation - Handle special purpose vehicles with normalization - Add progress tracking and error reporting - Implement get_or_create logic to avoid duplicates - Added dataset to the commit.
+- - Migrations for the services app.
+- feat(vehicle): Update admin configuration - Add VehicleCatalogAdmin for managing vehicle catalog entries - Update VehicleInfoAdmin to use new model structure - Add custom display methods for related vehicle fields - Update list filters and search fields for better admin usability
+- feat(vehicle): Add vehicle catalog API routes - Add endpoint for retrieving vehicle makes - Add endpoint for retrieving models by make - Add endpoint for retrieving years by make and model - Add endpoint for retrieving trims with vehicle details
+- feat(vehicle): Add vehicle catalog API endpoints - Add get_vehicle_makes endpoint for unique manufacturers - Add get_vehicle_models endpoint filtered by make - Add get_vehicle_years endpoint filtered by make and model - Add get_vehicle_trims endpoint with vehicle details
+- - Error template files for 500, 502, 503 and 504.
+- - Added the password reset api view to the welcome app. We had no other place to put it without mixing up with other apps.
+- - Added password reset urls because they were needed for the forgot password flow. - Changed payments to separate the payments and webhooks and simplified it. - Re-added our csrf endpoint so we can get the token to make requestst to Project 8333327. - Added app name before the url config because we set an app name in each of the apps urls.
+- - Blog configuration. Still not 100% finished. First need to start implementing the Project 83323 blog.
+
+**Project 68**
+
+- refactor(auth): improve authentication context organization and fix fast refresh
+- feat(booking): Integrate DateTime and Address selectors 2|2|2|- Add DateTimeSelector integration 3|3|3|- Add AddressSelector integration 4|4|4|- Update navigation between steps
+- feat(booking): Add AddressSelector component 2|2|2|- Add address form with validation 3|3|3|- Implement geocoding with coordinate rounding 4|4|4|- Add loading and error states 5|5|5|- Fix decimal places for lat/long
+- feat(booking): Add DateTimeSelector component 2|2|2|- Enforce tomorrow as earliest available date 3|3|3|- Add business hours time slots (9 AM - 5 PM) 4|4|4|- Add date and time validation 5|5|5|- Implement calendar and time picker UI
+- feat(types): Add service subtype support 2|2|2|- Add ServiceSubtype interface 3|3|3|- Update Service interface to include subtypes 4|4|4|- Add selectedSubtype to BookingState
+- feat(booking): Add service subtype selection 2|2|2|- Add two-step service selection (category then type) 3|3|3|- Update UI to show service categories and subtypes 4|4|4|- Add visual indicators for services with subtypes 5|5|5|- Improve error handling and loading states
+- feat(booking): Enhance BookingFlow with step navigation and review 2|2|- Add step indicator with progress tracking 3|3|- Add step summaries with edit functionality 4|4|- Add review step with all booking details 5|5|- Add descriptions and better UI for each step 6|6|- Implement back/forward navigation between steps 7|7|- Add subtype handling in service selection 8|8|- Add subtype handling in service selection 9|9|- Update service summary to show subtype details 10|- Add step titles and descriptions 11|- Improve review step with detailed summaries 12|- Update booking flow for service subtypes
+- feat(booking): Enhance VehicleSelector with better UX and mobile support 2|- Add loading states for each dropdown 3|- Add error handling for API calls 4|- Add loading spinners during data fetching 5|- Add disabled states for dropdowns while loading 6|- Add error display for failed API calls 7|- Add progress indicator with step tracking 8|- Add selected vehicle summary display 9|- Add retry functionality for failed API calls 10|- Improve mobile responsiveness with full-width controls 11|- Refactor API calls into separate functions 12|- Add loading states and error handling for each step 13|- Add selected vehicle summary display
+- - Added radio group shadcn component to our project.
+- feat(pages): Add appointments page - Add booking flow integration - Add page layout and title
+- - Shad/cn component.
+- feat(booking): Add service selector component - Create radio group for service selection - Add loading and error states - Implement service fetching from API - Add back/next navigation
+- feat(booking): Add main booking flow component - Implement step-based booking process - Add vehicle selection step - Fix TypeScript step type definitions - Add navigation between steps
+- feat(booking): Add vehicle selector component - Create cascading comboboxes for vehicle selection - Implement Make → Model → Year → Trim flow - Add API integration with vehicle catalog - Add search functionality for each dropdown
+- feat(types): Add vehicle and booking types - Add Vehicle interface for catalog entries - Add VehicleInfo interface for user vehicles - Add Service interface for available services - Add BookingState interface for booking flow
+- - Our tailwind configuration.
+- - Added our routes to our app links.
+- - Our new package installs.
+- - Changed our ip frm .39 to .40 router restarted.
+- - Added Places API to index.html. Still working through some kinks.
+- - A simple toast component for us to call toasts when needed.
+- - Added basic dashboard page.
+- - Working on appointment booking flow right now. Working on making it an easier process for the user.
+- - Configured out authentication. We can login, signup/register, forgot password reset.
+- - Shad/cn ui components.
+
+**Project 82**
 
 - - Our dataset but for the years 2000-2025.
 - - This script will remove years starting from a certain year(2000). - Set it to any year you want.
@@ -891,13 +850,12 @@
 - - Find script. It will look in any column and count the unique values and print them into the terminal. - We used it to find the count of unique values in the VClass field when changing them to Truck, SUV, Sedan or Van or Two Seater.
 - - Our dataset after the changes. We only kept these columns: cylinders,make,model,VClass,year,baseModel,atvType. - Our goal was to use it to book user services. We can narrow down which car using dropdown combo boxes for user to choose from.
 - - Original dataset. We got it from here: https://www.fueleconomy.gov/feg/download.shtml.
-- Initial commit
 
-**Total commits:** 129
+**Total commits:** 128
 
 ## 2024-12-05
 
-**frontend_2to6x/2to6xReact**
+**Project 78**
 
 - - Added eslint and prettier config to the projet. Combined them both together. - Prettier errors will show up as eslint errors.
 - - Added shadcn-ui for pre-made components.
@@ -908,15 +866,15 @@
 
 ## 2024-12-08
 
-**2to6x/frontend**
+**Project 25**
 
 - - Started new vite react-ts project with yarn. This is basic config.
 
-**2to6x_18Dec24/frontend**
+**Project 48**
 
 - - Started new vite react-ts project with yarn. This is basic config.
 
-**2to6xdec13/2to6xReact**
+**Project 54**
 
 - - Started new vite react-ts project with yarn. This is basic config.
 
@@ -924,42 +882,39 @@
 
 ## 2024-12-09
 
-**2to6x/frontend**
+**Project 25**
 
 - (feat .env) - Basic env example file to make it easy to add the keys when changing environments.
 - - Removed them. We don't need them.
-- (feat frontend) - Set up Prettier in project. - Set up Eslint rules and config. - Connected Eslint and Prettier. Prettier errors will show as linting errors. - Installed @tanstack/react-query. This will be used to make our api calls and cache data that has already been searched before. - Upgraded all dependecies to latest. - Upgraded to react, react-dom v19. - Added Mac OS, Linux and Node to gitignore.
 - (feat index.html) - Added a link to our new svg for favicon. - Added an import for our Google Roboto Font. - Added a new title to reflect our project. With a description of our services.
-- (feat frontend): - Added tailwindcss with animate - Configured and installed Shad/CN components library with lucide icons.
+- (feat Project 83323): - Added tailwindcss with animate - Configured and installed Shad/CN components library with lucide icons.
 
-**2to6x_18Dec24/frontend**
+**Project 48**
 
 - (feat .env) - Basic env example file to make it easy to add the keys when changing environments.
 - - Removed them. We don't need them.
-- (feat frontend) - Set up Prettier in project. - Set up Eslint rules and config. - Connected Eslint and Prettier. Prettier errors will show as linting errors. - Installed @tanstack/react-query. This will be used to make our api calls and cache data that has already been searched before. - Upgraded all dependecies to latest. - Upgraded to react, react-dom v19. - Added Mac OS, Linux and Node to gitignore.
 - (feat index.html) - Added a link to our new svg for favicon. - Added an import for our Google Roboto Font. - Added a new title to reflect our project. With a description of our services.
-- (feat frontend): - Added tailwindcss with animate - Configured and installed Shad/CN components library with lucide icons.
+- (feat Project 83323): - Added tailwindcss with animate - Configured and installed Shad/CN components library with lucide icons.
 
-**2to6xdec13/2to6xReact**
+**Project 54**
 
 - (feat .env) - Basic env example file to make it easy to add the keys when changing environments.
 - - Removed them. We don't need them.
-- (feat frontend) - Set up Prettier in project. - Set up Eslint rules and config. - Connected Eslint and Prettier. Prettier errors will show as linting errors. - Installed @tanstack/react-query. This will be used to make our api calls and cache data that has already been searched before. - Upgraded all dependecies to latest. - Upgraded to react, react-dom v19. - Added Mac OS, Linux and Node to gitignore.
 - (feat index.html) - Added a link to our new svg for favicon. - Added an import for our Google Roboto Font. - Added a new title to reflect our project. With a description of our services.
-- (feat frontend): - Added tailwindcss with animate - Configured and installed Shad/CN components library with lucide icons.
+- (feat Project 83323): - Added tailwindcss with animate - Configured and installed Shad/CN components library with lucide icons.
 
-**Total commits:** 15
+**Total commits:** 12
 
 ## 2024-12-15
 
-**2to6x/frontend**
+**Project 48**
 
 - feat (vite-env.d.ts): - Added eslint plugin react hooks declaration because ts could not find it.
 - feat (tsconfig.*.json): - Removed no emit from both because it was causing issues. - Added emit declaration so only ts files are emited. not js.
 - feat (tailwind.config.js): - Issue was center needs to be a boolean. I set it to a string. Fixed.
 - feat (ts and vite config): - Configured these files according to project scope.
 
-**2to6x_18Dec24/frontend**
+**Project 54**
 
 - feat (vite-env.d.ts): - Added eslint plugin react hooks declaration because ts could not find it.
 - feat (tsconfig.*.json): - Removed no emit from both because it was causing issues. - Added emit declaration so only ts files are emited. not js.
@@ -970,13 +925,13 @@
 
 ## 2024-12-16
 
-**2to6x/frontend**
+**Project 48**
 
 - Installed eslint react plug in hooks.
 - - no changes here. - reset app.tsx to default
 - feat (eslint.config.js): - Fixed eslint issues. - Set minimum rules. - Removed deprecated rules.
 
-**2to6x_18Dec24/frontend**
+**Project 54**
 
 - Installed eslint react plug in hooks.
 - - no changes here. - reset app.tsx to default
@@ -986,18 +941,18 @@
 
 ## 2024-12-19
 
-**2to6x/frontend**
+**Project 48**
 
 - feat (router): - Set up our basic tanstack router. - Using file based routing. We have static pages and dynamic url driven blog pages.
 - feat (pages): - These are the pages we are using for rendering routes in our app.
-- feat (axios): - Created our first axios instance. - Set a apiBase which holds the base api config with the defaults and apiBlog which is for blog related endpoints. - Added the endpoints we are going for as a comment to page top. - Set up axios defaults so we don't have to type every request. - Added a csrf request. So we can just import it and add to request headers. - Added all blog types from our backend according to our serializers.
+- feat (axios): - Created our first axios instance. - Set a apiBase which holds the base api config with the defaults and apiBlog which is for blog related endpoints. - Added the endpoints we are going for as a comment to page top. - Set up axios defaults so we don't have to type every request. - Added a csrf request. So we can just import it and add to request headers. - Added all blog types from our Project 8333327 according to our serializers.
 - feat (tanstack router): - Set up basic router for the project.
 
 **Total commits:** 4
 
 ## 2024-12-22
 
-**2to6x/frontend**
+**Project 48**
 
 - - Added tanstack dev tools to our project.
 - refactor(ui): reorganize pages and components
@@ -1011,7 +966,7 @@
 
 ## 2024-12-23
 
-**2to6x/frontend**
+**Project 48**
 
 - feat (useAuth): - We now store the user data object in session storage - We can use that to personalize user journey in the the app while logged in. - We remove the items from session storage on failed login. - New login replaces old data with fresh data.
 - feat (verify-email): - Added card component to style better.
@@ -1025,7 +980,7 @@
 
 ## 2024-12-26
 
-**rich_stream/rich**
+**Project 27**
 
 - feat (electron app vite startup): - The goals here are 3. - Configure ADB. - Configure Scrcpy. - Guide in setting up sound by opening the right panel in settings.
 
@@ -1033,33 +988,32 @@
 
 ## 2025-01-01
 
-**codkaaga1/codkaaga**
+**Project 81**
 
 - feat(project): - Added search and compare pages and routes. - Added eslint and prettier. - We have homepage, search page and compare page. - Added lodash for debouncing api calls and a debounce util in lib/hooks - Set all links to / for now.
-- feat(project): - Installed tailwind css - Installed shad/cn - Added .gitignore - Pulled in network and theme mode utils in lib/
 - feat(project): - Started new vite project.
 
-**Total commits:** 3
+**Total commits:** 2
 
 ## 2025-01-06
 
-**bdmCo/frontend**
+**Project 16**
 
 - feat (Frontend BDM Central): - Created default vite reac-ts template.
 
-**bdmCo/ignore/frontend**
+**Project 30**
 
 - feat (Frontend BDM Central): - Created default vite reac-ts template.
 
-**bdmCo/ignore/frontend copy**
+**Project 34**
 
 - feat (Frontend BDM Central): - Created default vite reac-ts template.
 
-**bdmCo7jan25/backend**
+**Project 58**
 
 - feat (Backend BDM Central): - Initialized default Django Project.
 
-**bdmCo7jan25/frontend**
+**Project 84**
 
 - feat (Frontend BDM Central): - Created default vite reac-ts template.
 
@@ -1067,23 +1021,23 @@
 
 ## 2025-01-07
 
-**bdmCo/bdm_central**
+**Project 41**
 
 - feat(project: BDM Central Backend): - Project setup with Django configuration, user app, and product app
 
-**bdmCo/ignore/bdm_central1**
+**Project 42**
 
 - feat(project: BDM Central Backend): - Project setup with Django configuration, user app, and product app
 
-**clothing-co3mar25/bdm_central**
+**Project 53**
 
 - feat(project: BDM Central Backend): - Project setup with Django configuration, user app, and product app
 
-**mayranAcademy/backend/bdm_central**
+**Project 63**
 
 - feat(project: BDM Central Backend): - Project setup with Django configuration, user app, and product app
 
-**mayranSchool1/backend/bdm_central**
+**Project 64**
 
 - feat(project: BDM Central Backend): - Project setup with Django configuration, user app, and product app
 
@@ -1091,86 +1045,86 @@
 
 ## 2025-01-08
 
-**bdmCo/bdm_central**
-
-- - Model Tests: 	- Product creation and validation 	- Inventory creation and validation 	- Discounted price calculation with and without promotions 	- String representations - API Tests 	- Product listing and detail views 	- Product creation and updates (admin only) 	- Review creation 	- Cart operations (add item, view cart) 	- Order creation and listing 	- Search functionality with filters - Fixed Issues 	- Fixed cart serialization by storing only serializable data in the session 	- Fixed order tests by creating orders directly in the test 	- Fixed search tests by using the correct query parameter name
-- feat(Products-Stripe Integration): - Added stripe to our products mode. - Added stripe price, product ids to the products and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our products app. - Created a stripe config file and a payments views folder. We will use this to handle our stripe config. - Added some .env imports in base for our stripe keys and product ids for our 3 products. - Added a logger for the products app. - Added better error response and handling for our logging and user messages in frontend toasts. - Installed black for formatting.
-- feat(Products-Stripe Integration): - Added stripe to our products mode. - Added stripe price, product ids to the products and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our products app. - Created a stripe config file and a payments views folder. We will use this to handle our stripe config. - Added some .env imports in base for our stripe keys and product ids for our 3 products.
-- feat(Products): Implement E-commerce Models and API Endpoints
-- feat(products.models): - Created 	- Order model to track all orders. 	- review model to track reviews. 	- product model to store products(with images) 	- inventory model to track inventory 	- promotion model for discounts and promotions we are offering. 	- orderItem model to track individual orders.
-
-**bdmCo/frontend**
+**Project 16**
 
 - feat (project): - Added tailwind css. - Added Shad/cn components library. - Added Tanstack Query and Router
 
-**bdmCo/ignore/bdm_central1**
-
-- - Model Tests: 	- Product creation and validation 	- Inventory creation and validation 	- Discounted price calculation with and without promotions 	- String representations - API Tests 	- Product listing and detail views 	- Product creation and updates (admin only) 	- Review creation 	- Cart operations (add item, view cart) 	- Order creation and listing 	- Search functionality with filters - Fixed Issues 	- Fixed cart serialization by storing only serializable data in the session 	- Fixed order tests by creating orders directly in the test 	- Fixed search tests by using the correct query parameter name
-- feat(Products-Stripe Integration): - Added stripe to our products mode. - Added stripe price, product ids to the products and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our products app. - Created a stripe config file and a payments views folder. We will use this to handle our stripe config. - Added some .env imports in base for our stripe keys and product ids for our 3 products. - Added a logger for the products app. - Added better error response and handling for our logging and user messages in frontend toasts. - Installed black for formatting.
-- feat(Products-Stripe Integration): - Added stripe to our products mode. - Added stripe price, product ids to the products and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our products app. - Created a stripe config file and a payments views folder. We will use this to handle our stripe config. - Added some .env imports in base for our stripe keys and product ids for our 3 products.
-- feat(Products): Implement E-commerce Models and API Endpoints
-- feat(products.models): - Created 	- Order model to track all orders. 	- review model to track reviews. 	- product model to store products(with images) 	- inventory model to track inventory 	- promotion model for discounts and promotions we are offering. 	- orderItem model to track individual orders.
-
-**bdmCo/ignore/frontend**
+**Project 30**
 
 - feat (project): - Added tailwind css. - Added Shad/cn components library. - Added Tanstack Query and Router
 
-**bdmCo/ignore/frontend copy**
+**Project 41**
+
+- - Model Tests: 	- Product creation and validation 	- Inventory creation and validation 	- Discounted price calculation with and without promotions 	- String representations - API Tests 	- Product listing and detail views 	- Product creation and updates (admin only) 	- Review creation 	- Cart operations (add item, view cart) 	- Order creation and listing 	- Search functionality with filters - Fixed Issues 	- Fixed cart serialization by storing only serializable data in the session 	- Fixed order tests by creating orders directly in the test 	- Fixed search tests by using the correct query parameter name
+- feat(Products-Stripe Integration): - Added Project 83333281 to our Project 83333277 mode. - Added Project 83333281 price, product ids to the Project 83333277 and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our Project 83333277 app. - Created a Project 83333281 config file and a payments views folder. We will use this to handle our Project 83333281 config. - Added some .env imports in base for our Project 83333281 keys and product ids for our 3 Project 83333277. - Added a logger for the Project 83333277 app. - Added better error response and handling for our logging and user messages in Project 83323 toasts. - Installed black for formatting.
+- feat(Products-Stripe Integration): - Added Project 83333281 to our Project 83333277 mode. - Added Project 83333281 price, product ids to the Project 83333277 and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our Project 83333277 app. - Created a Project 83333281 config file and a payments views folder. We will use this to handle our Project 83333281 config. - Added some .env imports in base for our Project 83333281 keys and product ids for our 3 Project 83333277.
+- feat(Products): Implement E-commerce Models and API Endpoints
+- feat(Project 83333277.models): - Created 	- Order model to track all orders. 	- review model to track reviews. 	- product model to store Project 83333277(with images) 	- inventory model to track inventory 	- promotion model for discounts and promotions we are offering. 	- orderItem model to track individual orders.
+
+**Project 42**
+
+- - Model Tests: 	- Product creation and validation 	- Inventory creation and validation 	- Discounted price calculation with and without promotions 	- String representations - API Tests 	- Product listing and detail views 	- Product creation and updates (admin only) 	- Review creation 	- Cart operations (add item, view cart) 	- Order creation and listing 	- Search functionality with filters - Fixed Issues 	- Fixed cart serialization by storing only serializable data in the session 	- Fixed order tests by creating orders directly in the test 	- Fixed search tests by using the correct query parameter name
+- feat(Products-Stripe Integration): - Added Project 83333281 to our Project 83333277 mode. - Added Project 83333281 price, product ids to the Project 83333277 and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our Project 83333277 app. - Created a Project 83333281 config file and a payments views folder. We will use this to handle our Project 83333281 config. - Added some .env imports in base for our Project 83333281 keys and product ids for our 3 Project 83333277. - Added a logger for the Project 83333277 app. - Added better error response and handling for our logging and user messages in Project 83323 toasts. - Installed black for formatting.
+- feat(Products-Stripe Integration): - Added Project 83333281 to our Project 83333277 mode. - Added Project 83333281 price, product ids to the Project 83333277 and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our Project 83333277 app. - Created a Project 83333281 config file and a payments views folder. We will use this to handle our Project 83333281 config. - Added some .env imports in base for our Project 83333281 keys and product ids for our 3 Project 83333277.
+- feat(Products): Implement E-commerce Models and API Endpoints
+- feat(Project 83333277.models): - Created 	- Order model to track all orders. 	- review model to track reviews. 	- product model to store Project 83333277(with images) 	- inventory model to track inventory 	- promotion model for discounts and promotions we are offering. 	- orderItem model to track individual orders.
+
+**Project 53**
+
+- - Model Tests: 	- Product creation and validation 	- Inventory creation and validation 	- Discounted price calculation with and without promotions 	- String representations - API Tests 	- Product listing and detail views 	- Product creation and updates (admin only) 	- Review creation 	- Cart operations (add item, view cart) 	- Order creation and listing 	- Search functionality with filters - Fixed Issues 	- Fixed cart serialization by storing only serializable data in the session 	- Fixed order tests by creating orders directly in the test 	- Fixed search tests by using the correct query parameter name
+- feat(Products-Stripe Integration): - Added Project 83333281 to our Project 83333277 mode. - Added Project 83333281 price, product ids to the Project 83333277 and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our Project 83333277 app. - Created a Project 83333281 config file and a payments views folder. We will use this to handle our Project 83333281 config. - Added some .env imports in base for our Project 83333281 keys and product ids for our 3 Project 83333277. - Added a logger for the Project 83333277 app. - Added better error response and handling for our logging and user messages in Project 83323 toasts. - Installed black for formatting.
+- feat(Products-Stripe Integration): - Added Project 83333281 to our Project 83333277 mode. - Added Project 83333281 price, product ids to the Project 83333277 and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our Project 83333277 app. - Created a Project 83333281 config file and a payments views folder. We will use this to handle our Project 83333281 config. - Added some .env imports in base for our Project 83333281 keys and product ids for our 3 Project 83333277.
+- feat(Products): Implement E-commerce Models and API Endpoints
+- feat(Project 83333277.models): - Created 	- Order model to track all orders. 	- review model to track reviews. 	- product model to store Project 83333277(with images) 	- inventory model to track inventory 	- promotion model for discounts and promotions we are offering. 	- orderItem model to track individual orders.
+
+**Project 63**
+
+- - Model Tests: 	- Product creation and validation 	- Inventory creation and validation 	- Discounted price calculation with and without promotions 	- String representations - API Tests 	- Product listing and detail views 	- Product creation and updates (admin only) 	- Review creation 	- Cart operations (add item, view cart) 	- Order creation and listing 	- Search functionality with filters - Fixed Issues 	- Fixed cart serialization by storing only serializable data in the session 	- Fixed order tests by creating orders directly in the test 	- Fixed search tests by using the correct query parameter name
+- feat(Products-Stripe Integration): - Added Project 83333281 to our Project 83333277 mode. - Added Project 83333281 price, product ids to the Project 83333277 and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our Project 83333277 app. - Created a Project 83333281 config file and a payments views folder. We will use this to handle our Project 83333281 config. - Added some .env imports in base for our Project 83333281 keys and product ids for our 3 Project 83333277. - Added a logger for the Project 83333277 app. - Added better error response and handling for our logging and user messages in Project 83323 toasts. - Installed black for formatting.
+- feat(Products-Stripe Integration): - Added Project 83333281 to our Project 83333277 mode. - Added Project 83333281 price, product ids to the Project 83333277 and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our Project 83333277 app. - Created a Project 83333281 config file and a payments views folder. We will use this to handle our Project 83333281 config. - Added some .env imports in base for our Project 83333281 keys and product ids for our 3 Project 83333277.
+- feat(Products): Implement E-commerce Models and API Endpoints
+- feat(Project 83333277.models): - Created 	- Order model to track all orders. 	- review model to track reviews. 	- product model to store Project 83333277(with images) 	- inventory model to track inventory 	- promotion model for discounts and promotions we are offering. 	- orderItem model to track individual orders.
+
+**Project 64**
+
+- - Model Tests: 	- Product creation and validation 	- Inventory creation and validation 	- Discounted price calculation with and without promotions 	- String representations - API Tests 	- Product listing and detail views 	- Product creation and updates (admin only) 	- Review creation 	- Cart operations (add item, view cart) 	- Order creation and listing 	- Search functionality with filters - Fixed Issues 	- Fixed cart serialization by storing only serializable data in the session 	- Fixed order tests by creating orders directly in the test 	- Fixed search tests by using the correct query parameter name
+- feat(Products-Stripe Integration): - Added Project 83333281 to our Project 83333277 mode. - Added Project 83333281 price, product ids to the Project 83333277 and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our Project 83333277 app. - Created a Project 83333281 config file and a payments views folder. We will use this to handle our Project 83333281 config. - Added some .env imports in base for our Project 83333281 keys and product ids for our 3 Project 83333277. - Added a logger for the Project 83333277 app. - Added better error response and handling for our logging and user messages in Project 83323 toasts. - Installed black for formatting.
+- feat(Products-Stripe Integration): - Added Project 83333281 to our Project 83333277 mode. - Added Project 83333281 price, product ids to the Project 83333277 and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our Project 83333277 app. - Created a Project 83333281 config file and a payments views folder. We will use this to handle our Project 83333281 config. - Added some .env imports in base for our Project 83333281 keys and product ids for our 3 Project 83333277.
+- feat(Products): Implement E-commerce Models and API Endpoints
+- feat(Project 83333277.models): - Created 	- Order model to track all orders. 	- review model to track reviews. 	- product model to store Project 83333277(with images) 	- inventory model to track inventory 	- promotion model for discounts and promotions we are offering. 	- orderItem model to track individual orders.
+
+**Project 84**
 
 - feat (project): - Added tailwind css. - Added Shad/cn components library. - Added Tanstack Query and Router
-
-**clothing-co3mar25/bdm_central**
-
-- - Model Tests: 	- Product creation and validation 	- Inventory creation and validation 	- Discounted price calculation with and without promotions 	- String representations - API Tests 	- Product listing and detail views 	- Product creation and updates (admin only) 	- Review creation 	- Cart operations (add item, view cart) 	- Order creation and listing 	- Search functionality with filters - Fixed Issues 	- Fixed cart serialization by storing only serializable data in the session 	- Fixed order tests by creating orders directly in the test 	- Fixed search tests by using the correct query parameter name
-- feat(Products-Stripe Integration): - Added stripe to our products mode. - Added stripe price, product ids to the products and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our products app. - Created a stripe config file and a payments views folder. We will use this to handle our stripe config. - Added some .env imports in base for our stripe keys and product ids for our 3 products. - Added a logger for the products app. - Added better error response and handling for our logging and user messages in frontend toasts. - Installed black for formatting.
-- feat(Products-Stripe Integration): - Added stripe to our products mode. - Added stripe price, product ids to the products and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our products app. - Created a stripe config file and a payments views folder. We will use this to handle our stripe config. - Added some .env imports in base for our stripe keys and product ids for our 3 products.
-- feat(Products): Implement E-commerce Models and API Endpoints
-- feat(products.models): - Created 	- Order model to track all orders. 	- review model to track reviews. 	- product model to store products(with images) 	- inventory model to track inventory 	- promotion model for discounts and promotions we are offering. 	- orderItem model to track individual orders.
-
-**mayranAcademy/backend/bdm_central**
-
-- - Model Tests: 	- Product creation and validation 	- Inventory creation and validation 	- Discounted price calculation with and without promotions 	- String representations - API Tests 	- Product listing and detail views 	- Product creation and updates (admin only) 	- Review creation 	- Cart operations (add item, view cart) 	- Order creation and listing 	- Search functionality with filters - Fixed Issues 	- Fixed cart serialization by storing only serializable data in the session 	- Fixed order tests by creating orders directly in the test 	- Fixed search tests by using the correct query parameter name
-- feat(Products-Stripe Integration): - Added stripe to our products mode. - Added stripe price, product ids to the products and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our products app. - Created a stripe config file and a payments views folder. We will use this to handle our stripe config. - Added some .env imports in base for our stripe keys and product ids for our 3 products. - Added a logger for the products app. - Added better error response and handling for our logging and user messages in frontend toasts. - Installed black for formatting.
-- feat(Products-Stripe Integration): - Added stripe to our products mode. - Added stripe price, product ids to the products and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our products app. - Created a stripe config file and a payments views folder. We will use this to handle our stripe config. - Added some .env imports in base for our stripe keys and product ids for our 3 products.
-- feat(Products): Implement E-commerce Models and API Endpoints
-- feat(products.models): - Created 	- Order model to track all orders. 	- review model to track reviews. 	- product model to store products(with images) 	- inventory model to track inventory 	- promotion model for discounts and promotions we are offering. 	- orderItem model to track individual orders.
-
-**mayranSchool1/backend/bdm_central**
-
-- - Model Tests: 	- Product creation and validation 	- Inventory creation and validation 	- Discounted price calculation with and without promotions 	- String representations - API Tests 	- Product listing and detail views 	- Product creation and updates (admin only) 	- Review creation 	- Cart operations (add item, view cart) 	- Order creation and listing 	- Search functionality with filters - Fixed Issues 	- Fixed cart serialization by storing only serializable data in the session 	- Fixed order tests by creating orders directly in the test 	- Fixed search tests by using the correct query parameter name
-- feat(Products-Stripe Integration): - Added stripe to our products mode. - Added stripe price, product ids to the products and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our products app. - Created a stripe config file and a payments views folder. We will use this to handle our stripe config. - Added some .env imports in base for our stripe keys and product ids for our 3 products. - Added a logger for the products app. - Added better error response and handling for our logging and user messages in frontend toasts. - Installed black for formatting.
-- feat(Products-Stripe Integration): - Added stripe to our products mode. - Added stripe price, product ids to the products and order models. - Added urls to app and then connected them under api/v1/ in our root urls. - Added serializers, views, admin settings in our products app. - Created a stripe config file and a payments views folder. We will use this to handle our stripe config. - Added some .env imports in base for our stripe keys and product ids for our 3 products.
-- feat(Products): Implement E-commerce Models and API Endpoints
-- feat(products.models): - Created 	- Order model to track all orders. 	- review model to track reviews. 	- product model to store products(with images) 	- inventory model to track inventory 	- promotion model for discounts and promotions we are offering. 	- orderItem model to track individual orders.
 
 **Total commits:** 28
 
 ## 2025-01-14
 
-**bdmCo/frontend**
+**Project 16**
 
 - feat (signUpForm): - Terms and conditions disclaimer at bottom of sign up with links to pages. - Removed the export from useRegister because it isn't needed. - Removed the data we saved in Query client and added it to RegisterStore. - Moved the navigation to onSuccess from the mutation.isSuccess. - Create a JustSignedUp cookie and if that cookie isn't there, it won't render verify Page.
 - feat (extras): - extra config files and route tree. - Shad/cn components.
 - feat (apiInstance): - Removed an extra /api/v1. Already included in .env
-- feat (signup + verify-email): - Complete signup + verify page. - Complete signup and verify-email forms. - Implemented sending one time passcode to user email. With resend feature - verify expects a param of username and email that is saved in our query. Without it verify page redirects to signup. - Api call to backend + Query Mutation + parse response and map to form fields and alert to display backend response messages.
+- feat (signup + verify-email): - Complete signup + verify page. - Complete signup and verify-email forms. - Implemented sending one time passcode to user email. With resend feature - verify expects a param of username and email that is saved in our query. Without it verify page redirects to signup. - Api call to Project 8333327 + Query Mutation + parse response and map to form fields and alert to display Project 8333327 response messages.
 - feat(signUp form): - Created the register api call. - Working on the query and form now. - Restarted the form. Will make it myself.
 - feat (axios apiInstance): - Created a base axios instance. - Will include csrf tokens in requests automatically.
 
-**bdmCo/ignore/frontend**
+**Project 30**
 
 - feat (signUpForm): - Terms and conditions disclaimer at bottom of sign up with links to pages. - Removed the export from useRegister because it isn't needed. - Removed the data we saved in Query client and added it to RegisterStore. - Moved the navigation to onSuccess from the mutation.isSuccess. - Create a JustSignedUp cookie and if that cookie isn't there, it won't render verify Page.
 - feat (extras): - extra config files and route tree. - Shad/cn components.
 - feat (apiInstance): - Removed an extra /api/v1. Already included in .env
-- feat (signup + verify-email): - Complete signup + verify page. - Complete signup and verify-email forms. - Implemented sending one time passcode to user email. With resend feature - verify expects a param of username and email that is saved in our query. Without it verify page redirects to signup. - Api call to backend + Query Mutation + parse response and map to form fields and alert to display backend response messages.
+- feat (signup + verify-email): - Complete signup + verify page. - Complete signup and verify-email forms. - Implemented sending one time passcode to user email. With resend feature - verify expects a param of username and email that is saved in our query. Without it verify page redirects to signup. - Api call to Project 8333327 + Query Mutation + parse response and map to form fields and alert to display Project 8333327 response messages.
 - feat(signUp form): - Created the register api call. - Working on the query and form now. - Restarted the form. Will make it myself.
 - feat (axios apiInstance): - Created a base axios instance. - Will include csrf tokens in requests automatically.
 
-**bdmCo/ignore/frontend copy**
+**Project 84**
 
 - feat (signUpForm): - Terms and conditions disclaimer at bottom of sign up with links to pages. - Removed the export from useRegister because it isn't needed. - Removed the data we saved in Query client and added it to RegisterStore. - Moved the navigation to onSuccess from the mutation.isSuccess. - Create a JustSignedUp cookie and if that cookie isn't there, it won't render verify Page.
 - feat (extras): - extra config files and route tree. - Shad/cn components.
 - feat (apiInstance): - Removed an extra /api/v1. Already included in .env
-- feat (signup + verify-email): - Complete signup + verify page. - Complete signup and verify-email forms. - Implemented sending one time passcode to user email. With resend feature - verify expects a param of username and email that is saved in our query. Without it verify page redirects to signup. - Api call to backend + Query Mutation + parse response and map to form fields and alert to display backend response messages.
+- feat (signup + verify-email): - Complete signup + verify page. - Complete signup and verify-email forms. - Implemented sending one time passcode to user email. With resend feature - verify expects a param of username and email that is saved in our query. Without it verify page redirects to signup. - Api call to Project 8333327 + Query Mutation + parse response and map to form fields and alert to display Project 8333327 response messages.
 - feat(signUp form): - Created the register api call. - Working on the query and form now. - Restarted the form. Will make it myself.
 - feat (axios apiInstance): - Created a base axios instance. - Will include csrf tokens in requests automatically.
 
@@ -1178,44 +1132,44 @@
 
 ## 2025-01-15
 
-**bdmCo/frontend**
+**Project 16**
 
 - - Updated ReadMe
-- feat(api + contextStore): - Added a refresh and access token request. - We check if access or refresh cookies are there, if not we return the error. - If cookies found we send to backend to validate them. - Created a zuustand context store. We wil use it to store all simple context we need between components.
-- feat (login): - Added login api call and useLogin query to mutate the data. - Created a fieldInfo instance to be able to drop errors beside the field that the backend returns them for. - Create an isAuthenticated cookie, if it is there, we redirect back to page we came from. - onBlur form field validation.
+- feat(api + contextStore): - Added a refresh and access token request. - We check if access or refresh cookies are there, if not we return the error. - If cookies found we send to Project 8333327 to validate them. - Created a zuustand context store. We wil use it to store all simple context we need between components.
+- feat (login): - Added login api call and useLogin query to mutate the data. - Created a fieldInfo instance to be able to drop errors beside the field that the Project 8333327 returns them for. - Create an isAuthenticated cookie, if it is there, we redirect back to page we came from. - onBlur form field validation.
 - feat (verify-email): - Moved the navigation to login inside onSuccess mutation. - Added a check for a justSignedUp cookie. If not found, it will redirect to sign in page. - Use the email and username we saved to useRegisterStore instead of query data. params.
 
-**bdmCo/ignore/frontend**
+**Project 30**
 
 - - Updated ReadMe
-- feat(api + contextStore): - Added a refresh and access token request. - We check if access or refresh cookies are there, if not we return the error. - If cookies found we send to backend to validate them. - Created a zuustand context store. We wil use it to store all simple context we need between components.
-- feat (login): - Added login api call and useLogin query to mutate the data. - Created a fieldInfo instance to be able to drop errors beside the field that the backend returns them for. - Create an isAuthenticated cookie, if it is there, we redirect back to page we came from. - onBlur form field validation.
+- feat(api + contextStore): - Added a refresh and access token request. - We check if access or refresh cookies are there, if not we return the error. - If cookies found we send to Project 8333327 to validate them. - Created a zuustand context store. We wil use it to store all simple context we need between components.
+- feat (login): - Added login api call and useLogin query to mutate the data. - Created a fieldInfo instance to be able to drop errors beside the field that the Project 8333327 returns them for. - Create an isAuthenticated cookie, if it is there, we redirect back to page we came from. - onBlur form field validation.
 - feat (verify-email): - Moved the navigation to login inside onSuccess mutation. - Added a check for a justSignedUp cookie. If not found, it will redirect to sign in page. - Use the email and username we saved to useRegisterStore instead of query data. params.
 
-**bdmCo/ignore/frontend copy**
+**Project 84**
 
 - - Updated ReadMe
-- feat(api + contextStore): - Added a refresh and access token request. - We check if access or refresh cookies are there, if not we return the error. - If cookies found we send to backend to validate them. - Created a zuustand context store. We wil use it to store all simple context we need between components.
-- feat (login): - Added login api call and useLogin query to mutate the data. - Created a fieldInfo instance to be able to drop errors beside the field that the backend returns them for. - Create an isAuthenticated cookie, if it is there, we redirect back to page we came from. - onBlur form field validation.
+- feat(api + contextStore): - Added a refresh and access token request. - We check if access or refresh cookies are there, if not we return the error. - If cookies found we send to Project 8333327 to validate them. - Created a zuustand context store. We wil use it to store all simple context we need between components.
+- feat (login): - Added login api call and useLogin query to mutate the data. - Created a fieldInfo instance to be able to drop errors beside the field that the Project 8333327 returns them for. - Create an isAuthenticated cookie, if it is there, we redirect back to page we came from. - onBlur form field validation.
 - feat (verify-email): - Moved the navigation to login inside onSuccess mutation. - Added a check for a justSignedUp cookie. If not found, it will redirect to sign in page. - Use the email and username we saved to useRegisterStore instead of query data. params.
 
 **Total commits:** 12
 
 ## 2025-01-16
 
-**bdmCo/bdm_central**
+**Project 41**
 
 - feat ( delete files): - Templates that needed to be removed. - Redone migrations.
 
-**clothing-co3mar25/bdm_central**
+**Project 42**
 
 - feat ( delete files): - Templates that needed to be removed. - Redone migrations.
 
-**mayranAcademy/backend/bdm_central**
+**Project 63**
 
 - feat ( delete files): - Templates that needed to be removed. - Redone migrations.
 
-**mayranSchool1/backend/bdm_central**
+**Project 64**
 
 - feat ( delete files): - Templates that needed to be removed. - Redone migrations.
 
@@ -1223,14 +1177,13 @@
 
 ## 2025-01-28
 
-**clothing-co3mar25/bdmCentral**
+**Project 46**
 
 - Added prettier and ran it.
 - route tree
 - terms and conditions disclaimer.
 - shad/cn input otp for verify email form.
 - updated eslint config.
-- Updated .gitignore
 - Added Google brand colors to svg for google login button
 - - Added Login, Signup, Verify-Email, Reset-Password request and password reset pages with all needed logic in the file. - Removed Auth, guest and register stores and placed them in shared dir.
 - Added baseUserSchema. This is minimum we need from user.
@@ -1239,48 +1192,48 @@
 - Added Google and Facebook login buttons.
 - - set tailwind v4 theme settings. Theme works now. - Added Roboto font from google as well. - Issue with npx and bunx use, I had to delete package-lock.json.
 - Added axios, js-cookie + types. - Added base apiInstance for entire project.
-- - Added Tanstack router and query managers. - Installed their devtools. - Added Sonner from shad/cn
+- - Added Tanstack router and query managers. - Installed their Project 83333288. - Added Sonner from shad/cn
 - Added shad/cn manually.
 - - Added bun path types. - Updated the tsconfig files.
 - Added tailwind v4 and the vite plugin.
 - Fresh Bun Vite React TS install.
 
-**mayranSchool1/frontend**
+**Project 8**
 
 - - set tailwind v4 theme settings. Theme works now. - Added Roboto font from google as well. - Issue with npx and bunx use, I had to delete package-lock.json.
 - Added axios, js-cookie + types. - Added base apiInstance for entire project.
-- - Added Tanstack router and query managers. - Installed their devtools. - Added Sonner from shad/cn
+- - Added Tanstack router and query managers. - Installed their Project 83333288. - Added Sonner from shad/cn
 - Added shad/cn manually.
 - - Added bun path types. - Updated the tsconfig files.
 - Added tailwind v4 and the vite plugin.
 - Fresh Bun Vite React TS install.
 
-**Total commits:** 26
+**Total commits:** 25
 
 ## 2025-02-02
 
-**chatapp/backend/media/products**
+**Project 18**
 
-- images and videos for our products
+- images and videos for our Project 83333277
 
 **Total commits:** 1
 
 ## 2025-02-04
 
-**clothing-co3mar25/bdmCentral**
+**Project 46**
 
-- Product display pages. Index and Detail views. - Index shows all products in a page. Detail shows info and allows add to cart+favortite ability on each product. - Size guide not ready yet. We  will need to measure 1 of each size ourselves. Numbers I got are not reliable. - Images are local to frontend. Instead of sending them via api with every product, we can import in frontend and display that way. - Each Pages has the images that go into detail.
+- Product display pages. Index and Detail views. - Index shows all Project 83333277 in a page. Detail shows info and allows add to cart+favortite ability on each product. - Size guide not ready yet. We  will need to measure 1 of each size ourselves. Numbers I got are not reliable. - Images are local to Project 83323. Instead of sending them via api with every product, we can import in Project 83323 and display that way. - Each Pages has the images that go into detail.
 - Password reset + redirect and change password. - Redirecting user with a link sent by email then they change their password by providing 2 new passwords then redirect to login. - System always returns a positive for email sent to avoid people finding users emails. Only sends email if user exists.
 - Initiatives. This is our project intitiatives. WE want to commit a part of our revenue to a good cause. - Contact Form to reach out to us. - Grant Application same as contact with grant related flag. - Product giveaway has flag same contact form. - School supplies is an application to apply for support. We might give you school supplies. - We have a contribute route. This one will help us bridge the gap between people who we can help and others who contribute to that.
-- Signup, Verify-Email, Login Forms and related logic. - Completed forms with all data and working with connection to backend. We need to add our own image in place of the picsum images. TODO. - We included fully featured OAuth with google and facebook, loggin in user and givng us access and refresh tokens. - We included Guest Login portion of signup where they can only provide email and be logged in. - Password Verify with a 6 digit OTP sent by email on login. Optional.
-- - Footer + Layout Footer has company info, quick links, products, policies and map pin from google. - Styled it with good distance from the edges.
-- Header for the website. Has mobile view set but need more padding and margin to distance from edges. Match footer. - Added user icon with login and logout button based on auth state - Logout deletes cookies and triggers api call to backend to log user out. - Login leads to /auth/login route. - Added SVG Logo. Might add some colors in the logo we will see. - Cart integration in header as well.
+- Signup, Verify-Email, Login Forms and related logic. - Completed forms with all data and working with connection to Project 8333327. We need to add our own image in place of the picsum images. TODO. - We included fully featured OAuth with google and facebook, loggin in user and givng us access and refresh tokens. - We included Guest Login portion of signup where they can only provide email and be logged in. - Password Verify with a 6 digit OTP sent by email on login. Optional.
+- - Footer + Layout Footer has company info, quick links, Project 83333277, policies and map pin from google. - Styled it with good distance from the edges.
+- Header for the website. Has mobile view set but need more padding and margin to distance from edges. Match footer. - Added user icon with login and logout button based on auth state - Logout deletes cookies and triggers api call to Project 8333327 to log user out. - Login leads to /auth/login route. - Added SVG Logo. Might add some colors in the logo we will see. - Cart integration in header as well.
 
 **Total commits:** 6
 
 ## 2025-02-07
 
-**clothing-co3mar25/bdmCentral**
+**Project 46**
 
 - Header + Footer: - Footer adapts to all screen sizes. - Header needs more work
 
@@ -1288,29 +1241,29 @@
 
 ## 2025-02-15
 
-**mayranAcademy/backend/bdm_central**
+**Project 41**
 
 - last portion before we commit into vps.
-- config (settings): - Set redis to be the cache system. - Set postgres to be database system. - Both on unix socket.
-- addition (products app): - We have stripe integration for payments. - we have api to send orders(donations), create payment intents, recieve webhooks and process transactions.
+- config (settings): - Set redis to be the cache system. - Set Project 83333274 to be database system. - Both on unix socket.
+- addition (Project 83333277 app): - We have Project 83333281 integration for payments. - we have api to send orders(donations), create payment intents, recieve webhooks and process transactions.
 - addition (user Model): - Added Stripe_customer_id, phone_number and use sqid for the pk. - Brought the views for our social auth and csrf into the users app views to avoid cluttering app specific views.
 
-**mayranSchool1/backend/bdm_central**
+**Project 42**
 
 - last portion before we commit into vps.
-- config (settings): - Set redis to be the cache system. - Set postgres to be database system. - Both on unix socket.
-- addition (products app): - We have stripe integration for payments. - we have api to send orders(donations), create payment intents, recieve webhooks and process transactions.
+- config (settings): - Set redis to be the cache system. - Set Project 83333274 to be database system. - Both on unix socket.
+- addition (Project 83333277 app): - We have Project 83333281 integration for payments. - we have api to send orders(donations), create payment intents, recieve webhooks and process transactions.
 - addition (user Model): - Added Stripe_customer_id, phone_number and use sqid for the pk. - Brought the views for our social auth and csrf into the users app views to avoid cluttering app specific views.
 
 **Total commits:** 8
 
 ## 2025-02-21
 
-**mayranAcademy/mayranAcademy**
+**Project 57**
 
-- Added tanstack router+query with devtools. - Added api instance. - Added network check. - Theme mode and toggle. - Added shared stores for the program. - Added Layout with header and children
+- Added tanstack router+query with Project 83333288. - Added api instance. - Added network check. - Theme mode and toggle. - Added shared stores for the program. - Added Layout with header and children
 - Added shad/cn. configured theme to match.
-- - Updated index.html to include more meta data and tags. It is no supporting of social media sharing. - Added different sized svgs in case screen size changes. - Added manifest.json, sitemap.xml, robots.txt - Much more detailed index.html than ever before
+- - Updated index.html to include more meta data and tags. It is no supporting of social Project 83333277 sharing. - Added different sized svgs in case screen size changes. - Added manifest.json, sitemap.xml, robots.txt - Much more detailed index.html than ever before
 - Added tailwind css v4.
 - first commit. Started new react 19 project.
 
@@ -1318,7 +1271,7 @@
 
 ## 2025-02-26
 
-**manasikHajj/manasikHajj**
+**Project 10**
 
 - Added tailwind css v4.
 - Started new vite react ts project
@@ -1327,7 +1280,7 @@
 
 ## 2025-02-27
 
-**manasikHajj/backend**
+**Project 69**
 
 - Backend for sh Aden manasik Hajj 2025 form.
 
@@ -1335,7 +1288,7 @@
 
 ## 2025-03-03
 
-**clothing-co/backend**
+**Project 36**
 
 - Added cart admin to see user carts.
 - Pipfile
@@ -1351,18 +1304,18 @@
 - Added admin view for shipping rates. We can now see all rates requests.
 - Added a get rates view for canada post. We can not call this endpoint and get a list of canada post shipping services.
 - Added models to store shipping rate requests and one of shipping service.
-- Added dimensions model, serializer and admin for our products. We enter once and reference it there.
-- finished products app. Moving on for now.
-- git ignore for linux, mac, node and python.
-- Added products, color, size, inventory, promotion and likes to the admin panel so we can edit.
-- Added urls for products, promotions and inventory
+- Added dimensions model, serializer and admin for our Project 83333277. We enter once and reference it there.
+- finished Project 83333277 app. Moving on for now.
+- git Project 83323 for linux, mac, node and python.
+- Added Project 83333277, color, size, inventory, promotion and likes to the admin panel so we can edit.
+- Added urls for Project 83333277, promotions and inventory
 - Added product, promotion and inventory viewsets with custom exceptions.
 - Added product, promotion, inventory, reviews, size and color serializers.
 - Added color, size, inventory, likes, review, promotion models to store our product and related data.
 - Added new user model to expand the abstract user model. This add some fields we need to the user model on top of django's extra.
 - installed django
 
-**clothing-co/frontend**
+**Project 56**
 
 - added shad/cn
 - added tailwind css
@@ -1372,7 +1325,7 @@
 
 ## 2025-03-04
 
-**clothing-co/backend**
+**Project 36**
 
 - Fixed up the redundancy in the admin panel code.
 - added a fedex and canada post url to reach each service separately.
@@ -1380,9 +1333,9 @@
 - fixed the models to create an abstract base shipping model we expand with for canada post and fedex as needed.
 - Made a base serializer class that the canada post and fedex serializers inherit from.
 - Optimized imports.
-- Removed stripe payout status. Same as status. Shipping address will be stored as a json object from now on. Removed estimated days. Not necessary. Optimized imports.
+- Removed Project 83333281 payout status. Same as status. Shipping address will be stored as a json object from now on. Removed estimated days. Not necessary. Optimized imports.
 - Removed the admin registation. This model is a helper to the other Order model in admin.
-- removed the get username function. redundant. removed the stripe payment status. its same as our systems status.
+- removed the get username function. redundant. removed the Project 83333281 payment status. its same as our systems status.
 - Added admin view so we can see contact form submissions.
 - Added contact form model to store our contact form data. Removed translation util from fields in user model.
 - A serializer for our contact form data.
@@ -1392,14 +1345,14 @@
 - changed how we import user model in models. changed how we import product views in urls. removed unsused functions from views.
 - Function that takes in an order_id from request and will get all information needed to create the checkout session. If session succeeds then our webhook will receive the call and update the order model.
 - We have urls to create a new checkout session and and endpoint to receive webhooks.
-- our stripe config to import all environment variables.
-- Added url for creating checkout session and the stripe webhooks.
+- our Project 83333281 config to import all environment variables.
+- Added url for creating checkout session and the Project 83333281 webhooks.
 
 **Total commits:** 20
 
 ## 2025-03-05
 
-**clothing-co/backend**
+**Project 36**
 
 - migrated to uv from pipenv. configuration files. Added ruff to config.
 - canada post integration. Need to verify it works.
@@ -1418,7 +1371,7 @@
 
 ## 2025-03-07
 
-**clothing-co/backend**
+**Project 36**
 
 - the canada post integration is finally working!! example api call at bottom.
 
@@ -1426,87 +1379,87 @@
 
 ## 2025-03-18
 
-**2to6x_1**
-
-- Auto-commit on 2025-03-18 14:01:57
-
-**allauth_test**
+**Project 1**
 
 - Auto-commit on 2025-03-18 14:02:11
 
-**bdm**
-
-- Auto-commit on 2025-03-18 14:02:12
-
-**bdm_web**
-
-- Auto-commit on 2025-03-18 14:02:13
-
-**bdmcentral**
-
-- Auto-commit on 2025-03-18 14:02:14
-
-**bdmcentral1**
-
-- Auto-commit on 2025-03-18 14:02:17
-
-**bdmcentral2**
-
-- Auto-commit on 2025-03-18 14:02:19
-
-**django_tutorial**
-
-- Auto-commit on 2025-03-18 14:04:03
-
-**docker**
-
-- Auto-commit on 2025-03-18 14:04:04
-
-**download_flipbooks**
-
-- Auto-commit on 2025-03-18 14:04:05
-
-**immigridgeRepo**
+**Project 12**
 
 - Auto-commit on 2025-03-18 14:04:06
 
-**moments**
-
-- Auto-commit on 2025-03-18 14:04:06
-
-**postgres**
+**Project 15**
 
 - Auto-commit on 2025-03-18 14:04:12
 
-**python_logging**
+**Project 17**
 
-- Auto-commit on 2025-03-18 14:04:23
+- Auto-commit on 2025-03-18 14:02:14
 
-**rest_api**
+**Project 19**
 
-- Auto-commit on 2025-03-18 14:04:24
+- Auto-commit on 2025-03-18 14:04:03
 
-**som-archives**
+**Project 2**
 
-- Auto-commit on 2025-03-18 14:04:25
+- Auto-commit on 2025-03-18 14:01:57
 
-**somfm**
-
-- Auto-commit on 2025-03-18 14:04:36
-
-**stripe**
+**Project 22**
 
 - Auto-commit on 2025-03-18 14:04:37
 
-**vehicle_dataset**
+**Project 26**
+
+- Auto-commit on 2025-03-18 14:04:23
+
+**Project 35**
+
+- Auto-commit on 2025-03-18 14:04:06
+
+**Project 38**
+
+- Auto-commit on 2025-03-18 14:04:25
+
+**Project 39**
+
+- Auto-commit on 2025-03-18 14:04:04
+
+**Project 44**
+
+- Auto-commit on 2025-03-18 14:02:17
+
+**Project 45**
+
+- Auto-commit on 2025-03-18 14:02:19
+
+**Project 52**
 
 - Auto-commit on 2025-03-18 14:04:40
+
+**Project 66**
+
+- Auto-commit on 2025-03-18 14:02:12
+
+**Project 71**
+
+- Auto-commit on 2025-03-18 14:04:05
+
+**Project 72**
+
+- Auto-commit on 2025-03-18 14:04:36
+
+**Project 76**
+
+- Auto-commit on 2025-03-18 14:02:13
+
+**Project 79**
+
+- Auto-commit on 2025-03-18 14:04:24
 
 **Total commits:** 19
 
 ## 2025-03-20
 
-**chrisBrownBroker/frontend**
+**Project 9**
 
 - Added shad/cn
 - Created new project with vite and added tailwind css
@@ -1515,7 +1468,7 @@
 
 ## 2025-03-22
 
-**realty-LLM-DDF**
+**Project 40**
 
 - Same ui split into parts. now working on the spacing.
 - Its looking very nice for the ui chat. Saving my progress before disaster.
@@ -1524,7 +1477,7 @@
 
 ## 2025-03-24
 
-**chatapp/frontend**
+**Project 28**
 
 - Added some helper functions to /lib
 - New project with vite, tailwind, shadcn.
@@ -1533,7 +1486,7 @@
 
 ## 2025-03-29
 
-**chatUI/frontend**
+**Project 50**
 
 - Added json renderer for our images
 - Added chat topic selector
@@ -1542,17 +1495,12 @@
 - Added Chat Input component
 - Added shad/cn
 - Added tailwind css.
-- Started new vite project. Copied over ts config files and vite config file. Added .gitignore and environment variables file as well.
 
-**Total commits:** 8
+**Total commits:** 7
 
 ## 2025-03-30
 
-**chatUI/backend**
-
-- The backend for our chat ui app. Working nice so far. Adding image support now. Will branch of title setting to a different call to the model. It is too liberal with the title now. Changing it multiple times per chat.
-
-**chatUI/frontend**
+**Project 50**
 
 - Added a chat image carousel. trying to dynamically load in images from the models response.
 - Chat ui now uses the use scroll to bottom hook to do the scrolling instead of our own implementation using useEffect
@@ -1560,27 +1508,31 @@
 - Chat ui is smooth scrolling and the chats are being loaded into the sidebar. Issue now is tha we must fix the virtualization
 - Chat ui is working and streams the content perfectly
 
-**resumeEditor/backend**
+**Project 59**
 
-- The backend for our chat ui app. Working nice so far. Adding image support now. Will branch of title setting to a different call to the model. It is too liberal with the title now. Changing it multiple times per chat.
+- The Project 8333327 for our chat ui app. Working nice so far. Adding image support now. Will branch of title setting to a different call to the model. It is too liberal with the title now. Changing it multiple times per chat.
+
+**Project 67**
+
+- The Project 8333327 for our chat ui app. Working nice so far. Adding image support now. Will branch of title setting to a different call to the model. It is too liberal with the title now. Changing it multiple times per chat.
 
 **Total commits:** 7
 
 ## 2025-03-31
 
-**chatUI/backend**
-
-- Added create express checkout, get canada post shipping rates and get fedex shipping rates. Along with a bunch of models, utils, exceptions. Taken from my old project.
-- Changed the system prompt to better help the model response instead of doing function calls.
-- Added the images and videos to the stream. separate from the text for model message. this is images and videos. we will render them in jsx renderer.
-
-**chatUI/frontend**
+**Project 50**
 
 - Chat section is able to return videos and images dynamically.
 - Finally got the jsx renderer working on index. I will now work to merge it with the ChatSection.tsx
 - Adding a jsx renderer to our chat section. It's causing errors, so adding a save before we impact too hard.
 
-**resumeEditor/backend**
+**Project 59**
+
+- Added create express checkout, get canada post shipping rates and get fedex shipping rates. Along with a bunch of models, utils, exceptions. Taken from my old project.
+- Changed the system prompt to better help the model response instead of doing function calls.
+- Added the images and videos to the stream. separate from the text for model message. this is images and videos. we will render them in jsx renderer.
+
+**Project 67**
 
 - Added create express checkout, get canada post shipping rates and get fedex shipping rates. Along with a bunch of models, utils, exceptions. Taken from my old project.
 - Changed the system prompt to better help the model response instead of doing function calls.
@@ -1590,17 +1542,17 @@
 
 ## 2025-04-01
 
-**chatUI/backend**
-
-- Fixed the name of the values from Rates to rates to better match other function calls responses.
-- Got the canada post shipping api to return the shipping rates back to the model when it uses the tool to get rates.
-
-**chatUI/frontend**
+**Project 50**
 
 - Got the shipping rate selector to send a message and return the right rate. It uses alert dialog to stop user from making too many choices and then sends the message right away to the model for a response.
 - The ui now pops in a rates component to display the incoming shipping rates. Will need to further update so we can send a message to the model with the chosen rate and it will return a checkout session url to complete payment.
 
-**resumeEditor/backend**
+**Project 59**
+
+- Fixed the name of the values from Rates to rates to better match other function calls responses.
+- Got the canada post shipping api to return the shipping rates back to the model when it uses the tool to get rates.
+
+**Project 67**
 
 - Fixed the name of the values from Rates to rates to better match other function calls responses.
 - Got the canada post shipping api to return the shipping rates back to the model when it uses the tool to get rates.
@@ -1609,44 +1561,44 @@
 
 ## 2025-04-02
 
-**chatUI/backend**
-
-- Got the stripe create express checkout session working. It now returns a checkout url as needed.
-
-**chatUI/frontend**
+**Project 50**
 
 - Got the checkoutAlert function working and it renders now buttons to allow the user to continue chatting or checkout.
 
-**resumeEditor/backend**
+**Project 59**
 
-- Got the stripe create express checkout session working. It now returns a checkout url as needed.
+- Got the Project 83333281 create express checkout session working. It now returns a checkout url as needed.
+
+**Project 67**
+
+- Got the Project 83333281 create express checkout session working. It now returns a checkout url as needed.
 
 **Total commits:** 3
 
 ## 2025-04-03
 
-**chatUI/frontend**
+**Project 50**
 
-- Added product pages for our 3 products. Will now try to manage the state of each renderer separately so they do not stay static.
+- Added product pages for our 3 Project 83333277. Will now try to manage the state of each renderer separately so they do not stay static.
 
 **Total commits:** 1
 
 ## 2025-04-04
 
-**chatUI/backend**
-
-- Now model function calls are saved along with their results as json so we can send to frontend as needed.
-
-**chatUI/frontend**
+**Project 50**
 
 - Fixed the state issue. Now we can display multiple components per chat.
 - Now we added extra_data that will be sent with each message and will have the results of the function call along with the message so we can have it always on new message load.
+
+**Project 67**
+
+- Now model function calls are saved along with their results as json so we can send to Project 83323 as needed.
 
 **Total commits:** 3
 
 ## 2025-04-05
 
-**chatUI/frontend**
+**Project 50**
 
 - Changed the Api instance to native fetch. handled errors accordingly. Set the query key and invalidate it right before in case someone else was logged in before.
 
@@ -1654,7 +1606,7 @@
 
 ## 2025-04-09
 
-**chatUI/frontend**
+**Project 50**
 
 - Added sentry for error catching.
 - Major progress. Sidebar messages fixed. Authenticated for chat fixed. Checking auth state on authenticated pages and redirecting if authenticated. We will tackle the chat id situation now.
@@ -1663,7 +1615,7 @@
 
 ## 2025-04-10
 
-**chatUI/frontend**
+**Project 50**
 
 - Pre vs code agent changes to streamline how we handle chat creation.
 
@@ -1671,32 +1623,32 @@
 
 ## 2025-04-11
 
-**chatUI/backend**
-
-- I made the send message view max 250 characters. Adding to frontend protection. Now will strip everything paste 250 characters. Re added product descriptions and images+videos. Collected static files to serve in prod. Most important change is that we updated all the allauth emails to now match our new style. and more...
-
-**chatUI/frontend**
+**Project 50**
 
 - I made the chat input take max 250 characters so user cannot spam. Added size guide table. Started unsubscribe page. and more...
+
+**Project 67**
+
+- I made the send message view max 250 characters. Adding to Project 83323 protection. Now will strip everything paste 250 characters. Re added product descriptions and images+videos. Collected static files to serve in prod. Most important change is that we updated all the allauth emails to now match our new style. and more...
 
 **Total commits:** 2
 
 ## 2025-04-13
 
-**chatUI/backend**
-
-- Added feedback and data deletion models, urls, views and serializers. Final commit before prod.
-
-**chatUI/frontend**
+**Project 50**
 
 - Added the fonts + container to index.css. Will add meta tags to all pages.
-- Added feedback and data deletion and the feedback endpoints for our backend.
+- Added feedback and data deletion and the feedback endpoints for our Project 8333327.
+
+**Project 67**
+
+- Added feedback and data deletion models, urls, views and serializers. Final commit before prod.
 
 **Total commits:** 3
 
 ## 2025-04-15
 
-**chatUI/frontend**
+**Project 50**
 
 - changed login / signup button to say log out. Since unauthed user won't make it to the chat. Added handle Logout, and then redirect them to login clearing cookies and queryClient. Added a tracksuit and sweatsuit images to the right sidebar. Added a special disclaimer to the right sidebar as well and our copy right with year.
 - changed auto complete for login to default to email instead of username. Since everyone will have email.
@@ -1712,31 +1664,31 @@
 - removed the footer1. not needed anymore.
 - Changed location of password reset form we are using, changed store icon to be our Logo instead. Created new Logo component.
 - Set OTP to be all digits. So we no longer need the type text. The keyboard shows numbers as well.
-- Made the video come from our backend via fetch. Much better than bundling with the frontend. Added a handleClick function to redirect to login with a toast if needed. Will need to figure out if user is authenticated, so we don't show toast as needed. Deleted the old video in public. No longer needed.
+- Made the video come from our Project 8333327 via fetch. Much better than bundling with the Project 83323. Added a handleClick function to redirect to login with a toast if needed. Will need to figure out if user is authenticated, so we don't show toast as needed. Deleted the old video in public. No longer needed.
 - Added index.html meta tags, changed some more parts to better match dark and light theme
 
 **Total commits:** 16
 
 ## 2025-04-17
 
-**chatUI/frontend**
+**Project 50**
 
 - We now pull in an image of tracksuit and sweatsuit to display in right sidebar for the user on load.
-- Added a stat's section to give quick descriptions of the values of our products. On Homepage.
+- Added a stat's section to give quick descriptions of the values of our Project 83333277. On Homepage.
 - new updated hero section with better proportions and easier to read and understand. We now add that we are the first ai chat to shop interface.
 - A simple email and phone number for people to reach us at. Added to homepage.
-- Added a featured products section. This will alow us to display our products on the homepage. Working on a page per product.
+- Added a featured Project 83333277 section. This will alow us to display our Project 83333277 on the homepage. Working on a page per product.
 - Added a new faq section to our homepage. It answers a bunch of questions a user might have.
 
 **Total commits:** 6
 
 ## 2025-04-19
 
-**chatUI/frontend**
+**Project 50**
 
 - removed dev tools before build.
 - deleted and replaced with policies/delete-my-data
-- Made all link targets blank and changed which privacy url to stripe we use because other one is in french.
+- Made all link targets blank and changed which privacy url to Project 83333281 we use because other one is in french.
 - Added Robots.txt
 - Added website sitemap
 - Added website manifest.
@@ -1767,17 +1719,9 @@
 
 **Total commits:** 30
 
-## 2025-05-08
-
-**deenApp/frontend**
-
-- Started new vite project. Copied over ts config files and vite config file. Added .gitignore.
-
-**Total commits:** 1
-
 ## 2025-05-26
 
-**2to6xRealty/backend**
+**Project 6**
 
 - Removed the old db and redid the migrations to fix the old errors.
 - Added users table and first step of the registration with models, user model, serializers, views and urls. Added tthe url to the the main project urls.
@@ -1788,7 +1732,7 @@
 
 ## 2025-05-27
 
-**2to6xRealty/backend**
+**Project 6**
 
 - we now use user_uuid instead of user_id to resolve type errors
 - gave type hints to the result to solve type hint errors for pylance. we now return user_uuid instead of user_id
@@ -1803,7 +1747,7 @@
 
 ## 2025-05-31
 
-**2to6xRealty/backend**
+**Project 6**
 
 - About to add the llm tool settings now. We can do auth after.
 
@@ -1811,11 +1755,11 @@
 
 ## 2025-06-15
 
-**2to6xRealty/backend**
+**Project 23**
 
 - Ready to start the collaboration. Welcome my friends.
 
-**2to6xRealty/frontend**
+**Project 6**
 
 - Ready to start the collaboration. Welcome my friends.
 
@@ -1823,19 +1767,19 @@
 
 ## 2025-06-17
 
-**hotelapp**
+**Project 77**
 
 - Fixed some more routing issues. will fix later.
 - Will add commit text later pushing to show you.
 - Added the tanstack router vite plugin
-- Installed tanstack router, devtools and the vite plugin
+- Installed tanstack router, Project 83333288 and the vite plugin
 - Added onClose instead of onBack to fix type error
 
 **Total commits:** 5
 
 ## 2025-06-23
 
-**2to6xRealty/backend**
+**Project 6**
 
 - Started to add auth and allauth and cors and rest framework and simple jwt settings to the project.
 
@@ -1843,28 +1787,27 @@
 
 ## 2025-06-25
 
-**codkaagaHQ/frontend**
+**Project 11**
 
 - Installed toast from shadcn. Added motion library for effects and zuustand. Added theme provider, network status toast, theme mode toggle and added them to the root route.
-- Started the codkaaga app project. Using tanstack router vite app boilerplate.
+- Started the Project 833331 app project. Using tanstack router vite app boilerplate.
 
 **Total commits:** 2
 
 ## 2025-07-03
 
-**videoDownload**
+**Project 31**
 
 - created new tanstack router project with vite. I fixed the issue with the vite folder and deprecated router plugin. Added build, server, root, log level, json and app type settings to the vite.config.ts.
-- moved gitignore to same dir as .git folder.
-- Added a first view to create an api to use for our frontend with yt-dlp project. Added first version of the view, serializer and urls. Connected them to the main app urls.
-- Added MacOS, Linux, and python files to ignore.
+- Added a first view to create an api to use for our Project 83323 with yt-dlp project. Added first version of the view, serializer and urls. Connected them to the main app urls.
+- Added MacOS, Linux, and python files to Project 83323.
 - initialized new venv and uv project. Installed django+restframework+corsheaders and ytdlp
 
-**Total commits:** 5
+**Total commits:** 4
 
 ## 2025-07-04
 
-**videoDownload**
+**Project 31**
 
 - shad/cn popover, collapsible and checkbox.
 - /download route for our app.
@@ -1880,7 +1823,7 @@
 
 ## 2025-07-09
 
-**primeCapitalLogistics/frontend**
+**Project 62**
 
 - Merge pull request #4 from WaryaWayne/abdullah
 - Updated the hyper link destination and use a new icon from lucide.
@@ -1891,14 +1834,14 @@
 - Edited the title in the iframe to update the name of the company and make it more clear.
 - Merge pull request #1 from WaryaWayne
 - Removed the not needed link import and the empty handleNewChat function.
-- Updated the featured products to add the newly available services. Also did a format on the file to clean up the look.
-- Started new project. we are working on this client site. Please ask for instructions before changing. Simple frontend only react code.
+- Updated the featured Project 83333277 to add the newly available services. Also did a format on the file to clean up the look.
+- Started new project. we are working on this client site. Please ask for instructions before changing. Simple Project 83323 only react code.
 
 **Total commits:** 11
 
 ## 2025-07-10
 
-**primeCapitalLogistics/frontend**
+**Project 62**
 
 - shrunk the margin and padding to allow the buttons at bottom of screen to have a good gap against the bottom. added new logo to the image source.
 - updated index file to include new banner image, logo's and messaging.
@@ -1907,7 +1850,7 @@
 
 ## 2025-07-14
 
-**primeCapitalLogistics/frontend**
+**Project 62**
 
 - fixed issue where the elements we not centered. Now it is resolved.
 - updated the og image to the right url, changed sizes to better match.
@@ -1928,7 +1871,7 @@
 - updated manifest with new logo, shortname and name.
 - Replaced logo images for the new version.
 
-**sadexTowing/frontend**
+**Project 73**
 
 - Added a link variant button to better see the maximum rates.
 - Changed size on the index.html for the og image.
@@ -1940,7 +1883,7 @@
 
 ## 2025-07-15
 
-**sadexTowing/frontend**
+**Project 73**
 
 - Added new groupings for the tables to make them more clear.
 - made the text black to better see the button and certificate number
@@ -1949,14 +1892,29 @@
 
 ## 2025-07-17
 
-**ddf_project**
+**Project 13**
 
-- syncing backend with frontend repo. Now it should work.
-- Merge backend repo into main
+- added proxy_url to better manage the paginated results. our Project 83323 will no longer try and access the ddf url itself and will instead be proxied by our Project 8333327. It will attach token and send the response data back. We now handle the auth process in utils and do proxy and other methods of filtering in our view.
+- utility functions to help with the properties api call and filtering.
+- structured the data-feed endpoints under the api/v1/ versioned api we are building.
+- Added cors allowed origins to fix cors errors. Added cors middleware. Added ddf base url.
+- New properties view to get the properties data and then return it to our Project 83323. It includes the filters we need to make custom searches.
+- Added new properties url endpoint to get the properties as needed.
+- Added drf xml parser to the project.
+- Added the data feed urls to the main project urls.
+- static files from collectstatic command.
+- Added ddf credentials from .env. username and password. removed the auth classes since we aren't using that right now.
+- data feed app. This is used to get access token and then place in the functions needed to refresh and maintain the token.
+- initalized a Project 8333327 with django and few modules to make a Project 8333327 for out data feed.
+
+**Project 5**
+
+- syncing Project 8333327 with Project 83323 repo. Now it should work.
+- Merge Project 8333327 repo into main
 - Merge pull request #1 from WaryaWayne/master
-- we now use the next page as a url attachment proxy that will send requested url to backend and backend will return the results for easier pagination.
-- added proxy_url to better manage the paginated results. our frontend will no longer try and access the ddf url itself and will instead be proxied by our backend. It will attach token and send the response data back. We now handle the auth process in utils and do proxy and other methods of filtering in our view.
-- we now use an infinite query to store the data. It works better already since we see more than 5 listings. Issue now is that we try to make request and we don't have the token in frontend. will need to find a way to request to backend and proxy it back to frontend for data exchange. Added more property data on the frontend to display for every listed property.
+- we now use the next page as a url attachment proxy that will send requested url to Project 8333327 and Project 8333327 will return the results for easier pagination.
+- added proxy_url to better manage the paginated results. our Project 83323 will no longer try and access the ddf url itself and will instead be proxied by our Project 8333327. It will attach token and send the response data back. We now handle the auth process in utils and do proxy and other methods of filtering in our view.
+- we now use an infinite query to store the data. It works better already since we see more than 5 listings. Issue now is that we try to make request and we don't have the token in Project 83323. will need to find a way to request to Project 8333327 and proxy it back to Project 83323 for data exchange. Added more property data on the Project 83323 to display for every listed property.
 - our listings page. This is where we make the api call to display the data as needed.
 - fixed deprecated tanstack plugin and added server and build settings.
 - commented out the header for dev.
@@ -1965,50 +1923,32 @@
 - utility functions to help with the properties api call and filtering.
 - structured the data-feed endpoints under the api/v1/ versioned api we are building.
 - Added cors allowed origins to fix cors errors. Added cors middleware. Added ddf base url.
-- New properties view to get the properties data and then return it to our frontend. It includes the filters we need to make custom searches.
+- New properties view to get the properties data and then return it to our Project 83323. It includes the filters we need to make custom searches.
 - Added new properties url endpoint to get the properties as needed.
 - Added drf xml parser to the project.
 - Added the data feed urls to the main project urls.
 - static files from collectstatic command.
 - Added ddf credentials from .env. username and password. removed the auth classes since we aren't using that right now.
 - data feed app. This is used to get access token and then place in the functions needed to refresh and maintain the token.
-- added linux, python, node, mac gitignore file. Added hi-redis parser, django-redis library and pillow+requests to help us woth the requests. The projects fresh db before migrations.
-- updated gitignore to match environment better with node settings. create new tester route to work with.
 - Installed @types/node, then updated ts router plugin to latest version from deprecated default.
-- initalized a backend with django and few modules to make a backend for out data feed.
-- initialized new bun frontend project. Will use this to display feed data as we recieve it.
+- initalized a Project 8333327 with django and few modules to make a Project 8333327 for out data feed.
+- initialized new bun Project 83323 project. Will use this to display feed data as we recieve it.
 
-**ddf_project/backend_backup**
-
-- added proxy_url to better manage the paginated results. our frontend will no longer try and access the ddf url itself and will instead be proxied by our backend. It will attach token and send the response data back. We now handle the auth process in utils and do proxy and other methods of filtering in our view.
-- utility functions to help with the properties api call and filtering.
-- structured the data-feed endpoints under the api/v1/ versioned api we are building.
-- Added cors allowed origins to fix cors errors. Added cors middleware. Added ddf base url.
-- New properties view to get the properties data and then return it to our frontend. It includes the filters we need to make custom searches.
-- Added new properties url endpoint to get the properties as needed.
-- Added drf xml parser to the project.
-- Added the data feed urls to the main project urls.
-- static files from collectstatic command.
-- Added ddf credentials from .env. username and password. removed the auth classes since we aren't using that right now.
-- data feed app. This is used to get access token and then place in the functions needed to refresh and maintain the token.
-- added linux, python, node, mac gitignore file. Added hi-redis parser, django-redis library and pillow+requests to help us woth the requests. The projects fresh db before migrations.
-- initalized a backend with django and few modules to make a backend for out data feed.
-
-**Total commits:** 39
+**Total commits:** 36
 
 ## 2025-07-22
 
-**bdmcentralLatest**
+**Project 21**
 
-- Added a scroll area and a see more button. this helps to make the order summary show up and be visible on first land on cart by the user. Now we show 1.5 products and the rest will show after see more is clicked.
-- backend with media and apps.
-- frontend for bdm central website. working on cart section now. almost done.
+- Added a scroll area and a see more button. this helps to make the order summary show up and be visible on first land on cart by the user. Now we show 1.5 Project 83333277 and the rest will show after see more is clicked.
+- Project 8333327 with Project 83333277 and apps.
+- Project 83323 for Project 8333326 central website. working on cart section now. almost done.
 
 **Total commits:** 3
 
 ## 2025-07-23
 
-**bdmcentralLatest**
+**Project 21**
 
 - cart shipping and confirm. Our new checkout flow for the store. It will be faded into each other and unlock as you complete the other one.
 - shad/cn components
@@ -2017,10 +1957,10 @@
 
 ## 2025-07-24
 
-**bdmcentralLatest**
+**Project 21**
 
-- Now we do email validation for invalid emails. This was handled by stripe before and now handled by us using pydantic email validate extension.
-- Simplied title from secure checkout to comfirm your order. We now collect user's email and subscription status to send it to the backend when making a checkout url. Still need to make sure we remove the use effect which retriggers the call on every key stroke of email typing or status change. We need url request to happen when shipping go to pay is clicked.
+- Now we do email validation for invalid emails. This was handled by Project 83333281 before and now handled by us using pydantic email validate extension.
+- Simplied title from secure checkout to comfirm your order. We now collect user's email and subscription status to send it to the Project 8333327 when making a checkout url. Still need to make sure we remove the use effect which retriggers the call on every key stroke of email typing or status change. We need url request to happen when shipping go to pay is clicked.
 - alerts are now bg-destructive/70. shows nice on hover. Added a function to calculate the bundle price for t shirts and total item price for the order summary. added a new price object for shirts. showing bundle pricing available. Removed the card structure. It is now directly in the card of the index.tsx
 - commented out step 3. We do not need this text taking up space in the ui.
 - order cancelled we now go back to cart instead of checkout.
@@ -2038,7 +1978,7 @@
 
 ## 2025-07-28
 
-**bdmcentralLatest**
+**Project 21**
 
 - formatting.
 - make the message more clear for the user and collect email first separately. we pass in email and subscription status as a param. This allows us to remove use effect dependencies which called our endpoint for every keystroke.
@@ -2047,43 +1987,42 @@
 
 ## 2025-07-29
 
-**bdmcentralLatest**
+**Project 21**
 
 - this is our v1 of the shirts page. We are working to make a page for users to visit and see our shirt product displayed with information.
-- comment out /lib because it would stop our frontend /lib file from going to github.
+- comment out /lib because it would stop our Project 83323 /lib file from going to github.
 - network status page.
 - utils for shad/cn.
 - Added network status monitor, added toast, added headcontent so we can import meta tags from components.
 - Added toaster from shad/cn.
 - removed checkout directory in routes as it wasn't needed and we won't expose that endpoint. We also moved the shipping and checkout components to /custom dir. This helps as we import from there. details page wasn't necessary. Also updated imports in cart route.
 - Merge branch 'main' of github.com:WaryaWayne/BDMCentralClothingCo.
-- Added branding and fixed some issues. formatted the contents. Separated the copyable code block for step 2 in backend setup. Should be 2 commands not 1. In the logs folder and files creation we also leave 2 copyable code blocks.
+- Added branding and fixed some issues. formatted the contents. Separated the copyable code block for step 2 in Project 8333327 setup. Should be 2 commands not 1. In the logs folder and files creation we also leave 2 copyable code blocks.
 - Added branding and fixed some issues.
 - Instaleld motion library. Added test page to see. Will be removing it.
-- Merged the frontend repo with the local one. Little change i think is the addition of the /lib files which we have on .gitignore somehow right now.
 - env.example and a read me for the main page of the github repo.
 - Create utils.ts
 
-**hanad**
+**Project 70**
 
 - Added axios to the package.json file. It was missing and app would have an error.
 
-**Total commits:** 15
+**Total commits:** 14
 
 ## 2025-07-30
 
-**bdmcentralLatest**
+**Project 21**
 
 - we now use the cart store from the cart.tsx file. Added price bundle and product interfaces to the shirts file. added links to navigate to the cart page from the current page. formatting.
-- formatting, both buttons will now scroll down the page. One to products and other to the product details section.
-- updated to use our new global cart store as this one. So all products added to cart use this store now. did theme updates. Now it adapts to dark theme without losing any content. removed the old cart store file since its not needed.
+- formatting, both buttons will now scroll down the page. One to Project 83333277 and other to the product details section.
+- updated to use our new global cart store as this one. So all Project 83333277 added to cart use this store now. did theme updates. Now it adapts to dark theme without losing any content. removed the old cart store file since its not needed.
 - Added new button to scroll to the bundle area if user clicks buy now. Changed icon and text in the second button as well to better match our goals.
 
 **Total commits:** 4
 
 ## 2025-07-31
 
-**sadexTowing/frontend**
+**Project 73**
 
 - page tracking, scroll tracking and event tracking functions.
 - added g-tag for tracking to the index.html page.
@@ -2092,7 +2031,7 @@
 
 ## 2025-08-01
 
-**bdmcentralLatest**
+**Project 21**
 
 - changed name of product to better match our api requirements for checkout url.
 - feat: migrate to Zustand stores and add dark/light mode theming
@@ -2108,7 +2047,7 @@
 - Changed mode-toggle to work better as moon or sun. So it will instantly set the theme for the user and removes the system option and dropdown. Commented out the old ui.
 - Added shad/cn dropdown-menu and navigation-menu.
 
-**primeCapitalLogistics/frontend**
+**Project 62**
 
 - Imported trackEvent function. It wasn't initalized.
 - Installed react-ga4 library.
@@ -2119,7 +2058,7 @@
 - create a root component function and added usePageTracking() and useScrollDepthTracking() for analytics.
 - Added access code and event tracking to the contact form.
 
-**sadexTowing/frontend**
+**Project 73**
 
 - Added outbound tag event category instead of using cta for all the events that lead out of the website.
 - Added tracking to the Link for see maximum rates in the footer.
@@ -2139,16 +2078,16 @@
 
 ## 2025-08-08
 
-**2to6xgroup**
+**Project 80**
 
 - Added the shapes we will remove from homepage
-- started new project for 2to6x group. Central Homepage for all of our operations. Each will lead to a separate subdomain.
+- started new project for Project 8333307 group. Central Homepage for all of our operations. Each will lead to a separate subdomain.
 
 **Total commits:** 2
 
 ## 2025-08-11
 
-**js-backend-test**
+**Project 24**
 
 - Started new tanstack start project with vite, tanstack, tailwind css and shad/cn.
 
@@ -2156,20 +2095,20 @@
 
 ## 2025-08-12
 
-**js-backend-test**
+**Project 24**
 
 - added better-auth library and config for the auth client instance and the auth instance. still working on the api/v1/auth/$.ts. Will need to figure out if we are to use a file route or server route.
-- Added postgres adapter for the migrations cli for drizzle.
+- Added Project 83333274 adapter for the migrations cli for drizzle.
 - client and server entry points for tanstack start. Our router config with formatting applied. our vite config with added server settings.
-- Added drizzle to manage our bun postgresql instance. set up db instance, added file to add our schema, and the drizzle config file to tell it location of needed files. example .env file for reproducability.
+- Added drizzle to manage our bun Project 83333274ql instance. set up db instance, added file to add our schema, and the drizzle config file to tell it location of needed files. example .env file for reproducability.
 - Added django, rest framework, cors, and environ.
-- started new backend dir. will run a django project here.
+- started new Project 8333327 dir. will run a django project here.
 
 **Total commits:** 6
 
 ## 2025-08-13
 
-**js-backend-test**
+**Project 24**
 
 - upgraded zod, added better-auth with the minimal config so far. Made the migrations. generated the full new schema. Exported it from the schema.ts that drizzle expects. we now import a reactStartCookies to help with cookie settings on certain functions.
 
@@ -2177,7 +2116,7 @@
 
 ## 2025-08-18
 
-**js-backend-test**
+**Project 24**
 
 - deleted files
 
@@ -2185,7 +2124,7 @@
 
 ## 2025-08-27
 
-**js-backend-test**
+**Project 24**
 
 - Merge pull request #1 from WaryaWayne/feature/pending-commits
 - biome config for formatter and linter.
@@ -2219,7 +2158,7 @@
 
 ## 2025-08-28
 
-**js-backend-test**
+**Project 24**
 
 - Added a table for liked listings, removed listings, listing notes and user preferences.
 - A new seo component to add to each of our pages.
@@ -2228,7 +2167,7 @@
 
 ## 2025-08-29
 
-**js-backend-test**
+**Project 24**
 
 - mistakes in generating the migrations. Had to many fixes. It works now.
 
@@ -2236,7 +2175,7 @@
 
 ## 2025-08-31
 
-**js-backend-test**
+**Project 24**
 
 - run script with 'bun process:properties'. This will get open the listings file and save it to the db.
 - run script with 'bun get:properties'. This will get all listings from fresh again.
@@ -2245,7 +2184,7 @@
 
 ## 2025-09-01
 
-**js-backend-test**
+**Project 24**
 
 - migrations
 
@@ -2253,7 +2192,7 @@
 
 ## 2025-09-02
 
-**js-backend-test**
+**Project 24**
 
 - removed the splash screen from the site. It is not needed and was slowing down the ui.
 
@@ -2261,7 +2200,7 @@
 
 ## 2025-09-03
 
-**js-backend-test**
+**Project 24**
 
 - Removing all the useState and useID to instead use a form for this component.
 
@@ -2269,7 +2208,7 @@
 
 ## 2025-09-04
 
-**js-backend-test**
+**Project 24**
 
 - (style) formatted the page
 - (feat) added a empty email as search to signup. Since we wont have users email at this point.
@@ -2286,7 +2225,7 @@
 
 ## 2025-09-05
 
-**js-backend-test**
+**Project 24**
 
 - shad/cn components
 - (feat) ai-elements chat ui components.
@@ -2298,7 +2237,7 @@
 
 ## 2025-09-06
 
-**js-backend-test**
+**Project 24**
 
 - (feat) added a sharedChat column to the chat sessions to be able to display shared chats without checking user info.
 
@@ -2306,7 +2245,7 @@
 
 ## 2025-09-07
 
-**js-backend-test**
+**Project 24**
 
 - This is an seo utility. WE use it on pages we want seo to set meta tags and make it easier to find on search. We have a hook to return structured data and a component that will return the jsx tags.
 - (feat) added left side bar
@@ -2316,7 +2255,7 @@
 
 ## 2025-09-09
 
-**js-backend-test**
+**Project 24**
 
 - (feat) refactor chat schema to use message parts for flexible content
 
@@ -2324,7 +2263,7 @@
 
 ## 2025-09-12
 
-**js-backend-test**
+**Project 24**
 
 - (feat) custom chat area component for chat routes
 - (feat) Insert and delete dialogs for the left sidebarÏ
@@ -2333,7 +2272,7 @@
 
 ## 2025-09-14
 
-**js-backend-test**
+**Project 24**
 
 - feat: enhance sidebar components with dynamic chat management and right sidebar
 - (feat) ai sdk elements components
@@ -2345,7 +2284,7 @@
 
 ## 2025-09-15
 
-**js-backend-test/newProject**
+**Project 4**
 
 - packages added
 - (refactor) fixed db url
@@ -2374,7 +2313,7 @@
 - (feat) use new typesafe db url import
 - (feat) typesafe zod validation for .env variables
 - (refactor + style) formatted file + db url import
-- (feat) electric db sql server running on docker.
+- (feat) electric db sql server running on Project 83333298.
 - (feat) drizzle-orm + drizzle-kit + bun sql client
 - (feat) added our shortcuts in package.json to manage various services.
 - Added server section to vite config.
@@ -2384,7 +2323,7 @@
 
 ## 2025-09-16
 
-**js-backend-test/newProject**
+**Project 4**
 
 - (chore) update dependencies.
 - Checkpoint before breaking changes
@@ -2393,7 +2332,7 @@
 
 ## 2025-09-17
 
-**js-backend-test/newProject**
+**Project 4**
 
 - (feat) vite config added allowed host
 - (refactor) right side bar
@@ -2404,6 +2343,7 @@
 - (refactor) chat area actions
 - (refactor) chat area
 - (refactor) convertToUIMessages function
+- (refactor) chat area
 - added react scan
 - (refactor) chatId route
 - (refactor) route chat layout route
@@ -2434,4 +2374,96 @@
 - (refactor) reenabled our resumable stream.
 - (refactor) the chatId capitals causes query issues.
 
-**Total commits:** 38
+**Project 75**
+
+- (feat) vite config added allowed host
+- (refactor) right side bar
+  -- we now get the env variables using the new library
+- (refactor) separated the title and the buttons.
+- Pencil for edit icon.
+- (bug) returns text now not boolean
+- (feat) ssr off on chat routes.
+- (refactor) chat area actions
+  -- We positioned them in aproximate spot we want them. Maybe a little closer together and less spacing on top. Much better now though.
+- (refactor) chat area
+  -- added user and model actions under the messages.
+- (refactor) convertToUIMessages function
+  -- We now check if messages is not an array. if it isn't we return empty list.
+- (refactor) chat area
+  -- removed all unused imports and hooks. We also pass in the id of the current Chat we get from the route param.
+- added react scan
+- (refactor) chatId route
+  -- we added main chat area here. get chatId from url. Use ensure query data and suspense query to manage the data loading. Added a suspense block to handle the state when data isn't here.
+- (refactor) route chat layout route
+  -- -We moved the messages query to the chatId route. it is better there and has the chatId param without props.
+  -- - reenabled ai dev tools.
+  -- - moved the main chat area to the chatId route.
+- (refactor) right sidebar now floating.
+  -- will fix the trigger closing both soon.
+- (refactor) update left side bar
+  -- - We now use a message circle instead of calender.
+  -- - We now compare the chatId from the route param with the id of current chat to highlight it as active.
+- (refactor) chat header
+  -- Now it is sticky and on the top of the ui. we also truncate long titles now. We added a settings button with a drop down with options we will implement.
+- (refactor) get messages endpoint
+  -- Removed the userId check. Will re implement once we have better auth set up.
+- (refactor) generate text endpoint
+  -- - we return response instead of throwing error if all goes wrong.
+  -- - we created 2 dedicated redis instances to handle publishing and subscribing to the data stream.
+  -- - we now generate our uuid using a utility function to make a uuid and not use createId generator function from ai sdk.
+- avatar for ai
+- (refactor) removed the separate chat hook calls
+  -- we now use the destructure from usechat and grab them all one time.
+- (refactor) usage tokens display
+  -- - We now pass it in from the usage state variable.
+  -- - We removed the initialLast context variable. not needed anymore.
+- (feat) update vote use Query
+  -- we only enable the query when it not streaming and we have more than 2 messages. We added 30 sec stale time and we don't refetch on window focus.
+- (feat) added stop button for stream.
+  -- This helps to stop the messge if user isn't happy with content.
+- reenabled Tanstack dev tools and fixed import
+- (chore) update dependecies
+- (feat) added button to insert old title into input
+  -- this makes it easier for a user to edit the chat title in their new input since current one is disbled.
+- (refactor) changed how we dynamically set chat title for new chats
+  -- (refactor) we now only set the title via LLm when the message is longer than 10 words otherwise it's a waste for 1 or 2 word messages to have api call
+
+**Total commits:** 66
+
+## 2025-09-18 14:03
+
+**Project 74**
+
+- Improved script to remove duplicate names
+- (feat) hash to store the repo names
+  -- syncs beyond runs so app can run quicker and less duplicates.
+- (refactor) track repo names
+  -- we now track repo names so we can insert commits in their project and not a new project.
+- (refactor) duplication and date adding to header
+  -- -no duplication on today + yesterday commits which was happening when we ran script after original new run.
+  -- -Now it knows the commit is there and won't add it. We now add date + time to header and check from then always unless no date then we do since set date.
+  -- - Removed the new arg not needed anymore.
+- (refactor) we now get title of commit
+  -- updated to add messages along with the commit title.
+- script now uses a new argument to do a full sync.
+- Updated script to better handle requirements.
+- hello world
+
+**Project 75**
+
+- Add upvotes and downvotes functionality for chat messages
+- Update routeTree.gen.ts
+- (feat) votes live query
+  -- we can now get all the user's votes and associate them together in loaders.
+- (refactor) temp hardcode valid userId + style
+  -- - clean imports from unused imports.
+  -- - formatting
+- (refactor) append where in the backend.
+  -- - Helps to not expose where clause in frontend ui.
+  -- - formatting and clearing up unused imports and schema.
+- (refactor) added allowed_hosts from .env
+  -- no more exposing our allowed_hosts list
+- (refactor) schema naming all lower case with _
+  -- we had query issues and migrations issues. But it's done now.
+
+**Total commits:** 15
