@@ -177,11 +177,14 @@ function buildLogContent(initialHeader: string, data: Record<string, Record<stri
 
 // --- main ---
 async function main() {
+  console.log("Step 1: Checking if projects directory exists...");
   if (!existsSync(PROJECTS_DIR)) {
     console.error("Projects dir not found:", PROJECTS_DIR);
     process.exit(1);
   }
+  console.log("Projects directory found.");
 
+  console.log("Step 2: Detecting global git identity...");
   // Detect your global git identity (optional, used to prefer your commits)
   let globalEmail = "";
   let globalName = "";
@@ -191,15 +194,20 @@ async function main() {
   } catch {
     // ignore — we'll still run but won't filter by author
   }
+  console.log("Global git identity detected.");
 
+  console.log("Step 3: Reading existing log file...");
   // read existing log
   let logContent = "";
   if (existsSync(LOG_FILE)) {
     logContent = readFileSync(LOG_FILE, "utf8");
   }
+  console.log("Existing log read.");
 
+  console.log("Step 4: Parsing existing log...");
   // parse existing log to get repos and last date/time
   const { initialHeader, data, lastDate, lastTime } = parseExistingLog(logContent || "");
+  console.log("Existing log parsed.");
   const existingRepos = new Set<string>();
   for (const date in data) {
     for (const repo in data[date]) {
@@ -207,6 +215,7 @@ async function main() {
     }
   }
 
+  console.log("Step 5: Determining since date...");
   // determine sinceDate
   let sinceDate: string;
   if (lastDate) {
@@ -214,26 +223,35 @@ async function main() {
   } else {
     sinceDate = DEFAULT_START;
   }
+  console.log(`Since date set to: ${sinceDate}`);
 
+  console.log("Step 6: Finding git repositories...");
   const repos = findGitRepos(PROJECTS_DIR);
   if (repos.length === 0) {
     console.log("No git repos found under", PROJECTS_DIR);
     return;
   }
+  console.log(`Found ${repos.length} git repositories.`);
 
+  console.log("Step 7: Gathering commits from repositories...");
   const newGrouped: Record<string, Record<string, {hash: string, message: string}[]>> = {};
 
   for (const repoPath of repos) {
     const repoRelative = relative(PROJECTS_DIR, repoPath) || repoPath;
+    console.log(`Processing repository: ${repoRelative}`);
     try {
       // gather commits with file lists
       // format: a commit marker, then header line with hash|date|author|email|subject, then body, then --FILES--, then changed paths
       const raw = await $`git -C ${repoPath} log --since=${sinceDate} --pretty=format="--COMMIT--%n%H|%ad|%an|%ae|%s%n%b%n--FILES--%n" --date=short --name-only`.text();
       
 
-      if (!raw) continue;
-      const parts = raw.split("--COMMIT--\n").map(p => p.trim()).filter(Boolean);
-      for (const part of parts) {
+       if (!raw) {
+         console.log(`No commits found in ${repoRelative} since ${sinceDate}.`);
+         continue;
+       }
+       console.log(`Found commits in ${repoRelative}, processing...`);
+       const parts = raw.split("--COMMIT--\n").map(p => p.trim()).filter(Boolean);
+       for (const part of parts) {
         const sections = part.split("\n--FILES--\n");
         if (sections.length !== 2) continue;
         const [commitInfo, filesStr] = sections;
@@ -280,10 +298,11 @@ async function main() {
            message += "\n  -- " + body.replace(/\n/g, "\n  -- ");
          }
 
-         // otherwise accept commit
-         if (!newGrouped[date]) newGrouped[date] = {};
-         if (!newGrouped[date][repoRelative]) newGrouped[date][repoRelative] = [];
-         newGrouped[date][repoRelative].push({hash, message});
+          // otherwise accept commit
+          console.log(`Accepting commit: ${hash} - ${subject}`);
+          if (!newGrouped[date]) newGrouped[date] = {};
+          if (!newGrouped[date][repoRelative]) newGrouped[date][repoRelative] = [];
+          newGrouped[date][repoRelative].push({hash, message});
       }
     } catch (err: any) {
       const stderr = String(err?.stderr || "");
@@ -295,13 +314,16 @@ async function main() {
     }
   }
 
+  console.log("Step 8: Checking for new commits...");
   // nothing new?
   const newDates = Object.keys(newGrouped);
   if (newDates.length === 0) {
     console.log("No new commits since last entry (or filtered out).");
     return;
   }
+  console.log(`Found new commits on dates: ${newDates.join(", ")}`);
 
+  console.log("Step 9: Merging new commits with existing data...");
   // merge with existing
   const merged: Record<string, Record<string, {hash: string, message: string}[]>> = data;
 
@@ -319,11 +341,16 @@ async function main() {
       }
     }
   }
+  console.log("New commits merged.");
 
+  console.log("Step 10: Anonymizing data...");
   anonymizeData(merged);
+  console.log("Data anonymized.");
 
+  console.log("Step 11: Building new log content...");
   const currentTime = new Date().toTimeString().slice(0, 5);
   const newContent = buildLogContent(initialHeader, merged, currentTime);
+  console.log("Step 12: Writing to log file...");
   writeFileSync(LOG_FILE, newContent);
   console.log(`✅ work_ive_done.md updated. Dates added/merged: ${newDates.join(", ")}`);
 }
