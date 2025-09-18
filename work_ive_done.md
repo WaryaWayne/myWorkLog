@@ -3109,7 +3109,7 @@
 
 **Total commits:** 39
 
-## 2025-09-18 14:50
+## 2025-09-18 15:09
 
 **Project 22**
 
@@ -3130,6 +3130,12 @@
 
 **Project 8**
 
+- create explain progres.
+  -- A script that we made to make an ai api call to summarize the latest days commit messages and append it to a journal file.
+- Create daily_journal.md
+  -- v1 of the journal now. We will improve it.
+- ai sdk + gemini
+- Update work_ive_done.md
 - Update README.md
 - name change to fix typo
 - Add README.md for public work log quest
@@ -3151,4 +3157,4 @@
 - Updated script to better handle requirements.
 - hello world
 
-**Total commits:** 21
+**Total commits:** 25
