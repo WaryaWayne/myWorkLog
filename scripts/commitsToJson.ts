@@ -19,9 +19,25 @@ const entries = sections.map((section) => {
 
       const projectName = projLines[0].replace("**", "").trim();
 
-      const commits = projLines
-        .filter((l) => l.startsWith("- "))
-        .map((l) => l.replace("- ", "").trim());
+      const commits = [];
+      let currentCommit: { title: string; details: string[] } | null = null;
+
+      for (let i = 1; i < projLines.length; i++) {
+        const line = projLines[i].trim();
+        if (line.startsWith("- ")) {
+          if (currentCommit) {
+            commits.push(currentCommit);
+          }
+          currentCommit = { title: line.replace("- ", "").trim(), details: [] };
+        } else if (line.startsWith("--")) {
+          if (currentCommit) {
+            currentCommit.details.push(line.replace(/^--\s*/, "").trim());
+          }
+        }
+      }
+      if (currentCommit) {
+        commits.push(currentCommit);
+      }
 
       return {
         project: projectName,
@@ -29,8 +45,14 @@ const entries = sections.map((section) => {
       };
     });
 
+  const totalCommits = projectSections.reduce(
+    (sum, proj) => sum + proj.commits.length,
+    0
+  );
+
   return {
     date,
+    totalCommits,
     projects: projectSections,
   };
 });

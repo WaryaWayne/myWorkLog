@@ -10,26 +10,42 @@ const entries = sections.map((section) => {
   const lines = section.trim().split("\n");
 
   const date = lines[0].trim();
-  const project =
-    lines
-      .find((l) => l.startsWith("### "))
-      ?.replace("### ", "")
-      .trim() || "";
-  const type =
-    lines
-      .find((l) => l.startsWith("#### "))
-      ?.replace("#### ", "")
-      .trim() || "";
+  const projectHeader = lines.find((l) => l.startsWith("### ")) || "";
+  const project = projectHeader.replace("### ", "").trim();
 
-  const commentLines = lines
-    .filter((l) => l.startsWith("- "))
-    .map((l) => l.replace("- ", "").trim());
+  const sectionBlocks: { type: string; comments: string[] }[] = [];
+  let currentType = "";
+  let currentComments: string[] = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    if (line.startsWith("#### ")) {
+      // Save previous block
+      if (currentType) {
+        sectionBlocks.push({
+          type: currentType,
+          comments: currentComments,
+        });
+      }
+      // Start new block
+      currentType = line.replace("#### ", "").trim();
+      currentComments = [];
+    } else if (line.startsWith("- ")) {
+      currentComments.push(line.replace("- ", "").trim());
+    }
+  }
+
+  if (currentType) {
+    sectionBlocks.push({
+      type: currentType,
+      comments: currentComments,
+    });
+  }
 
   return {
     date,
     project,
-    type,
-    comment: commentLines,
+    sections: sectionBlocks,
   };
 });
 
