@@ -1,35 +1,31 @@
 #!/usr/bin/env bun
 
 import { $ } from "bun";
-import {
-  existsSync,
-  readFileSync,
-  writeFileSync,
-  readdirSync,
-  statSync,
-} from "fs";
+import { existsSync, readdirSync } from "fs";
 import { join, relative } from "path";
 
 const PROJECTS_DIR = join(process.cwd(), "..");
-const LOG_FILE = join(process.cwd(), "work_ive_done.md");
+const LOG_FILE = join(process.cwd(), "results", "work_ive_done.md");
 const DEFAULT_START = "2023-01-01"; // start date if no log exists
 
 // --- helpers ---
 function escapeRegExp(string: string): string {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function hashString(str: string): number {
   let hash = 0;
   for (let i = 0; i < str.length; i++) {
     const char = str.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
+    hash = (hash << 5) - hash + char;
     hash = hash & hash; // Convert to 32bit integer
   }
   return Math.abs(hash);
 }
 
-function anonymizeData(data: Record<string, Record<string, {hash: string, message: string}[]>>) {
+function anonymizeData(
+  data: Record<string, Record<string, { hash: string; message: string }[]>>
+) {
   // Collect all unique repos across all dates for consistent mapping
   const allRepos = new Set<string>();
   for (const date in data) {
@@ -37,24 +33,27 @@ function anonymizeData(data: Record<string, Record<string, {hash: string, messag
       allRepos.add(repo);
     }
   }
-  const sortedRepos = Array.from(allRepos).sort((a, b) => hashString(a) - hashString(b));
+  const sortedRepos = Array.from(allRepos).sort(
+    (a, b) => hashString(a) - hashString(b)
+  );
   const map = new Map<string, string>();
   sortedRepos.forEach((repo, i) => map.set(repo, `Project ${i + 1}`));
 
   for (const date in data) {
-    const newRepos: Record<string, {hash: string, message: string}[]> = {};
+    const newRepos: Record<string, { hash: string; message: string }[]> = {};
     for (const repo of Object.keys(data[date])) {
       const generic = map.get(repo)!;
-      const msgs = data[date][repo].map(item => {
+      const msgs = data[date][repo].map((item) => {
         let newMsg = item.message;
         for (const [actual, gen] of map) {
-          newMsg = newMsg.replace(new RegExp(escapeRegExp(actual), 'g'), gen);
-          const parts = actual.split('/');
+          newMsg = newMsg.replace(new RegExp(escapeRegExp(actual), "g"), gen);
+          const parts = actual.split("/");
           for (const part of parts) {
-            if (part) newMsg = newMsg.replace(new RegExp(escapeRegExp(part), 'g'), gen);
+            if (part)
+              newMsg = newMsg.replace(new RegExp(escapeRegExp(part), "g"), gen);
           }
         }
-        return {hash: item.hash, message: newMsg};
+        return { hash: item.hash, message: newMsg };
       });
       newRepos[generic] = msgs;
     }
@@ -95,23 +94,38 @@ function findGitRepos(baseDir: string): string[] {
 
 function isExcludedPath(p: string) {
   const low = p.toLowerCase();
-  if (low.includes("/node_modules/") || low.startsWith("node_modules/")) return true;
+  if (low.includes("/node_modules/") || low.startsWith("node_modules/"))
+    return true;
   // virtual envs
   if (/(^|\/)(venv|\.venv|env|virtualenv)(\/|$)/.test(p)) return true;
   // lockfiles / package-only churn
   const name = p.split("/").pop() || "";
-  if (["package-lock.json", "yarn.lock", "pnpm-lock.yaml", "package.json", "bun.lock"].includes(name))
+  if (
+    [
+      "package-lock.json",
+      "yarn.lock",
+      "pnpm-lock.yaml",
+      "package.json",
+      "bun.lock",
+      "uv.lock",
+    ].includes(name)
+  )
     return true;
   return false;
 }
 
 // Parse existing log into structure { header, data: {date: { repo: [{hash, message}] }}, lastDate, lastTime}
 function parseExistingLog(content: string) {
-  const data: Record<string, Record<string, {hash: string, message: string}[]>> = {};
+  const data: Record<
+    string,
+    Record<string, { hash: string; message: string }[]>
+  > = {};
   let initialHeader = "";
   let lastDate: string | null = null;
   let lastTime: string | null = null;
-  const dateMatches = [...content.matchAll(/^## (\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))?/gm)];
+  const dateMatches = [
+    ...content.matchAll(/^## (\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))?/gm),
+  ];
   if (dateMatches.length === 0) {
     initialHeader = content;
     return { initialHeader, data, lastDate, lastTime };
@@ -126,7 +140,10 @@ function parseExistingLog(content: string) {
     lastDate = date;
     lastTime = time;
     const start = (m.index ?? 0) + m[0].length;
-    const end = i + 1 < dateMatches.length ? (dateMatches[i + 1].index ?? content.length) : content.length;
+    const end =
+      i + 1 < dateMatches.length
+        ? dateMatches[i + 1].index ?? content.length
+        : content.length;
     const block = content.slice(start, end).trim();
 
     const lines = block.split("\n");
@@ -143,7 +160,10 @@ function parseExistingLog(content: string) {
       }
       if (l.startsWith("- ")) {
         if (currentRepo) {
-          data[date][currentRepo].push({hash: '', message: l.slice(2).trim()});
+          data[date][currentRepo].push({
+            hash: "",
+            message: l.slice(2).trim(),
+          });
         }
         continue;
       }
@@ -153,13 +173,17 @@ function parseExistingLog(content: string) {
   return { initialHeader, data, lastDate, lastTime };
 }
 
-function buildLogContent(initialHeader: string, data: Record<string, Record<string, {hash: string, message: string}[]>>, currentTime: string) {
+function buildLogContent(
+  initialHeader: string,
+  data: Record<string, Record<string, { hash: string; message: string }[]>>,
+  currentTime: string
+) {
   const dates = Object.keys(data).sort(); // chronological ascending
   let out = initialHeader ? initialHeader.trimEnd() + "\n\n" : "";
   for (let i = 0; i < dates.length; i++) {
     const date = dates[i];
     const isLatest = i === dates.length - 1;
-    const headerTime = isLatest ? ` ${currentTime}` : '';
+    const headerTime = isLatest ? ` ${currentTime}` : "";
     out += `## ${date}${headerTime}\n\n`;
     const repos = Object.keys(data[date]).sort();
     let dayTotal = 0;
@@ -177,14 +201,14 @@ function buildLogContent(initialHeader: string, data: Record<string, Record<stri
 
 // --- main ---
 async function main() {
-  console.log("Step 1: Checking if projects directory exists...");
+  console.log("Checking projects directory...");
   if (!existsSync(PROJECTS_DIR)) {
     console.error("Projects dir not found:", PROJECTS_DIR);
     process.exit(1);
   }
   console.log("Projects directory found.");
 
-  console.log("Step 2: Detecting global git identity...");
+  console.log("Detecting global git identity...");
   // Detect your global git identity (optional, used to prefer your commits)
   let globalEmail = "";
   let globalName = "";
@@ -196,17 +220,19 @@ async function main() {
   }
   console.log("Global git identity detected.");
 
-  console.log("Step 3: Reading existing log file...");
+  console.log("Reading existing log file...");
   // read existing log
   let logContent = "";
-  if (existsSync(LOG_FILE)) {
-    logContent = readFileSync(LOG_FILE, "utf8");
+  if (await Bun.file(LOG_FILE).exists()) {
+    logContent = await Bun.file(LOG_FILE).text();
   }
   console.log("Existing log read.");
 
-  console.log("Step 4: Parsing existing log...");
+  console.log("Parsing existing log...");
   // parse existing log to get repos and last date/time
-  const { initialHeader, data, lastDate, lastTime } = parseExistingLog(logContent || "");
+  const { initialHeader, data, lastDate, lastTime } = parseExistingLog(
+    logContent || ""
+  );
   console.log("Existing log parsed.");
   const existingRepos = new Set<string>();
   for (const date in data) {
@@ -215,7 +241,7 @@ async function main() {
     }
   }
 
-  console.log("Step 5: Determining since date...");
+  console.log("Determining since date...");
   // determine sinceDate
   let sinceDate: string;
   if (lastDate) {
@@ -225,7 +251,7 @@ async function main() {
   }
   console.log(`Since date set to: ${sinceDate}`);
 
-  console.log("Step 6: Finding git repositories...");
+  console.log("Finding git repositories...");
   const repos = findGitRepos(PROJECTS_DIR);
   if (repos.length === 0) {
     console.log("No git repos found under", PROJECTS_DIR);
@@ -233,8 +259,11 @@ async function main() {
   }
   console.log(`Found ${repos.length} git repositories.`);
 
-  console.log("Step 7: Gathering commits from repositories...");
-  const newGrouped: Record<string, Record<string, {hash: string, message: string}[]>> = {};
+  console.log("Gathering commits from repositories...");
+  const newGrouped: Record<
+    string,
+    Record<string, { hash: string; message: string }[]>
+  > = {};
 
   for (const repoPath of repos) {
     const repoRelative = relative(PROJECTS_DIR, repoPath) || repoPath;
@@ -242,16 +271,19 @@ async function main() {
     try {
       // gather commits with file lists
       // format: a commit marker, then header line with hash|date|author|email|subject, then body, then --FILES--, then changed paths
-      const raw = await $`git -C ${repoPath} log --since=${sinceDate} --pretty=format="--COMMIT--%n%H|%ad|%an|%ae|%s%n%b%n--FILES--%n" --date=short --name-only`.text();
-      
+      const raw =
+        await $`git -C ${repoPath} log --since=${sinceDate} --pretty=format="--COMMIT--%n%H|%ad|%an|%ae|%s%n%b%n--FILES--%n" --date=short --name-only`.text();
 
-       if (!raw) {
-         console.log(`No commits found in ${repoRelative} since ${sinceDate}.`);
-         continue;
-       }
-       console.log(`Found commits in ${repoRelative}, processing...`);
-       const parts = raw.split("--COMMIT--\n").map(p => p.trim()).filter(Boolean);
-       for (const part of parts) {
+      if (!raw) {
+        console.log(`No commits found in ${repoRelative} since ${sinceDate}.`);
+        continue;
+      }
+      console.log(`Found commits in ${repoRelative}, processing...`);
+      const parts = raw
+        .split("--COMMIT--\n")
+        .map((p) => p.trim())
+        .filter(Boolean);
+      for (const part of parts) {
         const sections = part.split("\n--FILES--\n");
         if (sections.length !== 2) continue;
         const [commitInfo, filesStr] = sections;
@@ -265,13 +297,22 @@ async function main() {
         const subject = headerParts.slice(4).join("|").trim();
         const bodyLines = lines.slice(1);
         const body = bodyLines.join("\n").trim();
-        const files = filesStr.split("\n").map(s => s.trim()).filter(Boolean);
+        const files = filesStr
+          .split("\n")
+          .map((s) => s.trim())
+          .filter(Boolean);
 
         // filter by author if we know your identity
         if (globalEmail || globalName) {
           let matchAuthor = false;
-          if (globalEmail && authorEmail && authorEmail === globalEmail) matchAuthor = true;
-          if (!matchAuthor && globalName && authorName && authorName.toLowerCase().includes(globalName.toLowerCase()))
+          if (globalEmail && authorEmail && authorEmail === globalEmail)
+            matchAuthor = true;
+          if (
+            !matchAuthor &&
+            globalName &&
+            authorName &&
+            authorName.toLowerCase().includes(globalName.toLowerCase())
+          )
             matchAuthor = true;
           if (!matchAuthor) {
             // skip commits not by you (ideal behaviour)
@@ -281,28 +322,30 @@ async function main() {
 
         // if commit touches only excluded paths (node_modules, venv, lockfiles), skip
         if (files.length > 0) {
-          const meaningful = files.some(f => !isExcludedPath(f));
+          const meaningful = files.some((f) => !isExcludedPath(f));
           if (!meaningful) continue; // skip this commit
         }
-         // skip unwanted commits (e.g., .gitProject 85545 creations)
-         if (subject.toLowerCase().includes('.gitproject') ||
-             subject.toLowerCase().includes('gitignore') ||
-             subject.toLowerCase().includes('.git') ||
-             subject === 'Initial commit') {
-           continue;
-         }
+        // skip unwanted commits (e.g., .gitProject 85545 creations)
+        if (
+          subject.toLowerCase().includes(".gitproject") ||
+          subject.toLowerCase().includes("gitignore") ||
+          subject.toLowerCase().includes(".git") ||
+          subject === "Initial commit"
+        ) {
+          continue;
+        }
 
-         // format message with body indented
-         let message = subject || "(no subject)";
-         if (body) {
-           message += "\n  -- " + body.replace(/\n/g, "\n  -- ");
-         }
+        // format message with body indented
+        let message = subject || "(no subject)";
+        if (body) {
+          message += "\n  -- " + body.replace(/\n/g, "\n  -- ");
+        }
 
-          // otherwise accept commit
-          console.log(`Accepting commit: ${hash} - ${subject}`);
-          if (!newGrouped[date]) newGrouped[date] = {};
-          if (!newGrouped[date][repoRelative]) newGrouped[date][repoRelative] = [];
-          newGrouped[date][repoRelative].push({hash, message});
+        // otherwise accept commit
+        if (!newGrouped[date]) newGrouped[date] = {};
+        if (!newGrouped[date][repoRelative])
+          newGrouped[date][repoRelative] = [];
+        newGrouped[date][repoRelative].push({ hash, message });
       }
     } catch (err: any) {
       const stderr = String(err?.stderr || "");
@@ -314,7 +357,7 @@ async function main() {
     }
   }
 
-  console.log("Step 8: Checking for new commits...");
+  console.log("Checking for new commits...");
   // nothing new?
   const newDates = Object.keys(newGrouped);
   if (newDates.length === 0) {
@@ -323,16 +366,21 @@ async function main() {
   }
   console.log(`Found new commits on dates: ${newDates.join(", ")}`);
 
-  console.log("Step 9: Merging new commits with existing data...");
+  console.log("Merging new commits with existing data...");
   // merge with existing
-  const merged: Record<string, Record<string, {hash: string, message: string}[]>> = data;
+  const merged: Record<
+    string,
+    Record<string, { hash: string; message: string }[]>
+  > = data;
 
   for (const date of newDates) {
     if (!merged[date]) merged[date] = {};
     for (const repo of Object.keys(newGrouped[date])) {
       if (!merged[date][repo]) merged[date][repo] = [];
       // dedupe by full message
-      const existingMessages = new Set(merged[date][repo].map(item => item.message));
+      const existingMessages = new Set(
+        merged[date][repo].map((item) => item.message)
+      );
       for (const item of newGrouped[date][repo]) {
         if (!existingMessages.has(item.message)) {
           merged[date][repo].push(item);
@@ -343,16 +391,18 @@ async function main() {
   }
   console.log("New commits merged.");
 
-  console.log("Step 10: Anonymizing data...");
+  console.log("Anonymizing data...");
   anonymizeData(merged);
   console.log("Data anonymized.");
 
-  console.log("Step 11: Building new log content...");
+  console.log("Building new log content...");
   const currentTime = new Date().toTimeString().slice(0, 5);
   const newContent = buildLogContent(initialHeader, merged, currentTime);
-  console.log("Step 12: Writing to log file...");
-  writeFileSync(LOG_FILE, newContent);
-  console.log(`✅ work_ive_done.md updated. Dates added/merged: ${newDates.join(", ")}`);
+  console.log("Writing to log file...");
+  await Bun.write(LOG_FILE, newContent);
+  console.log(
+    `✅ work_ive_done.md updated. Dates added/merged: ${newDates.join(", ")}`
+  );
 }
 
 await main();
