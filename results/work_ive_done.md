@@ -1,3 +1,8 @@
+---
+title: "Work I've Done"
+permalink: /results/work-ive-done/
+---
+
 ## 2024-08-22
 
 **Project 56**
