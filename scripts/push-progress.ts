@@ -6,6 +6,7 @@ import { join, relative } from "path";
 
 const PROJECTS_DIR = join(process.cwd(), "..");
 const LOG_FILE = join(process.cwd(), "results", "work_ive_done.md");
+const REPO_MAP_FILE = join(process.cwd(), "repo_map.json");
 const DEFAULT_START = "2023-01-01"; // start date if no log exists
 
 // Parse command-line arguments
@@ -24,39 +25,67 @@ function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-function hashString(str: string): number {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charCodeAt(i);
-    hash = (hash << 5) - hash + char;
-    hash = hash & hash; // Convert to 32bit integer
+function loadRepoMap(): Map<string, string> {
+  if (existsSync(REPO_MAP_FILE)) {
+    try {
+      const content = Bun.file(REPO_MAP_FILE).json();
+      return new Map(Object.entries(content));
+    } catch {
+      return new Map();
+    }
   }
-  return Math.abs(hash);
+  return new Map();
+}
+
+function saveRepoMap(map: Map<string, string>): void {
+  const obj = Object.fromEntries(map);
+  Bun.write(REPO_MAP_FILE, JSON.stringify(obj, null, 2));
+}
+
+function hashString(str: string): bigint {
+  return Bun.hash(str);
 }
 
 function anonymizeData(
-  data: Record<string, Record<string, { hash: string; message: string }[]>>
+  data: Record<string, Record<string, { hash: string; message: string }[]>>,
+  repoMap: Map<string, string>
 ) {
-  // Collect all unique repos across all dates for consistent mapping
+  // Collect all unique repos across all dates
   const allRepos = new Set<string>();
   for (const date in data) {
     for (const repo in data[date]) {
       allRepos.add(repo);
     }
   }
-  const sortedRepos = Array.from(allRepos).sort(
-    (a, b) => hashString(a) - hashString(b)
-  );
-  const map = new Map<string, string>();
-  sortedRepos.forEach((repo, i) => map.set(repo, `Project ${i + 1}`));
 
+  // Find new repos not in the map
+  const newRepos = Array.from(allRepos).filter(repo => !repoMap.has(repo));
+
+  // Sort new repos by hash for consistent assignment
+  const sortedNewRepos = newRepos.sort(
+    (a, b) => (hashString(a) < hashString(b) ? -1 : hashString(a) > hashString(b) ? 1 : 0)
+  );
+
+  // Find the next project number
+  const existingNumbers = Array.from(repoMap.values()).map(name => {
+    const match = name.match(/Project (\d+)/);
+    return match ? parseInt(match[1], 10) : 0;
+  });
+  const nextNumber = existingNumbers.length > 0 ? Math.max(...existingNumbers) + 1 : 1;
+
+  // Assign new mappings
+  sortedNewRepos.forEach((repo, i) => {
+    repoMap.set(repo, `Project ${nextNumber + i}`);
+  });
+
+  // Apply anonymization
   for (const date in data) {
     const newRepos: Record<string, { hash: string; message: string }[]> = {};
     for (const repo of Object.keys(data[date])) {
-      const generic = map.get(repo)!;
+      const generic = repoMap.get(repo)!;
       const msgs = data[date][repo].map((item) => {
         let newMsg = item.message;
-        for (const [actual, gen] of map) {
+        for (const [actual, gen] of repoMap) {
           newMsg = newMsg.replace(new RegExp(escapeRegExp(actual), "g"), gen);
           const parts = actual.split("/");
           for (const part of parts) {
@@ -245,12 +274,10 @@ async function main() {
     logContent || ""
   );
   logIfVerbose("Existing log parsed.");
-  const existingRepos = new Set<string>();
-  for (const date in data) {
-    for (const repo in data[date]) {
-      existingRepos.add(repo);
-    }
-  }
+
+  logIfVerbose("Loading repo map...");
+  const repoMap = loadRepoMap();
+  logIfVerbose("Repo map loaded.");
 
   logIfVerbose("Determining since date...");
   // determine sinceDate
@@ -403,8 +430,12 @@ async function main() {
   logIfVerbose("New commits merged.");
 
   logIfVerbose("Anonymizing data...");
-  anonymizeData(merged);
+  anonymizeData(merged, repoMap);
   logIfVerbose("Data anonymized.");
+
+  logIfVerbose("Saving updated repo map...");
+  saveRepoMap(repoMap);
+  logIfVerbose("Repo map saved.");
 
   logIfVerbose("Building new log content...");
   const currentTime = new Date().toTimeString().slice(0, 5);
