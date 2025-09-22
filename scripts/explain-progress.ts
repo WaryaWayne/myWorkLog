@@ -132,9 +132,8 @@ if (verbose) {
   console.log(`📅 Last journal date found: ${lastJournalDate}`);
 }
 
-// Process sections after the last journal date
-let newEntries = "";
-let processedCount = 0;
+// Collect sections after the last journal date
+let newSections = [];
 for (const section of sections) {
   const lines = section.trim().split("\n");
   const dateLine = lines[0];
@@ -146,14 +145,25 @@ for (const section of sections) {
   const commits = lines.slice(1).join("\n").trim();
   if (!commits) continue;
 
-  processedCount++;
+  newSections.push({ date, commits });
+}
+
+let newEntries = "";
+if (newSections.length > 0) {
   if (verbose) {
-    console.log(`🔍 Processing section ${processedCount}: ${date}`);
+    console.log(`🔍 Found ${newSections.length} new sections to process`);
+  }
+
+  // Build concatenated commits for single API call
+  let allCommits = "";
+  for (const sec of newSections) {
+    allCommits += `Date: ${sec.date}\nCommits:\n${sec.commits}\n\n`;
   }
 
   if (verbose) {
-    console.log(`🤖 Analyzing commits with AI for date: ${date}`);
+    console.log(`🤖 Analyzing all commits with AI in single call`);
   }
+
   const { object } = await generateObject({
     model: google("models/gemini-2.5-flash"),
     system: `
@@ -175,6 +185,8 @@ for (const section of sections) {
             4. Use clear, professional language
             5. Focus on what was accomplished, not just what was changed
             6. When you see patterns like multiple similar commits, group them intelligently
+            7. The commits are grouped by date. Create a separate entry in the dates array for each date provided.
+            8. For each date, set the dateTime as the provided date followed by the current time in HH-MM format (e.g., "2025-09-01-13-45")
 
             FORMATTING NOTES:
             - Project names should match exactly what's in the commits (e.g., "Project 72", "Project 12")
@@ -183,21 +195,29 @@ for (const section of sections) {
             - Use subsections for things like "bug fixes" under main sections when appropriate
 
             `,
-    prompt: `Analyze and summarize these commits into a structured daily report: ${commits}`,
+    prompt: `Analyze and summarize these commits from multiple dates into a structured daily report: ${allCommits}`,
     temperature: 0.4,
     schema: dailyReportSchema,
   });
 
-  newEntries += formatReport(object);
+  // Post-process to ensure dateTime includes current time
+  const now = new Date();
+  const currentTime = now.toISOString().slice(11, 16); // HH:MM
+  for (const dateEntry of object.dates) {
+    const datePart = dateEntry.dateTime.split('-').slice(0, 3).join('-'); // YYYY-MM-DD
+    dateEntry.dateTime = `${datePart}-${currentTime}`;
+  }
+
+  newEntries = formatReport(object);
   if (verbose) {
-    console.log(`✅ Completed AI analysis for ${date}`);
+    console.log(`✅ Completed AI analysis for ${newSections.length} dates`);
   }
 }
 
 // Append new entries to daily journal
 if (newEntries) {
   if (verbose) {
-    console.log(`💾 Appending ${processedCount} new entries to daily journal`);
+    console.log(`💾 Appending ${newSections.length} new entries to daily journal`);
   }
   const current = await Bun.file(journalFile).text();
   await Bun.write(journalFile, current + newEntries);
