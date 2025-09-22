@@ -9,9 +9,8 @@ plugins:
 
 # Navigation links for your portfolio
 header_pages:
-  - index.md
-  - projects.md
-  - about.md
+  - /results/work_ive_done.md
+  - /results/daily_journal.md
 
 # Build settings
 markdown: kramdown
