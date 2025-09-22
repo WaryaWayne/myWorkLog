@@ -1,7 +1,32 @@
-import { generateText, streamObject } from "ai";
+import { generateObject, generateText, streamObject } from "ai";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { join } from "path";
 import z from "zod/v4";
+
+// Parse command line arguments
+const args = process.argv.slice(2);
+const verbose = args.includes("-v") || args.includes("--verbose");
+
+// Show help if requested
+if (args.includes("-h") || args.includes("--help")) {
+  console.log(`
+Usage: bun run scripts/explain-progress.ts [options]
+
+Options:
+  -v, --verbose    Enable verbose logging to see detailed progress
+  -h, --help       Show this help message
+
+Examples:
+  bun run scripts/explain-progress.ts
+  bun run scripts/explain-progress.ts -v
+  bun run scripts/explain-progress.ts --verbose
+  `);
+  process.exit(0);
+}
+
+if (verbose) {
+  console.log("🚀 Starting explain-progress script...");
+}
 
 const google = createGoogleGenerativeAI({
   apiKey: process.env.AI_API_KEY,
@@ -48,13 +73,50 @@ const dailyReportSchema = z.object({
   ),
 });
 
-// await Bun.write(journalFile, journalContent);
+type DailyReport = z.infer<typeof dailyReportSchema>;
+
+function formatReport(obj: DailyReport) {
+  let md = "";
+  for (const dateEntry of obj.dates) {
+    md += `## ${dateEntry.dateTime}\n\n`;
+    for (const project of dateEntry.projects) {
+      md += `### ${project.projectName}\n\n`;
+      for (const section of project.sections) {
+        md += `#### ${section.sectionTitle}\n\n`;
+        for (const item of section.items) {
+          md += `- ${item}\n`;
+        }
+        md += "\n";
+        if (section.subsections) {
+          for (const sub of section.subsections) {
+            md += `##### ${sub.title}\n\n`;
+            for (const subitem of sub.items) {
+              md += `- ${subitem}\n`;
+            }
+            md += "\n";
+          }
+        }
+      }
+    }
+  }
+  return md;
+}
+
 const workDoneFile = join(process.cwd(), "results", "work_ive_done.md");
+if (verbose) {
+  console.log(`📖 Reading work done file: ${workDoneFile}`);
+}
 const workDone = await Bun.file(workDoneFile).text();
 const sections = workDone.split(/^## /m).slice(1); // Remove empty first element
+if (verbose) {
+  console.log(`📊 Found ${sections.length} sections in work done file`);
+}
 
 // Read daily journal and find the last entry date
 const journalFile = join(process.cwd(), "results", "daily_journal.md");
+if (verbose) {
+  console.log(`📖 Reading daily journal file: ${journalFile}`);
+}
 const journalContent = await Bun.file(journalFile).text();
 
 const journalSections = journalContent.split(/^## /m).slice(1);
@@ -66,9 +128,13 @@ if (journalSections.length > 0) {
     lastJournalDate = dateMatch[1];
   }
 }
+if (verbose) {
+  console.log(`📅 Last journal date found: ${lastJournalDate}`);
+}
 
 // Process sections after the last journal date
 let newEntries = "";
+let processedCount = 0;
 for (const section of sections) {
   const lines = section.trim().split("\n");
   const dateLine = lines[0];
@@ -80,7 +146,15 @@ for (const section of sections) {
   const commits = lines.slice(1).join("\n").trim();
   if (!commits) continue;
 
-  const { object } = streamObject({
+  processedCount++;
+  if (verbose) {
+    console.log(`🔍 Processing section ${processedCount}: ${date}`);
+  }
+
+  if (verbose) {
+    console.log(`🤖 Analyzing commits with AI for date: ${date}`);
+  }
+  const { object } = await generateObject({
     model: google("models/gemini-2.5-flash"),
     system: `
             You are a professional daily report creator. Your job is to analyze commit messages and create a structured summary in markdown.
@@ -89,7 +163,7 @@ for (const section of sections) {
             1. Group commits by date, then by project
             2. Within each project, categorize commits into logical sections like:
               - Feature Enhancements/New Features
-              - Bug Fixes  
+              - Bug Fixes
               - Refactoring
               - Backend Updates
               - Frontend Updates
@@ -114,14 +188,28 @@ for (const section of sections) {
     schema: dailyReportSchema,
   });
 
-  const now = new Date();
-  const dateTime = now.toISOString().slice(0, 19).replace("T", " ");
-  // parse the new object into new entries it is no longer a string. object
-  newEntries += `## ${dateTime}\n\n${text}\n\n`;
+  newEntries += formatReport(object);
+  if (verbose) {
+    console.log(`✅ Completed AI analysis for ${date}`);
+  }
 }
 
 // Append new entries to daily journal
 if (newEntries) {
+  if (verbose) {
+    console.log(`💾 Appending ${processedCount} new entries to daily journal`);
+  }
   const current = await Bun.file(journalFile).text();
   await Bun.write(journalFile, current + newEntries);
+  if (verbose) {
+    console.log(`✅ Successfully updated daily journal with new entries`);
+  }
+} else {
+  if (verbose) {
+    console.log(`📭 No new entries to add to daily journal`);
+  }
+}
+
+if (verbose) {
+  console.log(`🎉 Script completed successfully!`);
 }
