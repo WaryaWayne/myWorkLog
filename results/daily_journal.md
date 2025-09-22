@@ -1,3 +1,8 @@
+---
+title: "Daily Journal Summary"
+permalink: /results/daily-journal/
+---
+
 ## 2025-09-04
 
 Sure, here's a summary of the daily progress from the provided commits, formatted for GitHub:
