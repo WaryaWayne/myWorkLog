@@ -381,8 +381,7 @@ async function main() {
         if (
           subject.toLowerCase().includes(".gitproject") ||
           subject.toLowerCase().includes("gitignore") ||
-          subject.toLowerCase().includes(".git") ||
-          subject === "Initial commit"
+          subject.toLowerCase().includes(".git")
         ) {
           continue;
         }
