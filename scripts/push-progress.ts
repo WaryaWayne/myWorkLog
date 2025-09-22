@@ -61,23 +61,26 @@ function anonymizeData(
   // Find new repos not in the map
   const newRepos = Array.from(allRepos).filter((repo) => !repoMap.has(repo));
 
-  // Sort new repos by hash for consistent assignment
-  const sortedNewRepos = newRepos.sort((a, b) =>
-    hashString(a) < hashString(b) ? -1 : hashString(a) > hashString(b) ? 1 : 0
-  );
+  // Only assign mappings for new repos (preserve existing mappings)
+  if (newRepos.length > 0) {
+    // Sort new repos by hash for consistent assignment
+    const sortedNewRepos = newRepos.sort((a, b) =>
+      hashString(a) < hashString(b) ? -1 : hashString(a) > hashString(b) ? 1 : 0
+    );
 
-  // Find the next project number
-  const existingNumbers = Array.from(repoMap.values()).map((name) => {
-    const match = name.match(/Project (\d+)/);
-    return match ? parseInt(match[1], 10) : 0;
-  });
-  const nextNumber =
-    existingNumbers.length > 0 ? Math.max(...existingNumbers) + 1 : 1;
+    // Find the next project number
+    const existingNumbers = Array.from(repoMap.values()).map((name) => {
+      const match = name.match(/Project (\d+)/);
+      return match ? parseInt(match[1], 10) : 0;
+    });
+    const nextNumber =
+      existingNumbers.length > 0 ? Math.max(...existingNumbers) + 1 : 1;
 
-  // Assign new mappings
-  sortedNewRepos.forEach((repo, i) => {
-    repoMap.set(repo, `Project ${nextNumber + i}`);
-  });
+    // Assign new mappings only for new repos
+    sortedNewRepos.forEach((repo, i) => {
+      repoMap.set(repo, `Project ${nextNumber + i}`);
+    });
+  }
 
   // Apply anonymization
   for (const date in data) {
