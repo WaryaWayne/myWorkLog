@@ -1,49 +1,61 @@
-import { generateText } from "ai";
+import { generateText, streamObject } from "ai";
 import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { join } from "path";
+import z from "zod/v4";
 
 const google = createGoogleGenerativeAI({
   apiKey: process.env.AI_API_KEY,
 });
 
-// const workDone = await Bun.file('../results/work_ive_done.md').text();
-// const sections = workDone.split(/^## /m).slice(1); // Remove empty first element
-
-// const startDate = '2025-09-04';
-
-// let journalContent = await Bun.file(journalFile).text();
-
-// for (const section of sections) {
-//   const lines = section.trim().split('\n');
-//   const dateLine = lines[0];
-//   const dateMatch = dateLine.match(/^(\d{4}-\d{2}-\d{2})/);
-//   if (!dateMatch) continue;
-//   const date = dateMatch[1];
-//   if (date < startDate) continue;
-
-//   const commits = lines.slice(1).join('\n').trim();
-//   if (!commits) continue;
-
-//   const { text } = await generateText({
-//     model: google('models/gemini-1.5-flash'),
-//     system: "Summarize and explain the daily progress from the following commits in a well-formatted markdown format suitable for GitHub. Use headings, bullet points, and code blocks where appropriate to make it readable and professional.",
-//     prompt: commits,
-//   });
-
-//   const entry = `## ${date}\n\n${text}\n\n`;
-//   journalContent += entry;
-// }
+const dailyReportSchema = z.object({
+  dates: z.array(
+    z.object({
+      dateTime: z.string().describe("Date in YYYY-MM-DD-HH-MM format"),
+      projects: z.array(
+        z.object({
+          projectName: z
+            .string()
+            .describe("Name of the project (e.g., 'Project 72', 'Project 12')"),
+          sections: z.array(
+            z.object({
+              sectionTitle: z
+                .string()
+                .describe(
+                  "Section title like 'Feature Enhancements', 'Backend Updates', 'Bug Fixes', etc."
+                ),
+              items: z.array(
+                z
+                  .string()
+                  .describe("Individual bullet points summarizing commits")
+              ),
+              subsections: z
+                .array(
+                  z.object({
+                    title: z
+                      .string()
+                      .describe(
+                        "Subsection title like 'bug fixes', 'refactoring', etc."
+                      ),
+                    items: z.array(z.string()),
+                  })
+                )
+                .optional(),
+            })
+          ),
+        })
+      ),
+    })
+  ),
+});
 
 // await Bun.write(journalFile, journalContent);
 const workDoneFile = join(process.cwd(), "results", "work_ive_done.md");
 const workDone = await Bun.file(workDoneFile).text();
-console.log(`workDoneFile: ${workDoneFile}`);
 const sections = workDone.split(/^## /m).slice(1); // Remove empty first element
 
 // Read daily journal and find the last entry date
 const journalFile = join(process.cwd(), "results", "daily_journal.md");
 const journalContent = await Bun.file(journalFile).text();
-console.log(`Journal file: ${journalFile}`);
 
 const journalSections = journalContent.split(/^## /m).slice(1);
 let lastJournalDate = "2025-09-01"; // Default start date
@@ -54,8 +66,6 @@ if (journalSections.length > 0) {
     lastJournalDate = dateMatch[1];
   }
 }
-
-console.log(`last journal date: ${lastJournalDate}`);
 
 // Process sections after the last journal date
 let newEntries = "";
@@ -68,20 +78,45 @@ for (const section of sections) {
   if (date <= lastJournalDate) continue;
 
   const commits = lines.slice(1).join("\n").trim();
-  console.log(`here are the commits: ${commits}`);
   if (!commits) continue;
 
-  const { text } = await generateText({
-    model: google("models/gemini-2.5-flash-lite"),
-    system:
-      "Summarize and explain the daily progress from the following commits in a well-formatted markdown format suitable for GitHub. Use headings, bullet points, and tables where appropriate to make it readable and professional. As for the date. Each group of commits will have a date",
-    prompt: commits,
-  });
+  const { object } = streamObject({
+    model: google("models/gemini-2.5-flash"),
+    system: `
+            You are a professional daily report creator. Your job is to analyze commit messages and create a structured summary in markdown.
 
-  console.log(`model returned: ${text}`);
+            ANALYSIS RULES:
+            1. Group commits by date, then by project
+            2. Within each project, categorize commits into logical sections like:
+              - Feature Enhancements/New Features
+              - Bug Fixes  
+              - Refactoring
+              - Backend Updates
+              - Frontend Updates
+              - Documentation
+              - Performance Improvements
+              - etc.
+
+            3. Summarize related commits together - don't just list them individually
+            4. Use clear, professional language
+            5. Focus on what was accomplished, not just what was changed
+            6. When you see patterns like multiple similar commits, group them intelligently
+
+            FORMATTING NOTES:
+            - Project names should match exactly what's in the commits (e.g., "Project 72", "Project 12")
+            - Section titles should be descriptive and professional
+            - Bullet points should be concise but informative
+            - Use subsections for things like "bug fixes" under main sections when appropriate
+
+            `,
+    prompt: `Analyze and summarize these commits into a structured daily report: ${commits}`,
+    temperature: 0.4,
+    schema: dailyReportSchema,
+  });
 
   const now = new Date();
   const dateTime = now.toISOString().slice(0, 19).replace("T", " ");
+  // parse the new object into new entries it is no longer a string. object
   newEntries += `## ${dateTime}\n\n${text}\n\n`;
 }
 
