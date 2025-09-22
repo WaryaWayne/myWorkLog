@@ -50,6 +50,9 @@ function anonymizeData(
   data: Record<string, Record<string, { hash: string; message: string }[]>>,
   repoMap: Map<string, string>
 ) {
+  // Create a working copy of the repo map to avoid modifying the original
+  const workingRepoMap = new Map(repoMap);
+
   // Collect all unique repos across all dates
   const allRepos = new Set<string>();
   for (const date in data) {
@@ -59,7 +62,7 @@ function anonymizeData(
   }
 
   // Find new repos not in the map
-  const newRepos = Array.from(allRepos).filter((repo) => !repoMap.has(repo));
+  const newRepos = Array.from(allRepos).filter((repo) => !workingRepoMap.has(repo));
 
   // Only assign mappings for new repos (preserve existing mappings)
   if (newRepos.length > 0) {
@@ -69,7 +72,7 @@ function anonymizeData(
     );
 
     // Find the next project number
-    const existingNumbers = Array.from(repoMap.values()).map((name) => {
+    const existingNumbers = Array.from(workingRepoMap.values()).map((name) => {
       const match = name.match(/Project (\d+)/);
       return match ? parseInt(match[1], 10) : 0;
     });
@@ -78,18 +81,18 @@ function anonymizeData(
 
     // Assign new mappings only for new repos
     sortedNewRepos.forEach((repo, i) => {
-      repoMap.set(repo, `Project ${nextNumber + i}`);
+      workingRepoMap.set(repo, `Project ${nextNumber + i}`);
     });
   }
 
-  // Apply anonymization
+  // Apply anonymization using the working map
   for (const date in data) {
     const newRepos: Record<string, { hash: string; message: string }[]> = {};
     for (const repo of Object.keys(data[date])) {
-      const generic = repoMap.get(repo)!;
+      const generic = workingRepoMap.get(repo)!;
       const msgs = data[date][repo].map((item) => {
         let newMsg = item.message;
-        for (const [actual, gen] of repoMap) {
+        for (const [actual, gen] of workingRepoMap) {
           newMsg = newMsg.replace(new RegExp(escapeRegExp(actual), "g"), gen);
           const parts = actual.split("/");
           for (const part of parts) {
@@ -102,6 +105,13 @@ function anonymizeData(
       newRepos[generic] = msgs;
     }
     data[date] = newRepos;
+  }
+
+  // Update the original repoMap with new mappings only
+  for (const [repo, alias] of workingRepoMap) {
+    if (!repoMap.has(repo)) {
+      repoMap.set(repo, alias);
+    }
   }
 }
 
@@ -446,7 +456,7 @@ async function main() {
   const newContent = buildLogContent(initialHeader, merged, currentTime);
   logIfVerbose("Writing to log file...");
   await Bun.write(LOG_FILE, newContent);
-  logIfVerbose(
+  console.log(
     `✅ work_ive_done.md updated. Dates added/merged: ${newDates.join(", ")}`
   );
 }
