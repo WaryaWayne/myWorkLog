@@ -1,7 +1,3 @@
----
-title: "Abdullahi Mohamed's Work Log"
-description: "This is most of the commits from personal projects that I am working on at any given time. I will update this with my progress and the reports as often as I can."
----
 # My Work Log Quest
 
 This is my personal quest to put myself out there and share my progress publicly. I'm making the commits I've made in my personal projects visible to the world, documenting my daily work and updates.
