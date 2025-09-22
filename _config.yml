@@ -1,6 +1,6 @@
 # Site settings
 title: "Abdullahi Mohamed's Work Log"
-description: "This is commits from projects that I am working on at any given time. I will update this with my progress and the reports as often as I can."
+description: "This is most of the commits from personal projects that I am working on at any given time. I will update this with my progress and the reports as often as I can."
 
 # Theme settings/
 remote_theme: pages-themes/minimal@v0.2.0 
