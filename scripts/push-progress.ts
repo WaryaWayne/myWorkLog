@@ -42,7 +42,7 @@ function saveRepoMap(map: Map<string, string>): void {
   Bun.write(REPO_MAP_FILE, JSON.stringify(obj, null, 2));
 }
 
-function hashString(str: string): bigint {
+function hashString(str: string): bigint | number {
   return Bun.hash(str);
 }
 
@@ -62,8 +62,8 @@ function anonymizeData(
   const newRepos = Array.from(allRepos).filter((repo) => !repoMap.has(repo));
 
   // Sort new repos by hash for consistent assignment
-  const sortedNewRepos = newRepos.sort(
-    (a, b) => (hashString(a) < hashString(b) ? -1 : hashString(a) > hashString(b) ? 1 : 0)
+  const sortedNewRepos = newRepos.sort((a, b) =>
+    hashString(a) < hashString(b) ? -1 : hashString(a) > hashString(b) ? 1 : 0
   );
 
   // Find the next project number
