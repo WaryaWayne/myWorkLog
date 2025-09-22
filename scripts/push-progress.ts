@@ -11,7 +11,7 @@ const DEFAULT_START = "2023-01-01"; // start date if no log exists
 
 // Parse command-line arguments
 const args = process.argv.slice(2);
-const verbose = args.includes('-v') || args.includes('--verbose');
+const verbose = args.includes("-v") || args.includes("--verbose");
 
 // Helper function for verbose logging
 function logIfVerbose(message: string) {
@@ -59,7 +59,7 @@ function anonymizeData(
   }
 
   // Find new repos not in the map
-  const newRepos = Array.from(allRepos).filter(repo => !repoMap.has(repo));
+  const newRepos = Array.from(allRepos).filter((repo) => !repoMap.has(repo));
 
   // Sort new repos by hash for consistent assignment
   const sortedNewRepos = newRepos.sort(
@@ -67,11 +67,12 @@ function anonymizeData(
   );
 
   // Find the next project number
-  const existingNumbers = Array.from(repoMap.values()).map(name => {
+  const existingNumbers = Array.from(repoMap.values()).map((name) => {
     const match = name.match(/Project (\d+)/);
     return match ? parseInt(match[1], 10) : 0;
   });
-  const nextNumber = existingNumbers.length > 0 ? Math.max(...existingNumbers) + 1 : 1;
+  const nextNumber =
+    existingNumbers.length > 0 ? Math.max(...existingNumbers) + 1 : 1;
 
   // Assign new mappings
   sortedNewRepos.forEach((repo, i) => {
@@ -292,7 +293,7 @@ async function main() {
   logIfVerbose("Finding git repositories...");
   const repos = findGitRepos(PROJECTS_DIR);
   if (repos.length === 0) {
-    logIfVerbose("No git repos found under", PROJECTS_DIR);
+    logIfVerbose(`No git repos found under ${PROJECTS_DIR}`);
     return;
   }
   logIfVerbose(`Found ${repos.length} git repositories.`);
