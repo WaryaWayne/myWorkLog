@@ -6,7 +6,7 @@ import { join, relative } from "path";
 
 const PROJECTS_DIR = join(process.cwd(), "..");
 const LOG_FILE = join(process.cwd(), "results", "work_ive_done.md");
-const REPO_MAP_FILE = join(process.cwd(), "repo_map.json");
+const REPO_MAP_FILE = join(process.cwd(), "results", "repo_map.json");
 const DEFAULT_START = "2023-01-01"; // start date if no log exists
 
 // Parse command-line arguments
